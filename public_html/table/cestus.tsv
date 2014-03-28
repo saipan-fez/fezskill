@@ -1,0 +1,19 @@
+id	name		maxLevel	level1	level2	level3	lower	upper	description
+normal	ノーマル	1	1	0					
+enderraid	エンダーレイド	1	1	0					
+shutout	シャットアウト	0	1	2	0			hardreinforce,sacrifice,towerdomination	
+hardreinforce	ハードレインフォース	0	1	2	0		shutout		
+sacrifice	サクリファイス	0	1	2	0		shutout		
+towerdomination	タワードミネーション	0	1	2	0		shutout		
+intensify	インテンスファイ	0	3	2	1	1		knockimpact,earthbind,solidstrike,shockwave	
+knockimpact	ノックインパクト	0	3	2	1	1	intensify	earthbind	
+earthbind	アースバインド	0	3	3	2	1	intensify,knockimpact		
+solidstrike	ソリッドストライク	0	3	2	1	1	intensify	shockwave	
+shockwave	ショックウェイブ	0	3	2	2	2	intensify,earthbind		
+drainclaw	ドレインクロー	0	3	2	1	1		hornetsting,harmactivate,geysersmash,backhandblow,cyclonedisaster	
+hornetsting	ホーネットスティング	0	3	2	1	1	drainclaw	geysersmash	
+harmactivate	ハームアクティベイト	0	3	2	1	1	drainclaw	geysersmash	
+geysersmash	ゲイザースマッシュ	0	3	2	2	2	drainclaw,hornetsting,harmactivate		
+backhandblow	バックハンドブロー	0	3	2	1	1	drainclaw	cyclonedisaster	
+cyclonedisaster	サイクロンディザスター	0	3	1	2	3	drainclaw,hornetsting,harmactivate,geysersmash,backhandblow		
+,									

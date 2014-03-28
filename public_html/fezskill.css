@@ -1,0 +1,78 @@
+/* 
+    Created on : 2014/03/12, 9:26:18
+    Author     : paul
+*/
+
+table, th, td {
+	border: solid 1px black;
+}
+/* スキルシミュレーションテーブル */
+.skillplanner table{
+	border: none;
+}
+.skillplanner .overlimit{
+	/* スキルポイント消費可能限界突破 */
+	background-color: #ff9999;
+}
+.skillplanner .empty{
+	/* 空セル */
+	border: none;
+}
+.skillplanner .connector{
+	/* スキル接続罫線セル */
+	border: none;
+}
+.skillplanner th.treecaption {
+	/* スキルツリー表題セル */
+	border: none;
+}
+.skillplanner td.level0 {
+	/* レベル0スキル */
+	background-color: #cccccc;
+}
+.skillplanner .levelbox {
+	/* レベル選択部分 */
+	/* スキルアイコン幅だけマージンを取る*/
+	margin-left:34px;
+	/* 途中改行しない*/
+	white-space: nowrap;
+}
+.skillplanner select{
+	/* レベル選択ボックス */
+	min-width: 50px;
+}
+.skillplanner .markbox {
+	/*スキルアイコン幅だけマージンを取る*/
+	margin-left:34px;
+}
+.skillplanner .mark{
+	/* 消費スキルポイントマーク */
+	font-family: monospace;
+}
+.skillplanner img.skillicon{
+	/* スキルアイコン画像 */
+	vertical-align: middle;
+	margin: 1px;
+}
+
+#powerTip {
+	opacity: 0.95;
+}
+#powerTip table{
+	border: none;
+	border-collapse:collapse;
+	text-align: center;
+}
+
+ul#topmenu{
+	display: block;
+}
+ul#topmenu li {
+	list-style-type: none;
+	display: inline;
+	margin: 1px;
+}
+ul#topmenu a {
+	border: 1px black solid;
+	padding: 3px;
+}

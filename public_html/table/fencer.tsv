@@ -1,0 +1,16 @@
+id	name	initialLevel	maxLevel	level1	level2	level3	lower	upper	description
+normal	ノーマル	1	1	0					
+dualstrike	デュアルストライク	0	3	2	1	1		flushstinger,downdrive,finishthrust,shiningcross,obtainprotect,erasemagic,acceleration,vigoraid	
+flushstinger	フラッシュスティンガー	0	3	3	2	1	dualstrike	finishthrust	
+downdrive	ダウンドライブ	0	3	2	1	1	dualstrike	finishthrust	
+finishthrust	フィニッシュスラスト	0	3	2	1	1	dualstrike,flushstinger,downdrive		
+shiningcross	シャイニングクロス	0	3	2	1	1	dualstrike	obtainprotect,erasemagic,acceleration,vigoraid	
+obtainprotect	オブテインプロテクト	0	3	1	1	2	dualstrike,shiningcross		
+erasemagic	イレイスマジック	0	3	1	1	2	dualstrike,shiningcross		
+acceleration	アクセラレーション	0	3	1	1	2	dualstrike,shiningcross		
+vigoraid	ヴィガーエイド	0	3	1	1	2	dualstrike,shiningcross		
+reversekick	リバースキック	0	3	2	1	1		penetratethrust,aerialfall,rapidfendez-vous	
+penetratethrust	ペネトレイトスラスト	0	3	1	2	3	reversekick	aerialfall,rapidfendez-vous	
+aerialfall	エリアルフォール	0	3	3	1	1	reversekick,penetratethrust		
+rapidfendez-vous	ラピッドファンデヴ	0	3	3	1	1	reversekick,penetratethrust		
+,									
