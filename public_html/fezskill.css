@@ -2,13 +2,19 @@
     Created on : 2014/03/12, 9:26:18
     Author     : paul
 */
-
 table, th, td {
 	border: solid 1px black;
 }
 /* スキルシミュレーションテーブル */
+.skillplanner{
+	margin-left: 46px;
+}
+.skillplanner #tspointmarkbox{
+	margin-left: 46px;
+}
 .skillplanner table{
 	border: none;
+	margin-left: 46px;
 }
 .skillplanner .overlimit{
 	/* スキルポイント消費可能限界突破 */
@@ -64,6 +70,10 @@ table, th, td {
 	text-align: center;
 }
 
+.skilltip {
+	clear: both;
+}
+
 ul#topmenu{
 	display: block;
 }
@@ -74,4 +84,14 @@ ul#topmenu li {
 ul#topmenu a {
 	/* border: 1px black solid;*/
 	padding: 0 1em;
+}
+
+#skillslot {
+	float:left;
+	background-color: #ffffcc;
+	border: #663300 ridge medium;
+	width: 34px;
+	height: 260px;
+	margin: 0 2px;
+	position: fixed;
 }

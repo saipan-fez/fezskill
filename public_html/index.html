@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>tables</title>
+		<title>ウォリアー - FEZスキルシミュレータ</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width">
 		<link rel="stylesheet" href="fezskill.css" />
@@ -24,7 +24,6 @@
 					skills[tsv.data.rows[i].id] = new Skill(tsv.data.rows[i]);
 				}
 				$("input#reset").click();
-//				tsv.show();
 			});
 		</script>
 	</head>
@@ -37,10 +36,12 @@
 			<li><a href="./fencer.html">フェンサー</a></li>
 			<li><a href="./cestus.html">セスタス</a></li>
 		</ul>
-		<form class="skillplanner">
+		<h1>ウォリアー - FEZスキルシミュレータ</h1>
+		<form class="skillplanner" style="display: inline;">
 			<input type="text" id="levelpoint" />
 			<input type="button" value="リセット" id="reset"/>
 			<div id="tspointmarkbox">SP: <span class="mark"></span></div>
+			<div id="skillslot"></div>
 			<table>
 				<tbody>
 					<tr><th class="treecaption">基本スキル</th>
@@ -276,6 +277,7 @@
 						<tr><th>威力</th><td colspan="3">55</td></tr>
 						<tr><th>特殊効果</th><td colspan="3">スタン</td></tr>
 						<tr><th>効果時間（秒）</th><td>2.3</td><td>2.8</td><td>3.3</td></tr>
+						<tr><th>スタン耐性（秒）</th><td colspan="3">15</td></tr>
 					</tbody></table>
 			</div>
 			<div id="tipsmash">
