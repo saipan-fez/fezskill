@@ -70,9 +70,8 @@ ul#topmenu{
 ul#topmenu li {
 	list-style-type: none;
 	display: inline;
-	margin: 1px;
 }
 ul#topmenu a {
-	border: 1px black solid;
-	padding: 3px;
+	/* border: 1px black solid;*/
+	padding: 0 1em;
 }
