@@ -7,14 +7,14 @@ table, th, td {
 }
 /* スキルシミュレーションテーブル */
 .skillplanner{
-	margin-left: 46px;
+	margin-left: 48px;
 }
 .skillplanner #tspointmarkbox{
-	margin-left: 46px;
+	margin-left: 48px;
 }
 .skillplanner table{
 	border: none;
-	margin-left: 46px;
+	margin-left: 48px;
 }
 .skillplanner .overlimit{
 	/* スキルポイント消費可能限界突破 */
@@ -58,7 +58,10 @@ table, th, td {
 .skillplanner img.skillicon{
 	/* スキルアイコン画像 */
 	vertical-align: middle;
-	margin: 1px;
+
+}
+.skillplanner .skillname{
+	margin-left: 1ex;
 }
 
 #powerTip {
@@ -86,12 +89,23 @@ ul#topmenu a {
 	padding: 0 1em;
 }
 
-#skillslot {
-	float:left;
+ul#skillslotbar {
+	margin: 0;
+	padding: 0;
 	background-color: #ffffcc;
 	border: #663300 ridge medium;
-	width: 34px;
-	height: 260px;
-	margin: 0 2px;
 	position: fixed;
+}
+
+li.skillslot{
+	list-style-type: none;
+	background-color: #999;
+	border: #663300 ridge 5px;
+	height: 28px;
+	width: 28px;
+	border-radius: 50%;
+}
+
+#ui-draggable-dragging{
+	border: solid 10px black;
 }

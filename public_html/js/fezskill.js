@@ -5,13 +5,12 @@ var clone = function(obj) {
 	}
 	return object;
 };
-
 var TRUE_STRING = "TRUE";
 var ICON_WIDTH = "32";
 var SKILLPOINT_MARK = "-";
 var SKILLPOINT_MARKED = "X";
 var SKILLPOINT_LIMIT = 40;
-
+var SKILLSLOT_SIZE = 8;
 // キャラクタークラス列挙
 var CHARACTER_CLASS = {
 	WARRIOR: "warrior",
@@ -20,12 +19,10 @@ var CHARACTER_CLASS = {
 	FENCER: "fencer",
 	CESTUS: "cestus"
 };
-
 // 表ファイル所在
 TABLE_DIR = "table/";
 // 表ファイル拡張子
 TABLE_EXTENTION = ".tsv";
-
 //function makeSkillBox(id, name, level1, level2, level3, )
 
 /**
@@ -88,7 +85,6 @@ Tsv.prototype = {
 		});
 	}
 };
-
 /**
  * 
  * @param {papaParse().results} tsvRow
@@ -105,7 +101,7 @@ function Skill(tsvRow) {
 	this.level3 = parseInt(tsvRow["level3"]);
 	this.description = tsvRow["description"];
 	this.level = this.initialLevel = parseInt(tsvRow["initialLevel"]);
-
+	// PowerTip設定
 	$("td#" + this.id).find("span.skillname").data("powertiptarget", "tip" + this.id);
 }
 
@@ -166,11 +162,9 @@ Skill.prototype = {
 		// レベル変更
 		this.level = level;
 		$("td#" + this.id).find("select").val(level);
-
 		// スキルポイント消費マーク
 		var pointmark = this.getPointMark(this.level);
 		$("td#" + this.id).find(".mark").text(pointmark);
-
 		// スキルレベルに基づく背景設定
 		if (this.level === 0) {
 			$("td#" + this.id).addClass("level0");
@@ -209,30 +203,27 @@ $(function() {
 	 */
 	$("input.upLevel").click(function() {
 		// スキルid
-		var skillId = $(this).parents("td").attr("id");
+		var skillid = $(this).parents("td").attr("id");
 		// インクリメント
-		skills[skillId].changeLevel(skills[skillId].level + 1);
+		skills[skillid].changeLevel(skills[skillid].level + 1);
 	});
-
 	/**
 	 * スキルレベル低下
 	 */
 	$("input.downLevel").click(function() {
 		// スキルid
-		var skillId = $(this).parents("td").attr("id");
+		var skillid = $(this).parents("td").attr("id");
 		// デクリメント
-		skills[skillId].changeLevel(skills[skillId].level - 1);
+		skills[skillid].changeLevel(skills[skillid].level - 1);
 	});
-
 	/**
 	 * スキルレベル変更
 	 */
 	$("select").change(function() {
 		// スキルIDを上位td要素のid属性から取得する
-		var skillId = $(this).parents("td").attr("id");
-		skills[skillId].changeLevel(parseInt(this.value));
+		var skillid = $(this).parents("td").attr("id");
+		skills[skillid].changeLevel(parseInt(this.value));
 	});
-
 	/**
 	 * リセットボタン
 	 * 初期化する
@@ -242,10 +233,7 @@ $(function() {
 			skills[i].changeLevel();
 		}
 	});
-
 });
-
-
 /**
  * 総合スキルポイント
  * @returns {TotalSkillPoint}
@@ -287,7 +275,6 @@ TotalSkillPoint.prototype = {
 		var mark = "";
 		if (point === undefined)
 			point = this.get();
-
 		var i;
 		if (point > SKILLPOINT_LIMIT)
 		{
@@ -320,7 +307,6 @@ TotalSkillPoint.prototype = {
 	getText: function(point) {
 		if (point === undefined)
 			point = this.get();
-
 		// 残りポイント
 		var rest = SKILLPOINT_LIMIT - point;
 		var levelguide = "Lv. 0";

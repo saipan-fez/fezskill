@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width">
 		<link rel="stylesheet" href="fezskill.css" />
 		<link rel="stylesheet" href="js/libs/jquery-powertip/css/jquery.powertip-light.css" />
+		<link rel="stylesheet" href="js/libs/jqueryui/css/base/jquery-ui.css" />
 		<script type="text/javascript" src="js/libs/jquery/jquery.js"></script>
 		<script type="text/javascript" src="js/libs/jquery-powertip/jquery.powertip.js"></script>
 		<script type="text/javascript" src="js/libs/jqueryui/jquery-ui.js"></script>
@@ -13,16 +14,55 @@
 		<script type="text/javascript" src="js/jquery.parse.min.js"></script>
 		<script type="text/javascript" src="js/fezskill.js"></script>
 		<script type="text/javascript">
-			var skills, tsv, characterClass;
+			var skills, tsv, characterClass, skillslots;
 			var tspoint = new TotalSkillPoint();
 			$(document).ready(function() {
-				$("span.skillname").powerTip({placement: "s", smartPlacement: true});
+				// キャラクタークラス設定
 				characterClass = CHARACTER_CLASS.WARRIOR;
 				tsv = new Tsv(characterClass);
+
+				// ツールチップ設定
+				$("span.skillname").powerTip({placement: "s", smartPlacement: true});
+
+				// スキルアイコンドラッグ
+				$(".skillicon").draggable({helper: "clone"});
+				
+				// スキルアイコンダブルクリックでスロット登録
+				$(".skillicon").dblclick(function() {
+					for (var i = 0; i < SKILLSLOT_SIZE; i++) {
+						if (undefined === $($(".skillslot")[i]).children()[0]) {
+							var icon = $(this).clone();
+							// ダブルクリックで自滅
+							icon.dblclick(function() {
+								$(this).remove();
+							});
+							$($(".skillslot")[i]).append(icon);
+							break;
+						}
+					}
+				});
+				
+				// スキルアイコン受付
+				$(".skillslot").droppable({
+					tolerance: "pointer",
+					drop: function(event, ui) {
+						$(this).find("img").remove();
+						var icon = $(ui.draggable.context).clone();
+						// ダブルクリックで自滅
+						icon.dblclick(function() {
+							$(this).remove();
+						});
+						$(this).append(icon);
+					}
+				});
+
+				// スキル設定
 				skills = new Array();
 				for (var i = 0; i < tsv.data.rows.length; i++) {
 					skills[tsv.data.rows[i].id] = new Skill(tsv.data.rows[i]);
 				}
+
+				// 初期化
 				$("input#reset").click();
 			});
 		</script>
@@ -38,10 +78,19 @@
 		</ul>
 		<h1>ウォリアー - FEZスキルシミュレータ</h1>
 		<form class="skillplanner" style="display: inline;">
+			<ul id="skillslotbar">
+				<li class="skillslot"></li>
+				<li class="skillslot"></li>
+				<li class="skillslot"></li>
+				<li class="skillslot"></li>
+				<li class="skillslot"></li>
+				<li class="skillslot"></li>
+				<li class="skillslot"></li>
+				<li class="skillslot"></li>
+			</ul>
 			<input type="text" id="levelpoint" />
 			<input type="button" value="リセット" id="reset"/>
 			<div id="tspointmarkbox">SP: <span class="mark"></span></div>
-			<div id="skillslot"></div>
 			<table>
 				<tbody>
 					<tr><th class="treecaption">基本スキル</th>
@@ -69,7 +118,7 @@
 					</tr>
 					<tr>
 						<td id="sonicboom">
-							<img class="skillicon" src="skillicon/warrior/sonicboom.gif" alt="ソニックブームアイコン" /><span class="skillname">ソニックブーム</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+							<img class="skillicon" src="skillicon/warrior/sonicboom.gif" alt="ソニックブームアイコン"  /><span class="skillname">ソニックブーム</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
 						</td>
 						<td class="connector">━</td>
 						<td id="forceimpact">
