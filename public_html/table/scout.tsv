@@ -1,27 +1,27 @@
-id	name	initialLevel	maxLevel	level1	level2	level3	lower	upper	description
-bow	基本弓攻撃	1	1	0					
-gun	基本銃攻撃	1	1	0					
-dagger	基本短剣攻撃	1	1	0					
-airraid	エアレイド	0	3	2	1	1		blazeshot,arrowrain	
-blazeshot	ブレイズショット	0	3	2	1	1	airraid	arrowrain	
-arrowrain	アローレイン	0	3	3	1	1	blazeshot,airraid		
-poisonshoot	ポイズンショット	0	3	2	1	1		spiderweb,trueshot	
-spiderweb	スパイダーウェブ	0	3	2	1	1	poisonshoot	trueshot	
-trueshot	トゥルーショット	0	3	2	1	1	spiderweb,poisonshoot		
-eagleshot	イーグルショット	0	3	2	1	1		powershot,piercingshoot	
-powershot	パワーショット	0	3	2	1	1	eagleshot	piercingshoot	
-piercingshoot	ピアッシングシュート	0	3	3	1	1	powershot,eagleshot		
-oilshot	オイルショット	0	3	2	1	1		acidshot,trivenom	
-acidshot	アシッドショット	0	3	2	1	1	oilshot	trivenom	
-whiteblow	ホワイトブロウ	0	3	2	1	1		daisyflash,trivenom	
-daisyflash	デイジーフラッシュ	0	3	2	1	1	whiteblow	trivenom	
-trivenom	トライヴェノム	0	3	2	1	1	acidshot, daisyflash,oilshot,whiteblow		
-hide	ハイド	1	3	0	1	1		viperbite,punishingstrike	
-viperbite	ヴァイパーバイト	0	3	0	1	1	hide	punishingstrike	
-punishingstrike	パニッシングストライク	0	3	2	2	2	viperbite,hide		
-poisonblow	ポイズンブロウ	0	3	2	1	1		powerbreak,voiddarkness	
-powerbreak	パワーブレイク	0	3	2	1	1	poisonblow	voiddarkness	
-voiddarkness	ヴォイドダークネス	0	3	2	2	2	poisonblow,powerbreak		
-legbreak	レッグブレイク	0	3	2	1	1		gaurdbreak,armbreak	
-gaurdbreak	ガードブレイク	0	3	2	1	1	legbreak	armbreak	
-armbreak	アームブレイク	0	3	2	2	2	gaurdbreak,legbreak		
+idc	id	name	initialLevel	maxLevel	level1	level2	level3	lower	upper	description
+a	bow	基本弓攻撃	1	1	0					
+b	gun	基本銃攻撃	1	1	0					
+c	dagger	基本短剣攻撃	1	1	0					
+d	airraid	エアレイド	0	3	2	1	1		blazeshot,arrowrain	
+e	blazeshot	ブレイズショット	0	3	2	1	1	airraid	arrowrain	
+f	arrowrain	アローレイン	0	3	3	1	1	blazeshot,airraid		
+g	poisonshoot	ポイズンショット	0	3	2	1	1		spiderweb,trueshot	
+h	spiderweb	スパイダーウェブ	0	3	2	1	1	poisonshoot	trueshot	
+i	trueshot	トゥルーショット	0	3	2	1	1	spiderweb,poisonshoot		
+j	eagleshot	イーグルショット	0	3	2	1	1		powershot,piercingshoot	
+k	powershot	パワーショット	0	3	2	1	1	eagleshot	piercingshoot	
+l	piercingshoot	ピアッシングシュート	0	3	3	1	1	powershot,eagleshot		
+m	oilshot	オイルショット	0	3	2	1	1		acidshot,trivenom	
+n	acidshot	アシッドショット	0	3	2	1	1	oilshot	trivenom	
+o	whiteblow	ホワイトブロウ	0	3	2	1	1		daisyflash,trivenom	
+p	daisyflash	デイジーフラッシュ	0	3	2	1	1	whiteblow	trivenom	
+q	trivenom	トライヴェノム	0	3	2	1	1	acidshot, daisyflash,oilshot,whiteblow		
+r	hide	ハイド	1	3	0	1	1		viperbite,punishingstrike	
+s	viperbite	ヴァイパーバイト	0	3	0	1	1	hide	punishingstrike	
+t	punishingstrike	パニッシングストライク	0	3	2	2	2	viperbite,hide		
+u	poisonblow	ポイズンブロウ	0	3	2	1	1		powerbreak,voiddarkness	
+v	powerbreak	パワーブレイク	0	3	2	1	1	poisonblow	voiddarkness	
+w	voiddarkness	ヴォイドダークネス	0	3	2	2	2	poisonblow,powerbreak		
+x	legbreak	レッグブレイク	0	3	2	1	1		gaurdbreak,armbreak	
+y	gaurdbreak	ガードブレイク	0	3	2	1	1	legbreak	armbreak	
+z	armbreak	アームブレイク	0	3	2	2	2	gaurdbreak,legbreak		

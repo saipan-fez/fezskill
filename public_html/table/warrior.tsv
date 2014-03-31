@@ -1,19 +1,19 @@
-id	name	initialLevel	maxLevel	level1	level2	level3	lower	upper	description
-normal	基本攻撃	1	1	0					
-enderpain	エンダーペイン	1	1	0					
-sonicboom	ソニックブーム	0	3	2	1	1		forceimpact,crumblestorm	
-forceimpact	フォースインパクト	0	3	3	1	1	sonicboom	crumblestorm	
-crumblestorm	クランブルストーム	0	3	3	2	2	forceimpact		
-blazeslash	ブレイズスラッシュ	0	3	2	1	1		slumattack,guardreinforce,earthstamp,shieldbash	
-slumattack	スラムアタック	0	3	2	1	1	blazeslash	earthstamp	
-earthstamp	アーススタンプ	0	3	2	2	2	slumattack,blazeslash		
-guardreinforce	ガードレインフォース	0	3	2	1	1	blazeslash	shieldbash	
-shieldbash	シールドバッシュ	0	3	2	2	2	guardreinforce,blazeslash		
-smash	スマッシュ	0	3	2	1	1		strikesmash,behemostail,extendblade,attackreinforce,heavysmash,dragontail,swordrampage	
-strikesmash	ストライクスマッシュ	0	3	2	1	1	smash	heavysmash	
-heavysmash	ヘビースマッシュ	0	3	2	2	2	strikesmash,smash		
-behemostail	ベヒモステイル	0	3	2	1	1	smash	dragontail	
-dragontail	ドラゴンテイル	0	3	2	2	2	behemostail,smash		
-extendblade	エクステンブレイド	0	3	2	1	1	smash	swordrampage	
-swordrampage	ソードランページ	0	3	2	2	2	extendblade,smash		
-attackreinforce	アタックレインフォース	0	3	2	1	1	smash		
+idc	id	name	initialLevel	maxLevel	level1	level2	level3	lower	upper	description
+a	normal	基本攻撃	1	1	0					
+b	enderpain	エンダーペイン	1	1	0					
+c	sonicboom	ソニックブーム	0	3	2	1	1		forceimpact,crumblestorm	
+d	forceimpact	フォースインパクト	0	3	3	1	1	sonicboom	crumblestorm	
+e	crumblestorm	クランブルストーム	0	3	3	2	2	forceimpact		
+f	blazeslash	ブレイズスラッシュ	0	3	2	1	1		slumattack,guardreinforce,earthstamp,shieldbash	
+g	slumattack	スラムアタック	0	3	2	1	1	blazeslash	earthstamp	
+h	earthstamp	アーススタンプ	0	3	2	2	2	slumattack,blazeslash		
+i	guardreinforce	ガードレインフォース	0	3	2	1	1	blazeslash	shieldbash	
+j	shieldbash	シールドバッシュ	0	3	2	2	2	guardreinforce,blazeslash		
+k	smash	スマッシュ	0	3	2	1	1		strikesmash,behemostail,extendblade,attackreinforce,heavysmash,dragontail,swordrampage	
+l	strikesmash	ストライクスマッシュ	0	3	2	1	1	smash	heavysmash	
+m	heavysmash	ヘビースマッシュ	0	3	2	2	2	strikesmash,smash		
+n	behemostail	ベヒモステイル	0	3	2	1	1	smash	dragontail	
+o	dragontail	ドラゴンテイル	0	3	2	2	2	behemostail,smash		
+p	extendblade	エクステンブレイド	0	3	2	1	1	smash	swordrampage	
+q	swordrampage	ソードランページ	0	3	2	2	2	extendblade,smash		
+r	attackreinforce	アタックレインフォース	0	3	2	1	1	smash		
