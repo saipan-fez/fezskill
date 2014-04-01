@@ -33,12 +33,6 @@
 						// 空きスロット探索
 						if (undefined === $($(".skillslot")[i]).children()[0]) {
 							setSlot(i, $(this).attr("alt"));
-//							var icon = $(this).clone();
-//							// ダブルクリックで自滅
-//							icon.dblclick(function() {
-//								$(this).remove();
-//							});
-//							$($(".skillslot")[i]).append(icon);
 							break;
 						}
 					}
@@ -64,6 +58,9 @@
 					skills[tsv.data.rows[i].id] = new Skill(tsv.data.rows[i]);
 				}
 
+				// 初期化
+				$("input#reset").click();
+
 				// GETパラメータ取得
 				params = getUrlVars();
 				if (params !== null) {
@@ -79,8 +76,6 @@
 					}
 				}
 
-				// 初期化
-				$("input#reset").click();
 			});
 		</script>
 	</head>

@@ -234,8 +234,8 @@ $(function() {
 	 * 初期化する
 	 */
 	$("input#reset").click(function() {
-		for (var i in skills) {
-			skills[i].changeLevel();
+		for (var id in skills) {
+			skills[id].changeLevel();
 		}
 	});
 });
@@ -253,20 +253,20 @@ TotalSkillPoint.prototype = {
 	 */
 	get: function() {
 		var totalspent = 0;
-		for (var i in skills) {
+		for (var id in skills) {
 			// level0なら消費スキルポイントなし．次へ
-			if (skills[i].level === 0) {
+			if (skills[id].level === 0) {
 				continue;
 			}
 
-			switch (skills[i].level) {
+			switch (skills[id].level) {
 				// fall through
 				case 3:
-					totalspent += skills[i].level3;
+					totalspent += skills[id].level3;
 				case 2:
-					totalspent += skills[i].level2;
+					totalspent += skills[id].level2;
 				case 1:
-					totalspent += skills[i].level1;
+					totalspent += skills[id].level1;
 			}
 		}
 		return totalspent;
@@ -348,10 +348,10 @@ function resetSlot(idcstring) {
 			// スキップ
 			continue;
 		}
-		for (var j in  skills) {
+		for (var id in  skills) {
 			// 一致するidcを検索する
-			if (skills[j].idc === code[i]) {
-				setSlot(i, skills[j].name + "アイコン");
+			if (skills[id].idc === code[i]) {
+				setSlot(i, skills[id].name + "アイコン");
 			}
 		}
 	}
@@ -397,4 +397,19 @@ var getUrlVars = function(){
         if(key != '') vars[key] = decodeURI(val);
     } 
     return vars; 
+}
+
+/**
+ * レベルをリセットする
+ * @param {String} code スキルテーブル順のレベル情報
+ * @returns {undefined}
+ */
+function resetLevel(code){
+	// 非数字を0にする
+	var levelcode = code.replace(/[^0-9]/g, "0");
+	var i = 0;
+	for (var id in skills){
+		skills[id].changeLevel(parseInt(levelcode[i]));
+		i++;
+	}
 }
