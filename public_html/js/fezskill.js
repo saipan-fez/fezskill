@@ -154,7 +154,6 @@ Skill.prototype = {
 	 */
 	changeLevel: function(level) {
 		if (level === undefined) {
-			// levelが未定義の場合，初期化する
 			level = this.initialLevel;
 		} else {
 			// レベル範囲検査
@@ -386,17 +385,19 @@ function setSlot(i, imgalt) {
  *  @return     パラメータのObject
  *
  */
-var getUrlVars = function(){
-    var vars = {}; 
-    var param = location.search.substring(1).split('&');
-    for(var i = 0; i < param.length; i++) {
-        var keySearch = param[i].search(/=/);
-        var key = '';
-        if(keySearch != -1) key = param[i].slice(0, keySearch);
-        var val = param[i].slice(param[i].indexOf('=', 0) + 1);
-        if(key != '') vars[key] = decodeURI(val);
-    } 
-    return vars; 
+var getUrlVars = function() {
+	var vars = {};
+	var param = location.search.substring(1).split('&');
+	for (var i = 0; i < param.length; i++) {
+		var keySearch = param[i].search(/=/);
+		var key = '';
+		if (keySearch != -1)
+			key = param[i].slice(0, keySearch);
+		var val = param[i].slice(param[i].indexOf('=', 0) + 1);
+		if (key != '')
+			vars[key] = decodeURI(val);
+	}
+	return vars;
 }
 
 /**
@@ -404,12 +405,16 @@ var getUrlVars = function(){
  * @param {String} code スキルテーブル順のレベル情報
  * @returns {undefined}
  */
-function resetLevel(code){
+function resetLevel(code) {
 	// 非数字を0にする
 	var levelcode = code.replace(/[^0-9]/g, "0");
 	var i = 0;
-	for (var id in skills){
-		skills[id].changeLevel(parseInt(levelcode[i]));
+	for (var id in skills) {
+		var level = parseInt(levelcode[i]);
+		if (isNaN(level)) {
+			level = 0;
+		}
+		skills[id].changeLevel(parseInt(level));
 		i++;
 	}
 }
