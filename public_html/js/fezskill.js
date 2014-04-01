@@ -160,8 +160,8 @@ Skill.prototype = {
 			// レベル範囲検査
 			if (level > this.maxLevel)
 				level = this.maxLevel;
-			else if (level < 0)
-				level = 0;
+			else if (level < 1)
+				level = this.initialLevel;
 		}
 		// レベル変更
 		this.level = level;
