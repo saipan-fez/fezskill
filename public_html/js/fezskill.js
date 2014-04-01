@@ -351,7 +351,7 @@ function resetSlot(idcstring) {
 		for (var j in  skills) {
 			// 一致するidcを検索する
 			if (skills[j].idc === code[i]) {
-				setslot(i, skills.name + "アイコン");
+				setSlot(i, skills[j].name + "アイコン");
 			}
 		}
 	}
@@ -373,9 +373,28 @@ function setSlot(i, imgalt) {
 		icon.dblclick(function() {
 			$(this).remove();
 		});
-		
+
 		// アイコン入れ替え
 		$("li.skillslot:eq(" + i + ")").find("img").remove();
 		$("li.skillslot:eq(" + i + ")").append(icon);
 	}
+}
+
+/**
+ *  GETパラメータを配列にして返す
+ *  @url http://qiita.com/Evolutor_web/items/c9b940f752883676b35d
+ *  @return     パラメータのObject
+ *
+ */
+var getUrlVars = function(){
+    var vars = {}; 
+    var param = location.search.substring(1).split('&');
+    for(var i = 0; i < param.length; i++) {
+        var keySearch = param[i].search(/=/);
+        var key = '';
+        if(keySearch != -1) key = param[i].slice(0, keySearch);
+        var val = param[i].slice(param[i].indexOf('=', 0) + 1);
+        if(key != '') vars[key] = decodeURI(val);
+    } 
+    return vars; 
 }

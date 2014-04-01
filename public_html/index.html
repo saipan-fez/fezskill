@@ -64,6 +64,21 @@
 					skills[tsv.data.rows[i].id] = new Skill(tsv.data.rows[i]);
 				}
 
+				// GETパラメータ取得
+				params = getUrlVars();
+				if (params !== null) {
+					if (params["s"] !== undefined)
+					{
+						// スキルスロットリセット
+						resetSlot(params["s"]);
+					}
+					if (params["l"] !== undefined)
+					{
+						// スキルリセット
+						resetLevel(params["l"]);
+					}
+				}
+
 				// 初期化
 				$("input#reset").click();
 			});
