@@ -1,10 +1,12 @@
-var clone = function(obj) {
-	var object = {};
-	for (var i in obj) {
-		object[i] = obj[i];
-	}
-	return object;
-};
+/**
+ * 
+ * @param {String} src skilliconのsrc属性値
+ * @returns {String} skillid
+ */
+function getidfromskilliconsrc(src) {
+	return (src.split("/")[2]).split(".")[0];
+}
+
 var TRUE_STRING = "TRUE";
 var ICON_WIDTH = "32";
 var SKILLPOINT_MARK = "-";
@@ -91,6 +93,8 @@ Tsv.prototype = {
  * @returns {Skill}
  */
 function Skill(tsvRow) {
+	// ID Characterは[A-Za-z0-9]1字
+	this.idc = tsvRow["idc"];
 	this.id = tsvRow["id"];
 	this.name = tsvRow["name"];
 	this.maxLevel = parseInt(tsvRow["maxLevel"]);
@@ -198,6 +202,7 @@ Skill.prototype = {
 	}
 };
 $(function() {
+
 	/**
 	 * スキルレベル上昇
 	 */
@@ -325,4 +330,52 @@ TotalSkillPoint.prototype = {
 		}
 		return levelguide + " rest " + rest + " Max. " + SKILLPOINT_LIMIT;
 	}
+
 };
+
+/**
+ * 
+ * @param {String} idcstring idc文字列
+ * @returns {undefined}
+ */
+function resetSlot(idcstring) {
+	// [0-9A-Za-z]でない値は 0 にする
+	var code = idcstring.replace(/[^\w]/g, "0");
+	// 短い値に合わせる
+	var length = (code.length > SKILLSLOT_SIZE) ? SKILLSLOT_SIZE : code.length;
+	for (var i = 0; i < length; i++) {
+		if (code[i] === "0") {
+			// スキップ
+			continue;
+		}
+		for (var j in  skills) {
+			// 一致するidcを検索する
+			if (skills[j].idc === code[i]) {
+				setslot(i, skills.name + "アイコン");
+			}
+		}
+	}
+}
+
+/**
+ * スキルスロットにスキルアイコンをセットする
+ * @param {Number} i slot番号
+ * @param {String} imgalt スキルアイコン代替テキスト
+ * @returns {undefined}
+ */
+function setSlot(i, imgalt) {
+	// アイコン探索
+	var img = $("td, .skillicon").find("[alt=" + imgalt + "]");
+	if (img.length === 1) {
+		// アイコン発見時
+		var icon = img.clone();
+		// ダブルクリックすると自滅する
+		icon.dblclick(function() {
+			$(this).remove();
+		});
+		
+		// アイコン入れ替え
+		$("li.skillslot:eq(" + i + ")").find("img").remove();
+		$("li.skillslot:eq(" + i + ")").append(icon);
+	}
+}
