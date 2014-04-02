@@ -273,7 +273,7 @@ $(document).ready(function() {
 	/**
 	 * ダイアログ設定
 	 */
-	$("div.skilllist").dialog({title: "保存アドレスとスキルリスト",
+	$("div.skilllist").dialog({title: "保存アドレスと取得スキルリスト",
 		autoOpen: false, minWidth: 500});
 
 	/**
