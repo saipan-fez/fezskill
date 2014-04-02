@@ -11,7 +11,6 @@
 		<script type="text/javascript" src="js/libs/jquery-powertip/jquery.powertip.js"></script>
 		<script type="text/javascript" src="js/libs/jqueryui/jquery-ui.js"></script>
 		<script type="text/javascript" src="js/jquery.parse.min.js"></script>
-		<script type="text/javascript" src="js/jquery.parse.min.js"></script>
 		<script type="text/javascript" src="js/fezskill.js"></script>
 		<script type="text/javascript">
 			var skills, tsv, characterClass, skillslots;
@@ -31,7 +30,7 @@
 				$(".skillicon").dblclick(function() {
 					for (var i = 0; i < SKILLSLOT_SIZE; i++) {
 						// 空きスロット探索
-						if (undefined === $($(".skillslot")[i]).children()[0]) {
+						if (void(0) === $($(".skillslot")[i]).children()[0]) {
 							setSlot(i, $(this).attr("alt"));
 							break;
 						}
@@ -64,12 +63,12 @@
 				// GETパラメータ取得
 				params = getUrlVars();
 				if (params !== null) {
-					if (params["s"] !== undefined)
+					if (params["s"] !== void(0))
 					{
 						// スキルスロットリセット
 						resetSlot(params["s"]);
 					}
-					if (params["l"] !== undefined)
+					if (params["l"] !== void(0))
 					{
 						// スキルレベルリセット
 						resetLevel(params["l"]);

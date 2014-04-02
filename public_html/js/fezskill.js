@@ -29,7 +29,7 @@ TABLE_EXTENTION = ".tsv";
 
 /**
  * TSVファイルのパース結果を持つクラス
- * @param {undefined} characterClass キャラクタクラス
+ * @param {CHARACTER_CLASS} characterClass キャラクタクラス
  * @returns {undefined}
  */
 function Tsv(characterClass) {
@@ -61,7 +61,7 @@ Tsv.prototype = {
 	 * @returns {undefined}
 	 */
 	show: function() {
-		if (typeof (this.data) === undefined) {
+		if (typeof (this.data) === void(0)) {
 			$("div#showTable").append("<p>" + this.filePath + ": no data</p>");
 			return;
 		}
@@ -88,7 +88,7 @@ Tsv.prototype = {
 	}
 };
 /**
- * 
+ * スキルデータクラス
  * @param {papaParse().results} tsvRow
  * @returns {Skill}
  */
@@ -110,6 +110,11 @@ function Skill(tsvRow) {
 }
 
 Skill.prototype = {
+	/**
+	 * スキルポイント消費マーク
+	 * @param {Number} level スキルレベル
+	 * @returns {String} スキルポイント消費マーク
+	 */
 	getPointMark: function(level) {
 		// 消費ポイントマーカ
 		var marktext = "";
@@ -153,7 +158,8 @@ Skill.prototype = {
 	 * @returns {undefined}
 	 */
 	changeLevel: function(level) {
-		if (level === undefined) {
+		if (level === void(0)) {
+			// levelが未定義の場合，初期化する
 			level = this.initialLevel;
 		} else {
 			// レベル範囲検査
@@ -277,7 +283,7 @@ TotalSkillPoint.prototype = {
 	 */
 	getMark: function(point) {
 		var mark = "";
-		if (point === undefined)
+		if (point === void(0))
 			point = this.get();
 		var i;
 		if (point > SKILLPOINT_LIMIT)
@@ -309,7 +315,7 @@ TotalSkillPoint.prototype = {
 	 * @returns {String}
 	 */
 	getText: function(point) {
-		if (point === undefined)
+		if (point === void(0))
 			point = this.get();
 		// 残りポイント
 		var rest = SKILLPOINT_LIMIT - point;
@@ -333,7 +339,7 @@ TotalSkillPoint.prototype = {
 };
 
 /**
- * 
+ * スキルスロットを埋める
  * @param {String} idcstring idc文字列
  * @returns {undefined}
  */
@@ -412,7 +418,8 @@ function resetLevel(code) {
 	for (var id in skills) {
 		var level = parseInt(levelcode[i]);
 		if (isNaN(level)) {
-			level = 0;
+			// levelcode文字列がスキル数より短い場合，undefinedがNaNに化ける
+			break;
 		}
 		skills[id].changeLevel(parseInt(level));
 		i++;
