@@ -20,37 +20,6 @@
 				characterClass = CHARACTER_CLASS.WARRIOR;
 				tsv = new Tsv(characterClass);
 
-				// ツールチップ設定
-				$("span.skillname").powerTip({placement: "s", smartPlacement: true});
-
-				// スキルアイコンドラッグ
-				$(".skillicon").draggable({helper: "clone"});
-
-				// スキルアイコンダブルクリックでスロット登録
-				$(".skillicon").dblclick(function() {
-					for (var i = 0; i < SKILLSLOT_SIZE; i++) {
-						// 空きスロット探索
-						if (void(0) === $($(".skillslot")[i]).children()[0]) {
-							setSlot(i, $(this).attr("alt"));
-							break;
-						}
-					}
-				});
-
-				// スキルアイコン受付
-				$(".skillslot").droppable({
-					tolerance: "pointer",
-					drop: function(event, ui) {
-						$(this).find("img").remove();
-						var icon = $(ui.draggable.context).clone();
-						// ダブルクリックで自滅
-						icon.dblclick(function() {
-							$(this).remove();
-						});
-						$(this).append(icon);
-					}
-				});
-
 				// スキル設定
 				skills = new Array();
 				for (var i = 0; i < tsv.data.rows.length; i++) {
@@ -74,8 +43,6 @@
 						resetLevel(params["l"]);
 					}
 				}
-
-				console.log(getLevelcode());
 
 			});
 		</script>
@@ -103,6 +70,11 @@
 			</ul>
 			<input type="text" id="levelpoint" />
 			<input type="button" value="リセット" id="reset"/>
+			<input type="button" value="取得スキルリスト" class="skilllist" />
+			<div class="skilllist">
+				<input type="text" size="40" />
+				<textarea cols="30"></textarea>
+			</div>
 			<div id="tspointmarkbox">SP: <span class="mark"></span></div>
 			<table>
 				<tbody>

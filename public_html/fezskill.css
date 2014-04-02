@@ -109,3 +109,7 @@ li.skillslot{
 #ui-draggable-dragging{
 	border: solid 10px black;
 }
+
+.skilllist input{
+	display: block;
+}

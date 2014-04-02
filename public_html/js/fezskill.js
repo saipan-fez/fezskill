@@ -197,43 +197,114 @@ Skill.prototype = {
 		$("input#levelpoint").val(tspoint.getText(spent));
 	}
 };
-$(function() {
+$(document).ready(function() {
+
+	// ツールチップ設定
+	$("span.skillname").powerTip({placement: "s", smartPlacement: true});
+
+	// スキルアイコンドラッグ
+	$(".skillicon").draggable({helper: "clone"});
+
+	// スキルアイコンダブルクリックでスロット登録
+	$(".skillicon").dblclick(function() {
+		for (var i = 0; i < SKILLSLOT_SIZE; i++) {
+			// 空きスロット探索
+			if (void(0) === $($(".skillslot")[i]).children()[0]) {
+				setSlot(i, $(this).attr("alt"));
+				break;
+			}
+		}
+	});
+
+	// スキルアイコン受付
+	$(".skillslot").droppable({
+		tolerance: "pointer",
+		drop: function(event, ui) {
+			$(this).find("img").remove();
+			var icon = $(ui.draggable.context).clone();
+			// ダブルクリックで自滅
+			icon.dblclick(function() {
+				$(this).remove();
+			});
+			$(this).append(icon);
+		}
+	});
 
 	/**
 	 * スキルレベル上昇
 	 */
 	$("input.upLevel").click(function() {
 		// スキルid
-		var skillid = $(this).parents("td").attr("id");
+		var id = $(this).parents("td").attr("id");
 		// インクリメント
-		skills[skillid].changeLevel(skills[skillid].level + 1);
+		skills[id].changeLevel(skills[id].level + 1);
 	});
 	/**
 	 * スキルレベル低下
 	 */
 	$("input.downLevel").click(function() {
 		// スキルid
-		var skillid = $(this).parents("td").attr("id");
+		var id = $(this).parents("td").attr("id");
 		// デクリメント
-		skills[skillid].changeLevel(skills[skillid].level - 1);
+		skills[id].changeLevel(skills[id].level - 1);
 	});
 	/**
 	 * スキルレベル変更
 	 */
 	$("select").change(function() {
 		// スキルIDを上位td要素のid属性から取得する
-		var skillid = $(this).parents("td").attr("id");
-		skills[skillid].changeLevel(parseInt(this.value));
+		var id = $(this).parents("td").attr("id");
+		skills[id].changeLevel(parseInt(this.value));
 	});
 	/**
 	 * リセットボタン
 	 * 初期化する
 	 */
 	$("input#reset").click(function() {
+		// スキルレベルを初期値にする
 		for (var id in skills) {
 			skills[id].changeLevel();
 		}
+		// スキルスロットを空にする
+		$("li.skillslot").find("img").remove();
 	});
+
+
+	/**
+	 * ダイアログ設定
+	 */
+	$("div.skilllist").dialog({title: "保存アドレスとスキルリスト",
+		autoOpen: false, minWidth: 500});
+
+	/**
+	 * 保存アドレスとスキルリストダイアログオープン
+	 */
+	$("input.skilllist").click(function() {
+		var text = $("input#levelpoint").val();
+		// 改行数
+		var cr = 1;
+		for (var id in skills) {
+			if (skills[id].level > 0) {
+				text += "\n-" + skills[id].name + " Lv." + skills[id].level;
+				cr++;
+			}
+		}
+
+		// 保存アドレス
+		var address = getSlotcode();
+		// スキルスロット情報の有無で分岐
+		if (address === "") {
+			address = location.href.split("?")[0] + "?l=" + getLevelcode();
+		} else {
+			address = location.href.split("?")[0] + "?l=" + getLevelcode()
+							+ "&s=" + address;
+		}
+
+		$("div.skilllist").find($("input")).val(address);
+		$("div.skilllist textarea").attr("rows", cr).val(text);
+		$("div.skilllist").dialog("open");
+	});
+
 });
 /**
  * 総合スキルポイント
@@ -355,7 +426,7 @@ function resetSlot(idcstring) {
 
 /**
  * スキルスロットにスキルアイコンをセットする
- * @param {Number} i slot番号
+ * @param {Number} i スロット番号
  * @param {String} imgalt スキルアイコン代替テキスト
  * @returns {undefined}
  */
@@ -423,6 +494,8 @@ function resetLevel(code) {
  * @returns {String} skillid
  */
 function getidfromskilliconsrc(src) {
+	if (src === void(0))
+		return void(0);
 	// ファイル名部分を取り出し，拡張子部分を剥がす
 	return (src.split("/")[2]).split(".")[0];
 }
@@ -437,4 +510,21 @@ function getLevelcode() {
 		levelcode += (String(skills[id].level));
 	}
 	return levelcode;
+}
+
+/**
+ * スキルスロットidc文字列
+ * @returns {String} idc文字列
+ */
+function getSlotcode() {
+	var slotcode = "";
+	for (var i = 0; i < SKILLSLOT_SIZE; i++) {
+		var id = getidfromskilliconsrc(
+						$("li.skillslot:eq(" + i + ")").find("img").attr("src")
+						);
+		slotcode += (id === void(0)) ? "0" : skills[id].idc;
+	}
+
+	// スキル未セットなら空文字列を返す
+	return (slotcode === "00000000") ? "" : slotcode;
 }
