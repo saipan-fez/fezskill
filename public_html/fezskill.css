@@ -1,7 +1,3 @@
-/* 
-    Created on : 2014/03/12, 9:26:18
-    Author     : paul
-*/
 table, th, td {
 	border: solid 1px black;
 }
@@ -86,7 +82,7 @@ ul#topmenu li {
 }
 ul#topmenu a {
 	/* border: 1px black solid;*/
-	padding: 0 1em;
+	margin: 0 1em;
 }
 
 ul#skillslotbar {
@@ -104,10 +100,6 @@ li.skillslot{
 	height: 28px;
 	width: 28px;
 	border-radius: 50%;
-}
-
-#ui-draggable-dragging{
-	border: solid 10px black;
 }
 
 .skilllist input{
