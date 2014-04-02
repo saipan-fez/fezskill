@@ -1,12 +1,3 @@
-/**
- * 
- * @param {String} src skilliconのsrc属性値
- * @returns {String} skillid
- */
-function getidfromskilliconsrc(src) {
-	return (src.split("/")[2]).split(".")[0];
-}
-
 var TRUE_STRING = "TRUE";
 var ICON_WIDTH = "32";
 var SKILLPOINT_MARK = "-";
@@ -424,4 +415,26 @@ function resetLevel(code) {
 		skills[id].changeLevel(parseInt(level));
 		i++;
 	}
+}
+
+/**
+ * スキルアイコン画像パスからスキルIDを抽出する
+ * @param {String} src skilliconのsrc属性値
+ * @returns {String} skillid
+ */
+function getidfromskilliconsrc(src) {
+	// ファイル名部分を取り出し，拡張子部分を剥がす
+	return (src.split("/")[2]).split(".")[0];
+}
+
+/**
+ * スキルレベル文字列
+ * @returns {String} levelcode
+ */
+function getLevelcode() {
+	var levelcode = "";
+	for (var id in skills) {
+		levelcode += (String(skills[id].level));
+	}
+	return levelcode;
 }
