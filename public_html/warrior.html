@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ウォリアー - FEZスキルシミュレータ</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<link rel="stylesheet" href="fezskill.css">
+		<link rel="stylesheet" href="js/libs/jquery-powertip/css/jquery.powertip-light.css">
+		<link rel="stylesheet" href="js/libs/jqueryui/css/base/jquery-ui.css">
+		<script type="text/javascript" src="js/libs/jquery/jquery.js"></script>
+		<script type="text/javascript" src="js/libs/jquery-powertip/jquery.powertip.js"></script>
+		<script type="text/javascript" src="js/libs/jqueryui/jquery-ui.js"></script>
+		<script type="text/javascript" src="js/jquery.parse.min.js"></script>
+		<script type="text/javascript" src="js/fezskill.js"></script>
+		<script type="text/javascript">
+			var skills, tsv, characterClass, skillslots;
+			var tspoint = new TotalSkillPoint();
+			$(document).ready(function() {
+				// キャラクタークラス設定
+				characterClass = CHARACTER_CLASS.WARRIOR;
+				tsv = new Tsv(characterClass);
+
+				// スキル設定
+				skills = new Array();
+				for (var i = 0; i < tsv.data.rows.length; i++) {
+					skills[tsv.data.rows[i].id] = new Skill(tsv.data.rows[i]);
+				}
+
+				// 初期化
+				$("input#reset").click();
+
+				// GETパラメータ取得
+				params = getUrlVars();
+				if (params !== null) {
+					if (params["s"] !== void(0))
+					{
+						// スキルスロットリセット
+						resetSlot(params["s"]);
+					}
+					if (params["l"] !== void(0))
+					{
+						// スキルレベルリセット
+						resetLevel(params["l"]);
+					}
+				}
+
+			});
+		</script>
+	</head>
+	<body>
+		<ul id="topmenu">
+			<li><a href="./">トップページ</a></li>
+			<li><a href="./warrior.html">ウォリアー</a></li>
+			<li><a href="./scout.html">スカウト</a></li>
+			<li><a href="./sorcerer.html">ソーサラー</a></li>
+			<li><a href="./fencer.html">フェンサー</a></li>
+			<li><a href="./cestus.html">セスタス</a></li>
+		</ul>
+		<h1>ウォリアー - FEZスキルシミュレータ</h1>
+		<form class="skillplanner" style="display: inline;">
+			<ul id="skillslotbar">
+				<li class="skillslot"></li>
+				<li class="skillslot"></li>
+				<li class="skillslot"></li>
+				<li class="skillslot"></li>
+				<li class="skillslot"></li>
+				<li class="skillslot"></li>
+				<li class="skillslot"></li>
+				<li class="skillslot"></li>
+			</ul>
+			<input type="text" id="levelpoint" />
+			<input type="button" value="リセット" id="reset"/>
+			<input type="button" value="保存アドレスと取得スキルリスト" class="skilllist" />
+			<div class="skilllist">
+				<input type="text" size="40" />
+				<textarea cols="30"></textarea>
+			</div>
+			<div id="tspointmarkbox">SP: <span class="mark"></span></div>
+			<table>
+				<tbody>
+					<tr><th class="treecaption">基本スキル</th>
+						<td class="empty"></td>
+						<td class="empty"></td>
+						<td class="empty"></td>
+						<td class="empty"></td>
+					</tr>
+					<tr>
+						<td id="normal">
+							<img class="skillicon" src="skillicon/warrior/normal.gif" alt="基本攻撃アイコン" /><span class="skillname">基本攻撃</span> Lv. 1
+						</td>
+						<td class="empty"></td>
+						<td id="endurepain">
+							<img class="skillicon" src="skillicon/warrior/endurepain.gif" alt="エンダーペインアイコン" /><span class="skillname">エンダーペイン</span> Lv. 1
+						</td>
+						<td class="empty"></td>
+						<td class="empty"></td>
+					</tr>
+					<tr><th class="treecaption">共通スキル</th>
+						<td class="empty"></td>
+						<td class="empty"></td>
+						<td class="empty"></td>
+						<td class="empty"></td>
+					</tr>
+					<tr>
+						<td id="sonicboom">
+							<img class="skillicon" src="skillicon/warrior/sonicboom.gif" alt="ソニックブームアイコン"  /><span class="skillname">ソニックブーム</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">━</td>
+						<td id="forceimpact">
+							<img class="skillicon" src="skillicon/warrior/forceimpact.gif" alt="フォースインパクトアイコン" /><span class="skillname">フォースインパクト</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div>	<div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">━</td>
+						<td id="crumblestorm">
+							<img class="skillicon" src="skillicon/warrior/crumblestorm.gif" alt="クランブルストームアイコン" /><span class="skillname">クランブルストーム</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+					</tr>
+					<tr><th class="treecaption">片手武器スキル</th>
+						<td class="empty"></td>
+						<td class="empty"></td>
+						<td class="empty"></td>
+						<td class="empty"></td>
+					</tr>
+					<tr>
+						<td id="blazeslash">
+							<img class="skillicon" src="skillicon/warrior/blazeslash.gif" alt="ブレイズスラッシュアイコン" /><span class="skillname">ブレイズスラッシュ</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">┳</td>
+						<td id="slumattack">
+							<img class="skillicon" src="skillicon/warrior/slumattack.gif" alt="スラムアタックアイコン" /><span class="skillname">スラムアタック</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">━</td>
+						<td id="earthstamp">
+							<img class="skillicon" src="skillicon/warrior/earthstamp.gif" alt="アーススタンプアイコン" /><span class="skillname">アーススタンプ</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+					</tr>
+					<tr>
+						<td class="empty"></td>
+						<td class="connector">┗</td>
+						<td id="guardreinforce">
+							<img class="skillicon" src="skillicon/warrior/guardreinforce.gif" alt="ガードレインフォースアイコン" /><span class="skillname">ガードレインフォース</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">━</td>
+						<td id="shieldbash">
+							<img class="skillicon" src="skillicon/warrior/shieldbash.gif" alt="シールドバッシュアイコン" /><span class="skillname">シールドバッシュ</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+					</tr>
+					<tr><th class="treecaption">非片手武器スキル</th>
+						<td class="empty"></td>
+						<td class="empty"></td>
+						<td class="empty"></td>
+						<td class="empty"></td>
+					</tr>
+					<tr>
+						<td id="smash">
+							<img class="skillicon" src="skillicon/warrior/smash.gif" alt="スマッシュアイコン" /><span class="skillname">スマッシュ</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">┳</td>
+						<td id="attackreinforce">
+							<img class="skillicon" src="skillicon/warrior/attackreinforce.gif" alt="アタックレインフォースアイコン" /><span class="skillname">アタックレインフォース</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="empty"></td>
+						<td class="empty"></td>
+					</tr>
+					<tr>
+						<td class="empty"></td>
+						<td class="connector">┣</td>
+						<td id="strikesmash">
+							<img class="skillicon" src="skillicon/warrior/strikesmash.gif" alt="ストライクスマッシュアイコン" /><span class="skillname">ストライクスマッシュ</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">━</td>
+						<td id="heavysmash">
+							<img class="skillicon" src="skillicon/warrior/heavysmash.gif" alt="ヘビースマッシュアイコン" /><span class="skillname">ヘビースマッシュ</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+					</tr>
+					<tr><td class="empty"></td>
+						<td class="empty"></td>
+						<th class="treecaption">両手武器スキル</th>
+						<td class="empty"></td>
+						<td class="empty"></td>
+					</tr>
+					<tr>
+						<td class="empty"></td>
+						<td class="connector">┣</td>
+						<td id="behemostail">
+							<img class="skillicon" src="skillicon/warrior/behemostail.gif" alt="ベヒモステイルアイコン" /><span class="skillname">ベヒモステイル</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">━</td>
+						<td id="dragontail">
+							<img class="skillicon" src="skillicon/warrior/dragontail.gif" alt="ドラゴンテイルアイコン" /><span class="skillname">ドラゴンテイル</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+					</tr>
+					<tr><td class="empty"></td>
+						<td class="empty"></td>
+						<th class="treecaption">大剣武器スキル</th>
+						<td class="empty"></td>
+						<td class="empty"></td>
+					</tr>
+					<tr>
+						<td class="empty"></td>
+						<td class="connector">┗</td>
+						<td id="extendblade">
+							<img class="skillicon" src="skillicon/warrior/extendblade.gif" alt="エクステンブレイドアイコン" /><span class="skillname">エクステンブレイド</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">━</td>
+						<td id="swordrampage">
+							<img class="skillicon" src="skillicon/warrior/swordrampage.gif" alt="ソードランページアイコン" /><span class="skillname">ソードランページ</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+		<div id="showTable"></div>
+		<div class="skilltip">
+			<div id="tipnormal">
+				Pwを消費しない近接攻撃
+				<table><tr><th>攻撃力</th><td>100</td></tr></table>
+			</div>
+			<div id="tipendurepain">
+				仰け反らなくなる．吹き飛ばしは有効
+				<table>
+					<tr><th>消費Pw</th><td>10</td></tr>
+					<tr><th>特殊効果</th><td>仰け反り無効</td></tr>
+					<tr><th>効果時間（秒）</th><td>120</td></tr>
+				</table>
+			</div>
+			<div id="tipsonicboom">
+				離れた相手を切り裂く真空波．Lv. UPで射程も上昇
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>取得SP</th><td>2</td><td>1</td><td>11</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">15</td></tr>
+						<tr><th>威力</th><td>65</td><td>75</td><td>85</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipforceimpact">
+				溜めた力を放出する．Lv. UPで射程も上昇
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>取得SP</th><td>2</td><td>1</td><td>1</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">26</td></tr>
+						<tr><th>威力</th><td>70</td><td>80</td><td>90</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">貫通</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipcrumblestorm">
+				剣圧を打ち出し，吹き飛ばす．Lv. UPで範囲も上昇
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>取得SP</th><td>3</td><td>1</td><td>1</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">60</td></tr>
+						<tr><th>威力</th><td>100</td><td>110</td><td>120</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">吹き飛ばし（対人専用）</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipblazeslash">
+				素早く斬りつけ，炎ダメージを与える
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>取得SP</th><td>2</td><td>1</td><td>1</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">12</td></tr>
+						<tr><th>威力</th><td>120</td><td>130</td><td>140</td></tr>
+						<tr><th>炎DoT（3秒毎）</th><td>24x3</td><td>30x3</td><td>36x3</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipslumattack">
+				相手に武器を叩きつけ，吹き飛ばす
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>取得SP</th><td>2</td><td>1</td><td>1</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">18</td></tr>
+						<tr><th>威力</th><td>110</td><td>120</td><td>130</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">吹き飛ばし（対人専用）</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipearthstamp">
+				ジャンプして地面に武器を叩きつけ，<br />移動速度を低下させる衝撃波を生む
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>取得SP</th><td>2</td><td>2</td><td>2</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">36</td></tr>
+						<tr><th>威力</th><td>140</td><td>160</td><td>180</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">移動速度低下</td></tr>
+						<tr><th>効果時間（秒）</th><td colspan="3">6</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipguardreinforce">
+				自身に気合を入れ，攻撃力を犠牲にして防御力を上昇させる
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>取得SP</th><td>2</td><td>1</td><td>1</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">40</td></tr>
+						<tr><th>耐性上昇</th><td>+30</td><td>+40</td><td>+50</td></tr>
+						<tr><th>攻性減少</th><td colspan="3">-15</td></tr>
+						<tr><th>効果時間（秒）</th><td colspan="3">120</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipshieldbash">
+				相手に盾を叩きつけ，一瞬だけ気絶状態にする
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>取得SP</th><td>2</td><td>2</td><td>2</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">40</td></tr>
+						<tr><th>威力</th><td colspan="3">55</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">スタン</td></tr>
+						<tr><th>効果時間（秒）</th><td>2.3</td><td>2.8</td><td>3.3</td></tr>
+						<tr><th>スタン耐性（秒）</th><td colspan="3">15</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipsmash">
+				相手に重い一撃を加えるが，隙が生じる
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>取得SP</th><td>2</td><td>1</td><td>1</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">12</td></tr>
+						<tr><th>威力</th><td>150</td><td>180</td><td>210</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipstrikesmash">
+				相手の懐に飛び込み，斬りつける
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>取得SP</th><td>2</td><td>1</td><td>1</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">28</td></tr>
+						<tr><th>威力</th><td>100</td><td>110</td><td>120</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipheavysmash">
+				相手に重い一撃を加えるが，大きい隙が生じる
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>取得SP</th><td>2</td><td>2</td><td>2</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">34</td></tr>
+						<tr><th>威力</th><td>270</td><td>310</td><td>350</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipbehemostail">
+				ジャンプして地面に武器を叩きつけ，衝撃波で周りを切り裂く
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>取得SP</th><td>2</td><td>1</td><td>1</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">32</td></tr>
+						<tr><th>威力</th><td>130</td><td>150</td><td>170</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipdragontail">
+				ジャンプして地面に武器を叩きつけ，衝撃波を複数回に分けて繰り出す
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>取得SP</th><td>2</td><td>2</td><td>2</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">60</td></tr>
+						<tr><th>威力</th><td>80</td><td>90</td><td>100</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">およそ1秒毎合計3回攻撃</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipattackreinforce">
+				精神を武器に注ぎ，防御力を犠牲にして攻撃力を上昇させる
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>取得SP</th><td>2</td><td>1</td><td>1</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">40</td></tr>
+						<tr><th>攻性上昇</th><td>+5</td><td>+10</td><td>+15</td></tr>
+						<tr><th>耐性減少</th><td>-10</td><td>-15</td><td>-20</td></tr>
+						<tr><th>効果時間（秒）</th><td colspan="3">120</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipextendblade">
+				前方に真空の刃を発生させる
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>取得SP</th><td>2</td><td>1</td><td>1</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">35</td></tr>
+						<tr><th>威力</th><td>170</td><td>200</td><td>225</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipswordrampage">
+				剣を振り回し，周りを攻撃する
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>取得SP</th><td>2</td><td>2</td><td>2</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">60</td></tr>
+						<tr><th>威力</th><td>135</td><td>150</td><td>165</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">およそ0.8秒後に第2段攻撃</td></tr>
+					</tbody></table>
+			</div>
+		</div>
+	</body>
+</html>
