@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>ウォリアー - FEZスキルシミュレータ</title>
+		<title>スカウト - FEZスキルシミュレータ</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width">
 		<link rel="stylesheet" href="fezskill.css">
@@ -17,7 +17,7 @@
 			var tspoint = new TotalSkillPoint();
 			$(document).ready(function() {
 				// キャラクタークラス設定
-				characterClass = CHARACTER_CLASS.WARRIOR;
+				characterClass = CHARACTER_CLASS.SCOUT;
 				tsv = new Tsv(characterClass);
 
 				// スキル設定
@@ -56,7 +56,7 @@
 			<li><a href="./fencer.html">フェンサー</a></li>
 			<li><a href="./cestus.html">セスタス</a></li>
 		</ul>
-		<h1>ウォリアー - FEZスキルシミュレータ</h1>
+		<h1>スカウト - FEZスキルシミュレータ</h1>
 		<form class="skillplanner" style="display: inline;">
 			<ul id="skillslotbar">
 				<li class="skillslot"></li>
@@ -85,125 +85,142 @@
 						<td class="empty"></td>
 					</tr>
 					<tr>
-						<td id="normal">
-							<img class="skillicon" src="skillicon/warrior/normal.gif" alt="基本攻撃アイコン" /><span class="skillname">基本攻撃</span> Lv. 1
+						<td id="bow">
+							<img class="skillicon" src="skillicon/scout/bow.gif" alt="基本弓攻撃アイコン" /><span class="skillname">基本弓攻撃</span> Lv. 1
 						</td>
 						<td class="empty"></td>
-						<td id="endurepain">
-							<img class="skillicon" src="skillicon/warrior/endurepain.gif" alt="エンダーペインアイコン" /><span class="skillname">エンダーペイン</span> Lv. 1
+						<td id="gun">
+							<img class="skillicon" src="skillicon/scout/gun.gif" alt="基本銃攻撃アイコン" /><span class="skillname">基本銃攻撃</span> Lv. 1
 						</td>
 						<td class="empty"></td>
-						<td class="empty"></td>
-					</tr>
-					<tr><th class="treecaption">共通スキル</th>
-						<td class="empty"></td>
-						<td class="empty"></td>
-						<td class="empty"></td>
-						<td class="empty"></td>
-					</tr>
-					<tr>
-						<td id="sonicboom">
-							<img class="skillicon" src="skillicon/warrior/sonicboom.gif" alt="ソニックブームアイコン"  /><span class="skillname">ソニックブーム</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
-						</td>
-						<td class="connector">━</td>
-						<td id="forceimpact">
-							<img class="skillicon" src="skillicon/warrior/forceimpact.gif" alt="フォースインパクトアイコン" /><span class="skillname">フォースインパクト</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div>	<div class="markbox">SP: <span class="mark"></span></div>
-						</td>
-						<td class="connector">━</td>
-						<td id="crumblestorm">
-							<img class="skillicon" src="skillicon/warrior/crumblestorm.gif" alt="クランブルストームアイコン" /><span class="skillname">クランブルストーム</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						<td id="dagger">
+							<img class="skillicon" src="skillicon/scout/dagger.gif" alt="基本短剣攻撃アイコン" /><span class="skillname">基本短剣攻撃</span> Lv. 1
 						</td>
 					</tr>
-					<tr><th class="treecaption">片手武器スキル</th>
+					<tr><th class="treecaption">弓スキル</th>
 						<td class="empty"></td>
 						<td class="empty"></td>
 						<td class="empty"></td>
 						<td class="empty"></td>
 					</tr>
 					<tr>
-						<td id="blazeslash">
-							<img class="skillicon" src="skillicon/warrior/blazeslash.gif" alt="ブレイズスラッシュアイコン" /><span class="skillname">ブレイズスラッシュ</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						<td id="airraid">
+							<img class="skillicon" src="skillicon/scout/airraid.gif" alt="エアレイドアイコン"  /><span class="skillname">エアレイド</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">━</td>
+						<td id="blazeshot">
+							<img class="skillicon" src="skillicon/scout/blazeshot.gif" alt="ブレイズショットアイコン" /><span class="skillname">ブレイズショット</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div>	<div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">━</td>
+						<td id="arrowrain">
+							<img class="skillicon" src="skillicon/scout/arrowrain.gif" alt="アローレインアイコン" /><span class="skillname">アローレイン</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+					</tr>
+					<tr>
+						<td id="poisonshot">
+							<img class="skillicon" src="skillicon/scout/poisonshot.gif" alt="ポイズンショットアイコン"  /><span class="skillname">ポイズンショット</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">━</td>
+						<td id="spiderweb">
+							<img class="skillicon" src="skillicon/scout/spiderweb.gif" alt="スパイダーウェブアイコン" /><span class="skillname">スパイダーウェブ</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div>	<div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">━</td>
+						<td id="trueshot">
+							<img class="skillicon" src="skillicon/scout/trueshot.gif" alt="トゥルーショットアイコン" /><span class="skillname">トゥルーショット</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+					</tr>
+					<tr><th class="treecaption">弓銃共通スキル</th>
+						<td class="empty"></td>
+						<td class="empty"></td>
+						<td class="empty"></td>
+						<td class="empty"></td>
+					</tr>
+					<tr>
+						<td id="eagleshot">
+							<img class="skillicon" src="skillicon/scout/eagleshot.gif" alt="イーグルショットアイコン"  /><span class="skillname">イーグルショット</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">━</td>
+						<td id="powershoot">
+							<img class="skillicon" src="skillicon/scout/powershoot.gif" alt="パワーシュートアイコン" /><span class="skillname">パワーシュート</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div>	<div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">━</td>
+						<td id="piercingshoot">
+							<img class="skillicon" src="skillicon/scout/piercingshoot.gif" alt="ピアッシングシュートアイコン" /><span class="skillname">ピアッシングシュート</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+					</tr>
+					<tr><th class="treecaption">銃スキル</th>
+						<td class="empty"></td>
+						<td class="empty"></td>
+						<td class="empty"></td>
+						<td class="empty"></td>
+					</tr>
+					<tr>
+						<td id="oilshot">
+							<img class="skillicon" src="skillicon/scout/oilshot.gif" alt="オイルショットアイコン" /><span class="skillname">オイルショット</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">━</td>
+						<td id="acidshot">
+							<img class="skillicon" src="skillicon/scout/acidshot.gif" alt="アシッドショットアイコン" /><span class="skillname">アシッドショット</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
 						</td>
 						<td class="connector">┳</td>
-						<td id="slumattack">
-							<img class="skillicon" src="skillicon/warrior/slumattack.gif" alt="スラムアタックアイコン" /><span class="skillname">スラムアタック</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
-						</td>
-						<td class="connector">━</td>
-						<td id="earthstamp">
-							<img class="skillicon" src="skillicon/warrior/earthstamp.gif" alt="アーススタンプアイコン" /><span class="skillname">アーススタンプ</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						<td id="trivenom">
+							<img class="skillicon" src="skillicon/scout/trivenom.gif" alt="トライヴェノムアイコン" /><span class="skillname">トライヴェノム</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
 						</td>
 					</tr>
 					<tr>
-						<td class="empty"></td>
-						<td class="connector">┗</td>
-						<td id="guardreinforce">
-							<img class="skillicon" src="skillicon/warrior/guardreinforce.gif" alt="ガードレインフォースアイコン" /><span class="skillname">ガードレインフォース</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						<td id="whiteblow">
+							<img class="skillicon" src="skillicon/scout/whiteblow.gif" alt="ホワイトブロウアイコン" /><span class="skillname">ホワイトブロウ</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
 						</td>
 						<td class="connector">━</td>
-						<td id="shieldbash">
-							<img class="skillicon" src="skillicon/warrior/shieldbash.gif" alt="シールドバッシュアイコン" /><span class="skillname">シールドバッシュ</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						<td id="daisyflash">
+							<img class="skillicon" src="skillicon/scout/daisyflash.gif" alt="デイジーフラッシュアイコン" /><span class="skillname">デイジーフラッシュ</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
 						</td>
+						<td class="connector">┛</td>
+						<td class="empty"></td>
 					</tr>
-					<tr><th class="treecaption">非片手武器スキル</th>
+					<tr><th class="treecaption">短剣スキル</th>
 						<td class="empty"></td>
 						<td class="empty"></td>
 						<td class="empty"></td>
 						<td class="empty"></td>
 					</tr>
 					<tr>
-						<td id="smash">
-							<img class="skillicon" src="skillicon/warrior/smash.gif" alt="スマッシュアイコン" /><span class="skillname">スマッシュ</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
-						</td>
-						<td class="connector">┳</td>
-						<td id="attackreinforce">
-							<img class="skillicon" src="skillicon/warrior/attackreinforce.gif" alt="アタックレインフォースアイコン" /><span class="skillname">アタックレインフォース</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
-						</td>
-						<td class="empty"></td>
-						<td class="empty"></td>
-					</tr>
-					<tr>
-						<td class="empty"></td>
-						<td class="connector">┣</td>
-						<td id="strikesmash">
-							<img class="skillicon" src="skillicon/warrior/strikesmash.gif" alt="ストライクスマッシュアイコン" /><span class="skillname">ストライクスマッシュ</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						<td id="hide">
+							<img class="skillicon" src="skillicon/scout/hide.gif" alt="ハイドアイコン"  /><span class="skillname">ハイド</span>（共通スキル）<div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
 						</td>
 						<td class="connector">━</td>
-						<td id="heavysmash">
-							<img class="skillicon" src="skillicon/warrior/heavysmash.gif" alt="ヘビースマッシュアイコン" /><span class="skillname">ヘビースマッシュ</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
-						</td>
-					</tr>
-					<tr><td class="empty"></td>
-						<td class="empty"></td>
-						<th class="treecaption">両手武器スキル</th>
-						<td class="empty"></td>
-						<td class="empty"></td>
-					</tr>
-					<tr>
-						<td class="empty"></td>
-						<td class="connector">┣</td>
-						<td id="behemostail">
-							<img class="skillicon" src="skillicon/warrior/behemostail.gif" alt="ベヒモステイルアイコン" /><span class="skillname">ベヒモステイル</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						<td id="viperbite">
+							<img class="skillicon" src="skillicon/scout/viperbite.gif" alt="ヴァイパーバイトアイコン" /><span class="skillname">ヴァイパーバイト</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div>	<div class="markbox">SP: <span class="mark"></span></div>
 						</td>
 						<td class="connector">━</td>
-						<td id="dragontail">
-							<img class="skillicon" src="skillicon/warrior/dragontail.gif" alt="ドラゴンテイルアイコン" /><span class="skillname">ドラゴンテイル</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						<td id="punishingstrike">
+							<img class="skillicon" src="skillicon/scout/punishingstrike.gif" alt="パニッシングストライクアイコン" /><span class="skillname">パニッシングストライク</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
 						</td>
-					</tr>
-					<tr><td class="empty"></td>
-						<td class="empty"></td>
-						<th class="treecaption">大剣武器スキル</th>
-						<td class="empty"></td>
-						<td class="empty"></td>
 					</tr>
 					<tr>
-						<td class="empty"></td>
-						<td class="connector">┗</td>
-						<td id="extendblade">
-							<img class="skillicon" src="skillicon/warrior/extendblade.gif" alt="エクステンブレイドアイコン" /><span class="skillname">エクステンブレイド</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						<td id="poisonblow">
+							<img class="skillicon" src="skillicon/scout/poisonblow.gif" alt="ポイズンブロウアイコン"  /><span class="skillname">ポイズンブロウ</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
 						</td>
 						<td class="connector">━</td>
-						<td id="swordrampage">
-							<img class="skillicon" src="skillicon/warrior/swordrampage.gif" alt="ソードランページアイコン" /><span class="skillname">ソードランページ</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						<td id="powerbreak">
+							<img class="skillicon" src="skillicon/scout/powerbreak.gif" alt="パワーブレイクアイコン" /><span class="skillname">パワーブレイク</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div>	<div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">━</td>
+						<td id="voiddarkness">
+							<img class="skillicon" src="skillicon/scout/voiddarkness.gif" alt="ヴォイドダークネスアイコン" /><span class="skillname">ヴォイドダークネス</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+					</tr>
+					<tr>
+						<td id="legbreak">
+							<img class="skillicon" src="skillicon/scout/legbreak.gif" alt="レッグブレイクアイコン"  /><span class="skillname">レッグブレイク</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">━</td>
+						<td id="guardbreak">
+							<img class="skillicon" src="skillicon/scout/guardbreak.gif" alt="ガードブレイクアイコン" /><span class="skillname">ガードブレイク</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">━</td>
+						<td id="armbreak">
+							<img class="skillicon" src="skillicon/scout/armbreak.gif" alt="アームブレイクアイコン" /><span class="skillname">アームブレイク</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div>	<div class="markbox">SP: <span class="mark"></span></div>
 						</td>
 					</tr>
 				</tbody>
@@ -244,7 +261,7 @@
 						<tr><th>特殊効果</th><td colspan="3">貫通</td></tr>
 					</tbody></table>
 			</div>
-			<div id="tipcrumblestorm">
+			<div id="tiparrowrain">
 				剣圧を打ち出し，吹き飛ばす．Lv. UPで範囲も上昇
 				<table>
 					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
