@@ -5,23 +5,23 @@ c	dagger	基本短剣攻撃	1	1	0
 d	airraid	エアレイド	0	3	2	1	1		blazeshot,arrowrain	
 e	blazeshot	ブレイズショット	0	3	2	1	1	airraid	arrowrain	
 f	arrowrain	アローレイン	0	3	3	1	1	blazeshot,airraid		
-g	poisonshoot	ポイズンショット	0	3	2	1	1		spiderweb,trueshot	
-h	spiderweb	スパイダーウェブ	0	3	2	1	1	poisonshoot	trueshot	
-i	trueshot	トゥルーショット	0	3	2	1	1	spiderweb,poisonshoot		
-j	eagleshot	イーグルショット	0	3	2	1	1		powershot,piercingshoot	
-k	powershot	パワーショット	0	3	2	1	1	eagleshot	piercingshoot	
-l	piercingshoot	ピアッシングシュート	0	3	3	1	1	powershot,eagleshot		
+g	poisonshot	ポイズンショット	0	3	2	1	1		spiderweb,trueshot	
+h	spiderweb	スパイダーウェブ	0	3	2	1	1	poisonshot	trueshot	
+i	trueshot	トゥルーショット	0	3	2	1	1	spiderweb,poisonshot		
+j	eagleshot	イーグルショット	0	3	2	1	1		powershoot,piercingshoot	
+k	powershoot	パワーシュート	0	3	2	1	1	eagleshot	piercingshoot	
+l	piercingshoot	ピアッシングシュート	0	3	3	1	1	powershoot,eagleshot		
 m	oilshot	オイルショット	0	3	2	1	1		acidshot,trivenom	
 n	acidshot	アシッドショット	0	3	2	1	1	oilshot	trivenom	
 o	whiteblow	ホワイトブロウ	0	3	2	1	1		daisyflash,trivenom	
 p	daisyflash	デイジーフラッシュ	0	3	2	1	1	whiteblow	trivenom	
-q	trivenom	トライヴェノム	0	3	2	1	1	acidshot, daisyflash,oilshot,whiteblow		
+q	trivenom	トライヴェノム	0	3	2	1	1	acidshot,daisyflash,oilshot,whiteblow		
 r	hide	ハイド	1	3	0	1	1		viperbite,punishingstrike	
-s	viperbite	ヴァイパーバイト	0	3	0	1	1	hide	punishingstrike	
+s	viperbite	ヴァイパーバイト	0	3	2	1	1	hide	punishingstrike	
 t	punishingstrike	パニッシングストライク	0	3	2	2	2	viperbite,hide		
 u	poisonblow	ポイズンブロウ	0	3	2	1	1		powerbreak,voiddarkness	
 v	powerbreak	パワーブレイク	0	3	2	1	1	poisonblow	voiddarkness	
 w	voiddarkness	ヴォイドダークネス	0	3	2	2	2	poisonblow,powerbreak		
-x	legbreak	レッグブレイク	0	3	2	1	1		gaurdbreak,armbreak	
-y	gaurdbreak	ガードブレイク	0	3	2	1	1	legbreak	armbreak	
-z	armbreak	アームブレイク	0	3	2	2	2	gaurdbreak,legbreak		
+x	legbreak	レッグブレイク	0	3	2	1	1		guardbreak,armbreak	
+y	guardbreak	ガードブレイク	0	3	2	1	1	legbreak	armbreak	
+z	armbreak	アームブレイク	0	3	2	2	2	guardbreak,legbreak		
