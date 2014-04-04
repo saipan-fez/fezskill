@@ -69,7 +69,12 @@ table, th, td {
 	text-align: center;
 }
 
+#powerTip td{
+	min-width: 2em;
+}
+
 .skilltip {
+	display: none;
 	clear: both;
 }
 
