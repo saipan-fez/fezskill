@@ -228,137 +228,174 @@
 		</form>
 		<div id="showTable"></div>
 		<div class="skilltip">
-			<div id="tipnormal">
+			<div id="tipbow">
+				Pwを消費しない遠距離攻撃
+				<table><tr><th>攻撃力</th><td>80</td></tr></table>
+			</div>
+			<div id="tipgun">
+				Pwを消費しない近接攻撃
+				<table><tr><th>攻撃力</th><td>140</td></tr></table>
+			</div>
+			<div id="tipdagger">
 				Pwを消費しない近接攻撃
 				<table><tr><th>攻撃力</th><td>100</td></tr></table>
 			</div>
-			<div id="tipendurepain">
-				仰け反らなくなる．吹き飛ばしは有効
-				<table>
-					<tr><th>消費Pw</th><td>10</td></tr>
-					<tr><th>特殊効果</th><td>仰け反り無効</td></tr>
-					<tr><th>効果時間（秒）</th><td>120</td></tr>
-				</table>
-			</div>
-			<div id="tipsonicboom">
-				離れた相手を切り裂く真空波．Lv. UPで射程も上昇
-				<table>
-					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
-					<tbody>
-						<tr><th>取得SP</th><td>2</td><td>1</td><td>11</td></tr>
-						<tr><th>消費Pw</th><td colspan="3">15</td></tr>
-						<tr><th>威力</th><td>65</td><td>75</td><td>85</td></tr>
-					</tbody></table>
-			</div>
-			<div id="tipforceimpact">
-				溜めた力を放出する．Lv. UPで射程も上昇
+			<div id="tipairraid">
+				放物線を描く矢を放つ
 				<table>
 					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
 					<tbody>
 						<tr><th>取得SP</th><td>2</td><td>1</td><td>1</td></tr>
-						<tr><th>消費Pw</th><td colspan="3">26</td></tr>
-						<tr><th>威力</th><td>70</td><td>80</td><td>90</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">10</td></tr>
+						<tr><th>威力</th><td colspan="3">87</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipblazeshot">
+				放物線を描く火矢を放つ
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>取得SP</th><td>2</td><td>1</td><td>1</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">25</td></tr>
+						<tr><th>威力</th><td colspan="3">87</td></tr>
 						<tr><th>特殊効果</th><td colspan="3">貫通</td></tr>
+						<tr><th>炎DoT（3秒毎）</th><td>24x3</td><td>30x3</td><td>36x3</td></tr>
 					</tbody></table>
 			</div>
 			<div id="tiparrowrain">
-				剣圧を打ち出し，吹き飛ばす．Lv. UPで範囲も上昇
+				矢の雨を降らせる
 				<table>
 					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
 					<tbody>
 						<tr><th>取得SP</th><td>3</td><td>1</td><td>1</td></tr>
-						<tr><th>消費Pw</th><td colspan="3">60</td></tr>
-						<tr><th>威力</th><td>100</td><td>110</td><td>120</td></tr>
-						<tr><th>特殊効果</th><td colspan="3">吹き飛ばし（対人専用）</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">36</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">貫通</td></tr>
+						<tr><th>威力</th><td>90</td><td>100</td><td>110</td></tr>
 					</tbody></table>
 			</div>
-			<div id="tipblazeslash">
-				素早く斬りつけ，炎ダメージを与える
+			<div id="tippoisonshot">
+				毒矢を放つ
 				<table>
 					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
 					<tbody>
 						<tr><th>取得SP</th><td>2</td><td>1</td><td>1</td></tr>
-						<tr><th>消費Pw</th><td colspan="3">12</td></tr>
-						<tr><th>威力</th><td>120</td><td>130</td><td>140</td></tr>
-						<tr><th>炎DoT（3秒毎）</th><td>24x3</td><td>30x3</td><td>36x3</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">22</td></tr>
+						<tr><th>威力</th><td colspan="3">87</td></tr>
+						<tr><th>毒DoT（4秒毎）</th><td>20x4</td><td>30x4</td><td>40x4</td></tr>
 					</tbody></table>
 			</div>
-			<div id="tipslumattack">
-				相手に武器を叩きつけ，吹き飛ばす
+			<div id="tipspiderweb">
+				粘着物質の矢を放つ
 				<table>
 					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
 					<tbody>
 						<tr><th>取得SP</th><td>2</td><td>1</td><td>1</td></tr>
 						<tr><th>消費Pw</th><td colspan="3">18</td></tr>
-						<tr><th>威力</th><td>110</td><td>120</td><td>130</td></tr>
-						<tr><th>特殊効果</th><td colspan="3">吹き飛ばし（対人専用）</td></tr>
-					</tbody></table>
-			</div>
-			<div id="tipearthstamp">
-				ジャンプして地面に武器を叩きつけ，<br />移動速度を低下させる衝撃波を生む
-				<table>
-					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
-					<tbody>
-						<tr><th>取得SP</th><td>2</td><td>2</td><td>2</td></tr>
-						<tr><th>消費Pw</th><td colspan="3">36</td></tr>
-						<tr><th>威力</th><td>140</td><td>160</td><td>180</td></tr>
+						<tr><th>威力</th><td colspan="3">50</td></tr>
 						<tr><th>特殊効果</th><td colspan="3">移動速度低下</td></tr>
-						<tr><th>効果時間（秒）</th><td colspan="3">6</td></tr>
+						<tr><th>速度変化割合</th><td>80%</td><td>70%</td><td>67%</td></tr>
+						<tr><th>効果時間（秒）</th><td>8</td><td>9</td><td>10</td></tr>
 					</tbody></table>
 			</div>
-			<div id="tipguardreinforce">
-				自身に気合を入れ，攻撃力を犠牲にして防御力を上昇させる
+			<div id="tiptrueshot">
+				複数の相手を射抜く通し矢を放つ
 				<table>
 					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
 					<tbody>
 						<tr><th>取得SP</th><td>2</td><td>1</td><td>1</td></tr>
-						<tr><th>消費Pw</th><td colspan="3">40</td></tr>
-						<tr><th>耐性上昇</th><td>+30</td><td>+40</td><td>+50</td></tr>
-						<tr><th>攻性減少</th><td colspan="3">-15</td></tr>
-						<tr><th>効果時間（秒）</th><td colspan="3">120</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">18</td></tr>
+						<tr><th>威力</th><td>100</td><td>110</td><td>120</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">貫通</td></tr>
 					</tbody></table>
 			</div>
-			<div id="tipshieldbash">
-				相手に盾を叩きつけ，一瞬だけ気絶状態にする
+			<div id="tipeagleshot">
+				遠くまで矢を射る
 				<table>
 					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
 					<tbody>
 						<tr><th>取得SP</th><td>2</td><td>2</td><td>2</td></tr>
-						<tr><th>消費Pw</th><td colspan="3">40</td></tr>
-						<tr><th>威力</th><td colspan="3">55</td></tr>
-						<tr><th>特殊効果</th><td colspan="3">スタン</td></tr>
-						<tr><th>効果時間（秒）</th><td>2.3</td><td>2.8</td><td>3.3</td></tr>
-						<tr><th>スタン耐性（秒）</th><td colspan="3">15</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">15</td></tr>
+						<tr><th>威力</th><td>100</td><td>115</td><td>125</td></tr>
 					</tbody></table>
 			</div>
-			<div id="tipsmash">
-				相手に重い一撃を加えるが，隙が生じる
+			<div id="tippowershoot">
+				強力な矢を射る
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>取得SP</th><td>2</td><td>2</td><td>2</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">32</td></tr>
+						<tr><th>威力</th><td>260</td><td>280</td><td>300</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tippiercingshoot">
+				当たる者を吹き飛ばす矢を射る
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>取得SP</th><td>3</td><td>2</td><td>2</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">76</td></tr>
+						<tr><th>威力</th><td>95</td><td>115</td><td>135</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">貫通．吹き飛ばし（対人専用）</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipoilshot">
+				良く燃える液体が詰まった弾丸を放つ
 				<table>
 					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
 					<tbody>
 						<tr><th>取得SP</th><td>2</td><td>1</td><td>1</td></tr>
 						<tr><th>消費Pw</th><td colspan="3">12</td></tr>
-						<tr><th>威力</th><td>150</td><td>180</td><td>210</td></tr>
+						<tr><th>威力</th><td colspan="3">40</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">炎上増幅</td></tr>
+						<tr><th>効果時間（秒）</th><td colspan="3">20</td></tr>
 					</tbody></table>
 			</div>
-			<div id="tipstrikesmash">
-				相手の懐に飛び込み，斬りつける
+			<div id="tipacidshot">
+				強酸が詰まった弾丸を放つ
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>取得SP</th><td>2</td><td>1</td><td>1</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">19</td></tr>
+						<tr><th>威力</th><td colspan="3">100</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">攻性低下（対人専用）</td></tr>
+						<tr><th>攻性低下割合</th><td>30%</td><td>40%</td><td>50%</td></tr>
+						<tr><th>効果時間（秒）</th><td colspan="3">9</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipwhiteblow">
+				煙を凝縮した弾丸を放つ．着弾点に煙幕を作る
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>取得SP</th><td>2</td><td>1</td><td>1</td></tr>
+						<tr><th>消費Pw</th><td>50</td><td>44</td><td>38</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">煙幕</td></tr>
+						<tr><th>効果時間（秒）</th><td colspan="3">10</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipdaisyflash">
+				光を凝縮した弾丸を放つ
 				<table>
 					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
 					<tbody>
 						<tr><th>取得SP</th><td>2</td><td>1</td><td>1</td></tr>
 						<tr><th>消費Pw</th><td colspan="3">28</td></tr>
-						<tr><th>威力</th><td>100</td><td>110</td><td>120</td></tr>
+						<tr><th>暗闇緩和効果時間（秒）</th><td colspan="3">15</td></tr>
+						<tr><th>ハイド不可効果時間（秒）</th><td>なし</td><td>なし</td><td>30</td></tr>
 					</tbody></table>
 			</div>
-			<div id="tipheavysmash">
-				相手に重い一撃を加えるが，大きい隙が生じる
+			<div id="tiptrivenom">
+				毒を錬金した弾丸を前3方向（20度毎）へ放つ
 				<table>
 					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
 					<tbody>
-						<tr><th>取得SP</th><td>2</td><td>2</td><td>2</td></tr>
-						<tr><th>消費Pw</th><td colspan="3">34</td></tr>
-						<tr><th>威力</th><td>270</td><td>310</td><td>350</td></tr>
+						<tr><th>取得SP</th><td>2</td><td>1</td><td>1</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">36</td></tr>
+						<tr><th>威力</th><td>100</td><td>110</td><td>120</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">貫通</td></tr>
+						<tr><th>毒DoT（2秒毎）</th><td colspan="3">30x4</td></tr>
 					</tbody></table>
 			</div>
 			<div id="tipbehemostail">
