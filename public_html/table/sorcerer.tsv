@@ -14,6 +14,6 @@ l	lightningspear	ライトニングスピア	0	3	2	2	2	lightning	judgementray,gr
 m	thunderbolt	サンダーボルト	0	3	2	2	2	lightning	judgementray,meteorimpact	
 n	judgementray	ジャッジメントレイ	0	3	3	2	2	lightning,lightningspear,thunderbolt		
 o	meteorimpact	メテオインパクト	0	3	3	2	2	fire,sparkflare,thunderbolt,lightning		
-p	radiantshield	レイディアントシールド	0	3	3	2	2	fire,firelance,icebolt,icejavelin		
+p	radiantshield	レディアントシールド	0	3	3	2	2	fire,firelance,icebolt,icejavelin		
 q	gravityfield	グラビティフィールド	0	3	3	2	2	icebolt,freezingwave,lightning,lightningspear		
 ,									
