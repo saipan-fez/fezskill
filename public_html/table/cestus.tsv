@@ -16,4 +16,3 @@ n	harmactivate	ハームアクティベイト	0	3	2	1	1	drainclaw	geysersmash
 o	geysersmash	ゲイザースマッシュ	0	3	2	2	2	drainclaw,hornetsting,harmactivate		
 p	backhandblow	バックハンドブロー	0	3	2	1	1	drainclaw	cyclonedisaster	
 q	cyclonedisaster	サイクロンディザスター	0	3	1	2	3	drainclaw,hornetsting,harmactivate,geysersmash,backhandblow		
-,									

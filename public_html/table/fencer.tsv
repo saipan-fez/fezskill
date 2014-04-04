@@ -13,4 +13,3 @@ k	reversekick	リバースキック	0	3	2	1	1		penetratethrust,aerialfall,rapidf
 l	penetratethrust	ペネトレイトスラスト	0	3	1	2	3	reversekick	aerialfall,rapidfendez-vous	
 m	aerialfall	エリアルフォール	0	3	3	1	1	reversekick,penetratethrust		
 n	rapidfendez-vous	ラピッドファンデヴ	0	3	3	1	1	reversekick,penetratethrust		
-,									
