@@ -3,6 +3,7 @@ table, th, td {
 }
 /* スキルシミュレーションテーブル */
 .skillplanner{
+	display: inline;
 	margin-left: 48px;
 }
 .skillplanner #tspointmarkbox{
