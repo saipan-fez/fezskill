@@ -1,7 +1,7 @@
 idc	id	name	initialLevel	maxLevel	level1	level2	level3	lower	upper	description
 a	normal	ノーマル	1	1	0					
 b	dualstrike	デュアルストライク	0	3	2	1	1		flushstinger,downdrive,finishthrust,shiningcross,obtainprotect,erasemagic,acceleration,vigoraid	
-c	flushstinger	フラッシュスティンガー	0	3	3	2	1	dualstrike	finishthrust	
+c	flashstinger	フラッシュスティンガー	0	3	3	2	1	dualstrike	finishthrust	
 d	downdrive	ダウンドライブ	0	3	2	1	1	dualstrike	finishthrust	
 e	finishthrust	フィニッシュスラスト	0	3	2	1	1	dualstrike,flushstinger,downdrive		
 f	shiningcross	シャイニングクロス	0	3	2	1	1	dualstrike	obtainprotect,erasemagic,acceleration,vigoraid	
