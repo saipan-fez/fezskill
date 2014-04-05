@@ -9,10 +9,10 @@ g	intensify	インテンスファイ	0	3	2	1	1		knockimpact,earthbind,solidstrik
 h	knockimpact	ノックインパクト	0	3	2	1	1	intensify	earthbind	
 i	earthbind	アースバインド	0	3	3	2	1	intensify,knockimpact		
 j	solidstrike	ソリッドストライク	0	3	2	1	1	intensify	shockwave	
-k	shockwave	ショックウェイブ	0	3	2	2	2	intensify,earthbind		
+k	shockwave	ショックウェイブ	0	3	2	2	2	intensify,solidstrike		
 l	drainclaw	ドレインクロー	0	3	2	1	1		hornetsting,harmactivate,geysersmash,backhandblow,cyclonedisaster	
 m	hornetsting	ホーネットスティング	0	3	2	1	1	drainclaw	geysersmash	
 n	harmactivate	ハームアクティベイト	0	3	2	1	1	drainclaw	geysersmash	
 o	geysersmash	ゲイザースマッシュ	0	3	2	2	2	drainclaw,hornetsting,harmactivate		
 p	backhandblow	バックハンドブロー	0	3	2	1	1	drainclaw	cyclonedisaster	
-q	cyclonedisaster	サイクロンディザスター	0	3	1	2	3	drainclaw,hornetsting,harmactivate,geysersmash,backhandblow		
+q	cyclonedisaster	サイクロンディザスター	0	3	1	2	3	drainclaw,backhandblow		
