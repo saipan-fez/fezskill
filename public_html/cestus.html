@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>セスタス - FEZスキルシミュレータ</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<link rel="stylesheet" href="fezskill.css">
+		<link rel="stylesheet" href="js/libs/jquery-powertip/css/jquery.powertip-light.min.css">
+		<link rel="stylesheet" href="js/libs/jqueryui/css/base/jquery-ui.css">
+		<script type="text/javascript" src="js/libs/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="js/libs/jquery-powertip/jquery.powertip.min.js"></script>
+		<script type="text/javascript" src="js/libs/jqueryui/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="js/jquery.parse.min.js"></script>
+		<script type="text/javascript" src="js/fezskill.js"></script>
+		<script type="text/javascript">
+			var skills, tsv, characterClass, skillslots;
+			var tspoint = new TotalSkillPoint();
+			$(document).ready(function() {
+				// キャラクタークラス設定
+				characterClass = CHARACTER_CLASS.CESTUS;
+				tsv = new Tsv(characterClass);
+
+				// スキル設定
+				skills = new Array();
+				for (var i = 0; i < tsv.data.rows.length; i++) {
+					skills[tsv.data.rows[i].id] = new Skill(tsv.data.rows[i]);
+				}
+
+				// 初期化
+				$("input#reset").click();
+
+				// GETパラメータ取得
+				params = getUrlVars();
+				if (params !== null) {
+					if (params["s"] !== void(0))
+					{
+						// スキルスロットリセット
+						resetSlot(params["s"]);
+					}
+					if (params["l"] !== void(0))
+					{
+						// スキルレベルリセット
+						resetLevel(params["l"]);
+					}
+				}
+
+			});
+		</script>
+	</head>
+	<body>
+		<ul id="topmenu">
+			<li><a href="./">トップページ</a></li>
+			<li><a href="./warrior.html">ウォリアー</a></li>
+			<li><a href="./scout.html">スカウト</a></li>
+			<li><a href="./sorcerer.html">ソーサラー</a></li>
+			<li><a href="./fencer.html">フェンサー</a></li>
+			<li><a href="./cestus.html">セスタス</a></li>
+		</ul>
+		<h1>セスタス - FEZスキルシミュレータ</h1>
+		<form class="skillplanner">
+			<ul id="skillslotbar">
+				<li class="skillslot"></li>
+				<li class="skillslot"></li>
+				<li class="skillslot"></li>
+				<li class="skillslot"></li>
+				<li class="skillslot"></li>
+				<li class="skillslot"></li>
+				<li class="skillslot"></li>
+				<li class="skillslot"></li>
+			</ul>
+			<input type="text" id="levelpoint" />
+			<input type="button" value="リセット" id="reset"/>
+			<input type="button" value="保存アドレスと取得スキルリスト" class="skilllist" />
+			<div class="skilllist">
+				<input type="text" size="40" />
+				<textarea cols="30"></textarea>
+			</div>
+			<div id="tspointmarkbox">SP: <span class="mark"></span></div>
+			<table>
+				<tbody>
+					<tr>
+						<td id="normal">
+							<img class="skillicon" src="skillicon/cestus/normal.gif" alt="基本攻撃アイコン" /><span class="skillname">基本攻撃</span> Lv. 1
+						</td>
+						<td class="empty"></td>
+						<td id="endureraid">
+							<img class="skillicon" src="skillicon/cestus/endureraid.gif" alt="エンダーレイドアイコン"  /><span class="skillname">エンダーレイド</span> Lv. 1
+						</td>
+						<td class="empty"></td>
+						<td class="empty"></td>
+					</tr>
+					<tr>
+						<td id="shutout">
+							<img class="skillicon" src="skillicon/cestus/shutout.gif" alt="シャットアウトアイコン" /><span class="skillname">シャットアウト</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div>	<div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">┳</td>
+						<td id="hardreinforce">
+							<img class="skillicon" src="skillicon/cestus/hardreinforce.gif" alt="ハードレインフォースアイコン" /><span class="skillname">ハードレインフォース</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div>	<div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="empty"></td>
+						<td class="empty"></td>
+					</tr>
+					<tr>
+						<td class="empty"></td>
+						<td class="connector">┣</td>
+						<td id="sacrifice">
+							<img class="skillicon" src="skillicon/cestus/sacrifice.gif" alt="サクリファイスアイコン" /><span class="skillname">サクリファイス</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="empty"></td>
+						<td class="empty"></td>
+					</tr>
+					<tr>
+						<td class="empty"></td>
+						<td class="connector">┗</td>
+						<td id="towerdomination">
+							<img class="skillicon" src="skillicon/cestus/towerdomination.gif" alt="タワードミネーションアイコン" /><span class="skillname">タワードミネーション</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="empty"></td>
+						<td class="empty"></td>
+					</tr>
+					<tr>
+						<td id="intensify">
+							<img class="skillicon" src="skillicon/cestus/intensify.gif" alt="インテンスファイアイコン"  /><span class="skillname">インテンスファイ</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">┳</td>
+						<td id="knockimpact">
+							<img class="skillicon" src="skillicon/cestus/knockimpact.gif" alt="ノックインパクトアイコン" /><span class="skillname">ノックインパクト</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div>	<div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">━</td>
+						<td id="earthbind">
+							<img class="skillicon" src="skillicon/cestus/earthbind.gif" alt="アースバインドアイコン" /><span class="skillname">アースバインド</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+					</tr>
+					<tr>
+						<td class="empty"></td>
+						<td class="connector">┗</td>
+						<td id="solidstrike">
+							<img class="skillicon" src="skillicon/cestus/solidstrike.gif" alt="ソリッドストライクアイコン" /><span class="skillname">ソリッドストライク</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div>	<div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">━</td>
+						<td id="shockwave">
+							<img class="skillicon" src="skillicon/cestus/shockwave.gif" alt="ショックウェイブアイコン" /><span class="skillname">ショックウェイブ</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+					</tr>
+					<tr>
+						<td id="drainclaw">
+							<img class="skillicon" src="skillicon/cestus/drainclaw.gif" alt="ドレインクローアイコン"  /><span class="skillname">ドレインクロー</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">┳</td>
+						<td id="hornetsting">
+							<img class="skillicon" src="skillicon/cestus/hornetsting.gif" alt="ホーネットスティングアイコン" /><span class="skillname">ホーネットスティング</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div>	<div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">┳</td>
+						<td id="geysersmash">
+							<img class="skillicon" src="skillicon/cestus/geysersmash.gif" alt="ゲイザースマッシュアイコン" /><span class="skillname">ゲイザースマッシュ</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+					</tr>
+					<tr>
+						<td class="empty"></td>
+						<td class="connector">┣</td>
+						<td id="harmactivate">
+							<img class="skillicon" src="skillicon/cestus/harmactivate.gif" alt="ハームアクティベイトアイコン" /><span class="skillname">ハームアクティベイト</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">┛</td>
+						<td class="empty"></td>
+					</tr>
+					<tr>
+						<td class="empty"></td>
+						<td class="connector">┗</td>
+						<td id="backhandblow">
+							<img class="skillicon" src="skillicon/cestus/backhandblow.gif" alt="バックハンドブローアイコン" /><span class="skillname">バックハンドブロー</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">━</td>
+						<td id="cyclonedisaster">
+							<img class="skillicon" src="skillicon/cestus/cyclonedisaster.gif" alt="サイクロンディザスターアイコン" /><span class="skillname">サイクロンディザスター</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+		<div id="showTable"></div>
+		<div class="skilltip">
+			<div id="tipnormal">
+				Pwを消費しない近接攻撃
+				<table><tr><th>攻撃力</th><td>110</td></tr></table>
+			</div>
+			<div id="tipendureraid">
+				仰け反らなくなる．吹き飛ばしは有効
+				<table>
+					<tr><th>消費Pw</th><td>10</td></tr>
+					<tr><th>特殊効果</th><td>仰け反り無効</td></tr>
+					<tr><th>効果時間（秒）</th><td>120</td></tr>
+				</table>
+			</div>
+			<div id="tipshutout">
+				肉体を硬化させ，仰け反らなくなる
+				<table>
+					<tr><th>消費SP</th><td>2</td></tr>
+					<tr><th>消費Pw</th><td>60</td></tr>
+					<tr><th>特殊効果</th><td>仰け反り無効．スタン無効．Pw自然回復なし</td></tr>
+					<tr><th>耐性上昇</th><td>+100</td></tr>
+					<tr><th>効果時間（秒）</th><td>10</td></tr>
+				</table>
+			</div>
+			<div id="tiphardreinforce">
+				気を肉体に纏う
+				<table>
+					<tr><th>消費SP</th><td>2</td></tr>
+					<tr><th>消費Pw</th><td colspan="3">40</td></tr>
+					<tr><th>耐性上昇</th><td>+50</td></tr>
+					<tr><th>攻性減少</th><td>-15</td></tr>
+					<tr><th>効果時間（秒）</th><td>120</td></tr>
+				</table>
+			</div>
+			<div id="tipsacrifice">
+				味方建築物を回復する
+				<table>
+					<tr><th>消費SP</th><td>2</td></tr>
+					<tr><th>消費Pw</th><td>0</td></tr>
+					<tr><th>特殊効果</th><td>味方建築物HPを200回復</td></tr>
+					<tr><th>効果間隔（秒）</th><td>2</td></tr>
+					<tr><th>効果時代償</th><td>HP25．Pw5</td></tr>
+				</table>
+			</div>
+			<div id="tiptowerdomination">
+				味方ArrowTowerを強化する
+				<table>
+					<tr><th>消費SP</th><td>2</td></tr>
+					<tr><th>消費Pw</th><td>0</td></tr>
+					<tr><th>特殊効果</th><td>味方ArrowTower強化</td></tr>
+					<tr><th>効果間隔（秒）</th><td>5</td></tr>
+					<tr><th>効果時代償</th><td>HP25．Pw5</td></tr>
+				</table>
+			</div>
+			<div id="tipintensify">
+				気を前方に発し，敵を吹き飛ばす
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>消費SP</th><td>2</td><td>1</td><td>1</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">30</td></tr>
+						<tr><th>威力</th><td>170</td><td>190</td><td>210</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">貫通．吹き飛ばし（対人専用）</td></tr>
+						<tr><th>仰け反り無効</th><td>なし</td><td>なし</td><td>あり</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipknockimpact">
+				突進し，敵を弾き飛ばす
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>消費SP</th><td>2</td><td>1</td><td>1</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">34</td></tr>
+						<tr><th>威力</th><td>100</td><td>120</td><td>130</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">貫通．弾き飛ばし（対人専用）．仰け反り無効</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipearthbind">
+				小さく飛び上がり，地面に拳を叩き込む
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>消費SP</th><td>3</td><td>2</td><td>1</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">42</td></tr>
+						<tr><th>威力</th><td>120</td><td>150</td><td>180</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">貫通</td></tr>
+						<tr><th>足止め効果時間（秒）</th><td>1</td><td>2</td><td>3</td></tr>
+						<tr><th>足止め耐性（秒）</th><td colspan="3">5</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipsolidstrike">
+				守りの構えをとった後，回し蹴りを放つ
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>消費SP</th><td>2</td><td>1</td><td>1</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">36</td></tr>
+						<tr><th>威力</th><td>210</td><td>225</td><td>255</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">貫通．攻撃前まで仰け反り無効，耐性上昇</td></tr>
+						<tr><th>耐性上昇</th><td>+40</td><td>+80</td><td>+120</td></tr>
+						<tr><th>強制仰け反り</th><td>なし</td><td>なし</td><td>あり</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipshockwave">
+				気を地面に叩きつけ，周囲の移動速度を低下させる．<br />溜めたレベルによって効果が上昇する
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>消費SP</th><td>2</td><td>2</td><td>2</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">35</td></tr>
+						<tr><th>威力</th><td>160</td><td>180</td><td>220</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">貫通．仰け反り無効</td></tr>
+						<tr><th>効果時間（秒）</th><td>1</td><td>4</td><td>8</td></tr>
+						<tr><th>速度変化割合</th><td colspan="3">67%</td></tr>
+						<tr><th>強制仰け反り</th><td>なし</td><td>なし</td><td>あり</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipdrainclaw">
+				攻撃すると共に，与ダメージ量に応じてHPを回復する
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>消費SP</th><td>2</td><td>1</td><td>1</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">24</td></tr>
+						<tr><th>威力</th><td>190</td><td>225</td><td>260</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">HP吸収（対人70%．対建築物40%）</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tiphornetsting">
+				飛び蹴る
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>消費SP</th><td>2</td><td>1</td><td>1</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">25</td></tr>
+						<tr><th>威力</th><td>100</td><td>120</td><td>130</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">仰け反り無効</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipharmactivate">
+				気を流し込み，状態を変化させる
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>消費SP</th><td>2</td><td>1</td><td>1</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">24</td></tr>
+						<tr><th>威力</th><td>210</td><td>240</td><td>285</td></tr>
+						<tr><th>対人特殊効果</th><td colspan="3">炎DoTまたは毒DoT時は解除し，ダメージ150．重複時200</td></tr>
+						<tr><th>対建築物DoT（3秒毎）</th><td>50x10</td><td>65x10</td><td>80x10</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipgeysersmash">
+				拳に気を溜める．チャージレベルに従って解放時効果が上昇する
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>消費SP</th><td>2</td><td>2</td><td>2</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">35</td></tr>
+						<tr><th>威力</th><td>220</td><td>330</td><td>480</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">仰け反り無効</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipbackhandblow">
+				前方に踏み込みつつ裏拳を放つ
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>消費SP</th><td>2</td><td>1</td><td>1</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">16</td></tr>
+						<tr><th>威力</th><td>190</td><td>210</td><td>245</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipcyclonedisaster">
+				腕を振り回し，周囲を5回連続攻撃する
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>消費SP</th><td>1</td><td>2</td><td>3</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">46</td></tr>
+						<tr><th>威力</th><td>55</td><td>65</td><td>75</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">貫通</td></tr>
+					</tbody></table>
+			</div>
+		</div>
+		<address class="copyright">(c)2005-2014 SQUARE ENIX CO., Ltd. All Rights Reserved. Licensed to GMO Gamepot Inc.</address>
+	</body>
+</html>
