@@ -1,51 +1,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>セスタス - FEZスキルシミュレータ</title>
+		<title>FEZスキルシミュレータ</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width">
 		<link rel="stylesheet" href="fezskill.css">
-		<link rel="stylesheet" href="js/libs/jquery-powertip/css/jquery.powertip-light.min.css">
-		<link rel="stylesheet" href="js/libs/jqueryui/css/base/jquery-ui.css">
-		<script type="text/javascript" src="js/libs/jquery/jquery.min.js"></script>
-		<script type="text/javascript" src="js/libs/jquery-powertip/jquery.powertip.min.js"></script>
-		<script type="text/javascript" src="js/libs/jqueryui/jquery-ui.min.js"></script>
-		<script type="text/javascript" src="js/jquery.parse.min.js"></script>
-		<script type="text/javascript" src="js/fezskill.js"></script>
-		<script type="text/javascript">
-			var skills, tsv, characterClass, skillslots;
-			var tspoint = new TotalSkillPoint();
-			$(document).ready(function() {
-				// キャラクタークラス設定
-				characterClass = CHARACTER_CLASS.CESTUS;
-				tsv = new Tsv(characterClass);
-
-				// スキル設定
-				skills = new Array();
-				for (var i = 0; i < tsv.data.rows.length; i++) {
-					skills[tsv.data.rows[i].id] = new Skill(tsv.data.rows[i]);
-				}
-
-				// 初期化
-				$("input#reset").click();
-
-				// GETパラメータ取得
-				params = getUrlVars();
-				if (params !== null) {
-					if (params["s"] !== void(0))
-					{
-						// スキルスロットリセット
-						resetSlot(params["s"]);
-					}
-					if (params["l"] !== void(0))
-					{
-						// スキルレベルリセット
-						resetLevel(params["l"]);
-					}
-				}
-
-			});
-		</script>
 	</head>
 	<body>
 		<ul id="topmenu">
@@ -56,306 +15,33 @@
 			<li><a href="./fencer.html">フェンサー</a></li>
 			<li><a href="./cestus.html">セスタス</a></li>
 		</ul>
-		<h1>セスタス - FEZスキルシミュレータ</h1>
-		<form class="skillplanner">
-			<ul id="skillslotbar">
-				<li class="skillslot"></li>
-				<li class="skillslot"></li>
-				<li class="skillslot"></li>
-				<li class="skillslot"></li>
-				<li class="skillslot"></li>
-				<li class="skillslot"></li>
-				<li class="skillslot"></li>
-				<li class="skillslot"></li>
-			</ul>
-			<input type="text" id="levelpoint" />
-			<input type="button" value="リセット" id="reset"/>
-			<input type="button" value="保存アドレスと取得スキルリスト" class="skilllist" />
-			<div class="skilllist">
-				<input type="text" size="40" />
-				<textarea cols="30"></textarea>
-			</div>
-			<div id="tspointmarkbox">SP: <span class="mark"></span></div>
-			<table>
-				<tbody>
-					<tr>
-						<td id="normal">
-							<img class="skillicon" src="skillicon/cestus/normal.gif" alt="基本攻撃アイコン" /><span class="skillname">基本攻撃</span> Lv. 1
-						</td>
-						<td class="empty"></td>
-						<td id="endureraid">
-							<img class="skillicon" src="skillicon/cestus/endureraid.gif" alt="エンダーレイドアイコン"  /><span class="skillname">エンダーレイド</span> Lv. 1
-						</td>
-						<td class="empty"></td>
-						<td class="empty"></td>
-					</tr>
-					<tr>
-						<td id="shutout">
-							<img class="skillicon" src="skillicon/cestus/shutout.gif" alt="シャットアウトアイコン" /><span class="skillname">シャットアウト</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div>	<div class="markbox">SP: <span class="mark"></span></div>
-						</td>
-						<td class="connector">┳</td>
-						<td id="hardreinforce">
-							<img class="skillicon" src="skillicon/cestus/hardreinforce.gif" alt="ハードレインフォースアイコン" /><span class="skillname">ハードレインフォース</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div>	<div class="markbox">SP: <span class="mark"></span></div>
-						</td>
-						<td class="empty"></td>
-						<td class="empty"></td>
-					</tr>
-					<tr>
-						<td class="empty"></td>
-						<td class="connector">┣</td>
-						<td id="sacrifice">
-							<img class="skillicon" src="skillicon/cestus/sacrifice.gif" alt="サクリファイスアイコン" /><span class="skillname">サクリファイス</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
-						</td>
-						<td class="empty"></td>
-						<td class="empty"></td>
-					</tr>
-					<tr>
-						<td class="empty"></td>
-						<td class="connector">┗</td>
-						<td id="towerdomination">
-							<img class="skillicon" src="skillicon/cestus/towerdomination.gif" alt="タワードミネーションアイコン" /><span class="skillname">タワードミネーション</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
-						</td>
-						<td class="empty"></td>
-						<td class="empty"></td>
-					</tr>
-					<tr>
-						<td id="intensify">
-							<img class="skillicon" src="skillicon/cestus/intensify.gif" alt="インテンスファイアイコン"  /><span class="skillname">インテンスファイ</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
-						</td>
-						<td class="connector">┳</td>
-						<td id="knockimpact">
-							<img class="skillicon" src="skillicon/cestus/knockimpact.gif" alt="ノックインパクトアイコン" /><span class="skillname">ノックインパクト</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div>	<div class="markbox">SP: <span class="mark"></span></div>
-						</td>
-						<td class="connector">━</td>
-						<td id="earthbind">
-							<img class="skillicon" src="skillicon/cestus/earthbind.gif" alt="アースバインドアイコン" /><span class="skillname">アースバインド</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
-						</td>
-					</tr>
-					<tr>
-						<td class="empty"></td>
-						<td class="connector">┗</td>
-						<td id="solidstrike">
-							<img class="skillicon" src="skillicon/cestus/solidstrike.gif" alt="ソリッドストライクアイコン" /><span class="skillname">ソリッドストライク</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div>	<div class="markbox">SP: <span class="mark"></span></div>
-						</td>
-						<td class="connector">━</td>
-						<td id="shockwave">
-							<img class="skillicon" src="skillicon/cestus/shockwave.gif" alt="ショックウェイブアイコン" /><span class="skillname">ショックウェイブ</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
-						</td>
-					</tr>
-					<tr>
-						<td id="drainclaw">
-							<img class="skillicon" src="skillicon/cestus/drainclaw.gif" alt="ドレインクローアイコン"  /><span class="skillname">ドレインクロー</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
-						</td>
-						<td class="connector">┳</td>
-						<td id="hornetsting">
-							<img class="skillicon" src="skillicon/cestus/hornetsting.gif" alt="ホーネットスティングアイコン" /><span class="skillname">ホーネットスティング</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div>	<div class="markbox">SP: <span class="mark"></span></div>
-						</td>
-						<td class="connector">┳</td>
-						<td id="geysersmash">
-							<img class="skillicon" src="skillicon/cestus/geysersmash.gif" alt="ゲイザースマッシュアイコン" /><span class="skillname">ゲイザースマッシュ</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
-						</td>
-					</tr>
-					<tr>
-						<td class="empty"></td>
-						<td class="connector">┣</td>
-						<td id="harmactivate">
-							<img class="skillicon" src="skillicon/cestus/harmactivate.gif" alt="ハームアクティベイトアイコン" /><span class="skillname">ハームアクティベイト</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
-						</td>
-						<td class="connector">┛</td>
-						<td class="empty"></td>
-					</tr>
-					<tr>
-						<td class="empty"></td>
-						<td class="connector">┗</td>
-						<td id="backhandblow">
-							<img class="skillicon" src="skillicon/cestus/backhandblow.gif" alt="バックハンドブローアイコン" /><span class="skillname">バックハンドブロー</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
-						</td>
-						<td class="connector">━</td>
-						<td id="cyclonedisaster">
-							<img class="skillicon" src="skillicon/cestus/cyclonedisaster.gif" alt="サイクロンディザスターアイコン" /><span class="skillname">サイクロンディザスター</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</form>
-		<div id="showTable"></div>
-		<div class="skilltip">
-			<div id="tipnormal">
-				Pwを消費しない近接攻撃
-				<table><tr><th>攻撃力</th><td>100</td></tr></table>
-			</div>
-			<div id="tipendureraid">
-				二段攻撃を放つ．追加入力するとタンブルする
-				<table>
-					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
-					<tbody>
-						<tr><th>消費SP</th><td>2</td><td>1</td><td>1</td></tr>
-						<tr><th>消費Pw</th><td colspan="3">20</td></tr>
-						<tr><th>効果時間（秒）</th><td>100</td><td>125</td><td>140</td></tr>
-						<tr><th>特殊効果</th><td colspan="3">貫通</td></tr>
-					</tbody></table>
-			</div>
-			<div id="tipshutout">
-				3連突きで相手の体勢を崩す
-				<table>
-					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
-					<tbody>
-						<tr><th>消費SP</th><td>3</td><td>2</td><td>1</td></tr>
-						<tr><th>消費Pw</th><td colspan="3">90</td></tr>
-						<tr><th>威力</th><td colspan="3">30</td></tr>
-						<tr><th>強制仰け反り効果</th><td>なし</td><td>あり</td><td>あり</td></tr>
-					</tbody></table>
-			</div>
-			<div id="tiphardreinforce">
-				相手の足を薙ぎ払い，倒す
-				<table>
-					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
-					<tbody>
-						<tr><th>消費SP</th><td>2</td><td>1</td><td>1</td></tr>
-						<tr><th>消費Pw</th><td colspan="3">26</td></tr>
-						<tr><th>威力</th><td colspan="3">50</td></tr>
-						<tr><th>転倒効果（対人専用）</th><td>仰け反り有効状態に限る</td><td>強制</td><td>強制</td></tr>
-						<tr><th>追撃</th><td>不可</td><td>不可</td><td>1回</td></tr>
-					</tbody></table>
-			</div>
-			<div id="tipsacrifice">
-				急所を突く．チャージすると威力と射程が上昇する
-				<table>
-					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
-					<tbody>
-						<tr><th>消費SP</th><td>2</td><td>1</td><td>1</td></tr>
-						<tr><th>消費Pw</th><td colspan="3">40</td></tr>
-						<tr><th>威力</th><td>280</td><td>390</td><td>500</td></tr>
-						<tr><th>特殊効果</th><td>なし</td><td>仰け反り耐性</td><td>貫通．仰け反り耐性</td></tr>
-					</tbody></table>
-			</div>
-			<div id="tiptowerdomination">
-				衝撃波を生み，敵を貫く
-				<table>
-					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
-					<tbody>
-						<tr><th>消費SP</th><td>2</td><td>1</td><td>1</td></tr>
-						<tr><th>消費Pw</th><td>28</td><td>26</td><td>24</td></tr>
-						<tr><th>威力</th><td>80</td><td>90</td><td>100</td></tr>
-						<tr><th>特殊効果</th><td colspan="3">貫通</td></tr>
-					</tbody></table>
-			</div>
-			<div id="tipintensify">
-				相手を耐性上昇の刻印状態にする
-				<table>
-					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
-					<tbody>
-						<tr><th>消費SP</th><td>1</td><td>1</td><td>2</td></tr>
-						<tr><th>消費Pw</th><td>28</td><td>28</td><td>25</td></tr>
-						<tr><th>威力</th><td colspan="3">135</td></tr>
-						<tr><th>刻印効果（15秒）</th><td colspan="3">耐性60上昇．7.5秒</td></tr>
-					</tbody></table>
-			</div>
-			<div id="tipknockimpact">
-				相手を魔法攻撃無効の刻印状態にする
-				<table>
-					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
-					<tbody>
-						<tr><th>消費SP</th><td>1</td><td>1</td><td>2</td></tr>
-						<tr><th>消費Pw</th><td>33</td><td>33</td><td>30</td></tr>
-						<tr><th>威力</th><td colspan="3">135</td></tr>
-						<tr><th>刻印効果（15秒）</th><td colspan="3">1回魔法無効．5秒</td></tr>
-					</tbody></table>
-			</div>
-			<div id="tipearthbind">
-				相手を移動速度増加の刻印状態にする
-				<table>
-					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
-					<tbody>
-						<tr><th>消費SP</th><td>1</td><td>1</td><td>2</td></tr>
-						<tr><th>消費Pw</th><td>28</td><td>28</td><td>25</td></tr>
-						<tr><th>威力</th><td colspan="3">135</td></tr>
-						<tr><th>刻印効果（15秒）</th><td colspan="3">移動速度1.5倍．5秒</td></tr>
-					</tbody></table>
-			</div>
-			<div id="tipsolidstrike">
-				相手をPw回復強化の刻印状態にする
-				<table>
-					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
-					<tbody>
-						<tr><th>消費SP</th><td>1</td><td>1</td><td>2</td></tr>
-						<tr><th>消費Pw</th><td>28</td><td>28</td><td>25</td></tr>
-						<tr><th>威力</th><td colspan="3">135</td></tr>
-						<tr><th>刻印効果（15秒）</th><td colspan="3">Pw回復5．7.5秒．1秒毎</td></tr>
-					</tbody></table>
-			</div>
-			<div id="tipshockwave">
-				前方を蹴りつけ，飛び上がりつつ後退する．
-				<table>
-					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
-					<tbody>
-						<tr><th>消費SP</th><td>2</td><td>1</td><td>1</td></tr>
-						<tr><th>消費Pw</th><td colspan="3">16</td></tr>
-						<tr><th>威力</th><td>150</td><td>180</td><td>210</td></tr>
-						<tr><th>特殊効果</th><td colspan="3">貫通．跳び上がるまで仰け反り耐性</td></tr>
-					</tbody></table>
-			</div>
-			<div id="tipdrainclaw">
-				前方に切り込む．追加入力するとタンブルする
-				<table>
-					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
-					<tbody>
-						<tr><th>消費SP</th><td>1</td><td>2</td><td>3</td></tr>
-						<tr><th>消費Pw</th><td colspan="3">24</td></tr>
-						<tr><th>威力</th><td>210</td><td>235</td><td>270</td></tr>
-					</tbody></table>
-			</div>
-			<div id="tiphornetsting">
-				飛び上がり，降下しつつ攻撃する．降下中は仰け反り無効．<br />追加入力するとタンブルする
-				<table>
-					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
-					<tbody>
-						<tr><th>消費SP</th><td>3</td><td>1</td><td>1</td></tr>
-						<tr><th>消費Pw</th><td colspan="3">28</td></tr>
-						<tr><th>威力</th><td>220</td><td>260</td><td>290</td></tr>
-						<tr><th>強制仰け反り効果</th><td>なし</td><td>なし</td><td>あり</td></tr>
-					</tbody></table>
-			</div>
-			<div id="tipharmactivate">
-				追加入力で2段階まで武器を突く．追加入力するとタンブルする
-				<table>
-					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
-					<tbody>
-						<tr><th>消費SP</th><td>3</td><td>1</td><td>1</td></tr>
-						<tr><th>消費Pw</th><td colspan="3">10．第2段12</td></tr>
-						<tr><th>威力</th><td>130</td><td>140</td><td>150</td></tr>
-					</tbody></table>
-			</div>
-			<div id="tipgeysersmash">
-				追加入力で2段階まで武器を突く．追加入力するとタンブルする
-				<table>
-					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
-					<tbody>
-						<tr><th>消費SP</th><td>3</td><td>1</td><td>1</td></tr>
-						<tr><th>消費Pw</th><td colspan="3">10．第2段12</td></tr>
-						<tr><th>威力</th><td>130</td><td>140</td><td>150</td></tr>
-					</tbody></table>
-			</div>
-			<div id="tipbackhandblow">
-				追加入力で2段階まで武器を突く．追加入力するとタンブルする
-				<table>
-					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
-					<tbody>
-						<tr><th>消費SP</th><td>3</td><td>1</td><td>1</td></tr>
-						<tr><th>消費Pw</th><td colspan="3">10．第2段12</td></tr>
-						<tr><th>威力</th><td>130</td><td>140</td><td>150</td></tr>
-					</tbody></table>
-			</div>
-			<div id="tipcyclonedisaster">
-				追加入力で2段階まで武器を突く．追加入力するとタンブルする
-				<table>
-					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
-					<tbody>
-						<tr><th>消費SP</th><td>3</td><td>1</td><td>1</td></tr>
-						<tr><th>消費Pw</th><td colspan="3">10．第2段12</td></tr>
-						<tr><th>威力</th><td>130</td><td>140</td><td>150</td></tr>
-					</tbody></table>
-			</div>
-		</div>
+		<h1>FEZスキルシミュレータ</h1>
+		<img src="demo.png" alt="ウォリアーページスクリーンショット" />
+		<h2>説明</h2>
+		<ul>
+			<li>異常があれば作成者に連絡して欲しい
+				<ul><li>Twitter<a href="https://twitter.com/paul_ga">@pual_ga</a></li>					<li><a href="https://github.com/ustreamer-01647/fezskill/issues">Issues · ustreamer-01647/fezskill</a></li>
+				</ul></li>
+			<li>スキルスロットにスキルアイコンを配置できる
+				<ul><li>スキルアイコンをダブルクリックすると登録または解除する</li>
+					<li>ドラッグして登録する</li>
+				</ul></li>
+			<li>マウスカーソルをスキル名に乗せると，簡易説明文を表示する</li>
+			<li>ボタン「保存アドレスとスキルリスト」をクリックするとダイアログを表示する
+				<ul><li>スキル取得状況とスキルスロット登録状況を指定するアドレスを表示する</li>
+					<li>取得スキルリストを表示する</li>
+				</ul></li>
+		</ul>
+		<h2>リンク</h2>
+		<ul>
+			<li><a href="https://www.fezero.jp/">ファンタジーアース　ゼロ公式サイト</a></li>
+			<li><a href="http://fewiki.jp/">Fantasy Earth Zero -ファンタジーアース　ゼロ- Wiki</a></li>
+			<li><a href="http://www.geocities.jp/syato11/">FEZデータバンク</a></li>
+			<li><a href="http://feskill.omiki.com/">FEZスキルシミュ</a>（fezskill.omiki.com）</li>
+			<li><a href="http://fezskill.jp/">FEZスキル実験室</a>（fezskill.jp）</li>
+			<li><a href="http://navi-add.com/temp/skillsim/fez/skill-simulator-fez.html">スキル/シミュレータ/fez-目次</a>（てんぷら -Tempura-）</li>
+			<li><a href="http://game-room.info/fezskill/">FEZ Skill Simulator[FEZスキルシミュレータ]</a>（game-room.info）</li>
+		</ul>
+		<address class="copyright">(c)2005-2014 SQUARE ENIX CO., Ltd. All Rights Reserved. Licensed to GMO Gamepot Inc.</address>
 	</body>
 </html>
