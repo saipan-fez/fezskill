@@ -108,6 +108,6 @@ li.skillslot{
 	border-radius: 50%;
 }
 
-.skilllist input{
+.skilllist input#storeaddress{
 	display: block;
 }

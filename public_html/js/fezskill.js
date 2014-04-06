@@ -277,9 +277,16 @@ $(document).ready(function() {
 		autoOpen: false, minWidth: 500});
 
 	/**
+	 * 保存アドレスとスキルリストダイアログクローズ
+	 */
+	$("input#closelist").click(function() {
+		$("div.skilllist").dialog("close");
+	});
+
+	/**
 	 * 保存アドレスとスキルリストダイアログオープン
 	 */
-	$("input.skilllist").click(function() {
+	$("input#openlist").click(function() {
 		var text = $("input#levelpoint").val();
 		// 改行数
 		var cr = 1;
@@ -300,7 +307,7 @@ $(document).ready(function() {
 							+ "&s=" + address;
 		}
 
-		$("div.skilllist").find($("input")).val(address);
+		$("div.skilllist").find($("input#storeaddress")).val(address);
 		$("div.skilllist textarea").attr("rows", cr).val(text);
 		$("div.skilllist").dialog("open");
 	});
