@@ -1,5 +1,3 @@
-var TRUE_STRING = "TRUE";
-var ICON_WIDTH = "32";
 var SKILLPOINT_MARK = "-";
 var SKILLPOINT_MARKED = "X";
 var SKILLPOINT_LIMIT = 40;
@@ -16,7 +14,6 @@ var CHARACTER_CLASS = {
 TABLE_DIR = "table/";
 // 表ファイル拡張子
 TABLE_EXTENTION = ".tsv";
-//function makeSkillBox(id, name, level1, level2, level3, )
 
 /**
  * TSVファイルのパース結果を持つクラス
@@ -438,6 +435,10 @@ function resetSlot(idcstring) {
  * @returns {undefined}
  */
 function setSlot(i, imgalt) {
+	// 登録済みなら何もしない
+	if ($("li.skillslot").find("img[alt=" + imgalt + "]").length > 0)
+		return;
+
 	// アイコン探索
 	var img = $("td, .skillicon").find("[alt=" + imgalt + "]");
 	if (img.length === 1) {
