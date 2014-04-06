@@ -217,13 +217,7 @@ $(document).ready(function() {
 	$(".skillslot").droppable({
 		tolerance: "pointer",
 		drop: function(event, ui) {
-			$(this).find("img").remove();
-			var icon = $(ui.draggable.context).clone();
-			// ダブルクリックで自滅
-			icon.dblclick(function() {
-				$(this).remove();
-			});
-			$(this).append(icon);
+			setSlot($(this).index(), $(ui.draggable.context).attr("alt"));
 		}
 	});
 
@@ -440,8 +434,8 @@ function setSlot(i, imgalt) {
 		return;
 
 	// アイコン探索
-	var img = $("td, .skillicon").find("[alt=" + imgalt + "]");
-	if (img.length === 1) {
+	var img = $("td, .skillicon").find("[alt=" + imgalt + "]:eq(0)");
+	if (img.length > 0) {
 		// アイコン発見時
 		var icon = img.clone();
 		// ダブルクリックすると自滅する
