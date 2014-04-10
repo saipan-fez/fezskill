@@ -204,16 +204,23 @@ $(document).ready(function() {
 
 	// スキルアイコンダブルクリックでスロット登録
 	$(".skillicon").dblclick(function() {
+		var imgalt = $(this).attr("alt");
+		// セット済みならば，スロット解除
+		var icon = $("li.skillslot").find("img[alt=" + imgalt + "]");
+		if (icon.length > 0) {
+			icon.remove();
+			return;
+		}
+		// 未セットなら，空きスロットに登録する
 		for (var i = 0; i < SKILLSLOT_SIZE; i++) {
-			// 空きスロット探索
 			if (void(0) === $($(".skillslot")[i]).children()[0]) {
-				setSlot(i, $(this).attr("alt"));
+				setSlot(i, imgalt);
 				break;
 			}
 		}
 	});
 
-	// スキルアイコン受付
+	// スキルアイコンドロップ
 	$(".skillslot").droppable({
 		tolerance: "pointer",
 		drop: function(event, ui) {
