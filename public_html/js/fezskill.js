@@ -540,7 +540,8 @@ function getLevelcode() {
 	var lastcode = (levelcode.substring(i, levelcode.length) + "00").substring(0, COMPRESS_WIDTH);
 	code += LEVELS_ENCODE[lastcode];
 
-	return code;
+	// "000"を意味する終端の連続するaを消す
+	return code.replace(/a+$/, "");
 }
 
 /**
@@ -556,6 +557,6 @@ function getSlotcode() {
 		slotcode += (id === void(0)) ? "0" : skills[id].idc;
 	}
 
-	// スキル未セットなら空文字列を返す
-	return (slotcode === "00000000") ? "" : slotcode;
+	// 終端の連続する"0"を消す
+	return slotcode.replace(/0+$/, "");
 }
