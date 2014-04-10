@@ -15,6 +15,10 @@ TABLE_DIR = "table/";
 // 表ファイル拡張子
 TABLE_EXTENTION = ".tsv";
 
+// レベルコードでない文字
+var LEVELS_UNCODE = /[^a-zA-Z\(\)\[\]\{\}\<\>\,\.\/\_]/g;
+var LEVELS_ENCODE = {"000": "a", "001": "b", "002": "c", "003": "d", "010": "e", "011": "f", "012": "g", "013": "h", "020": "i", "021": "j", "022": "k", "023": "l", "030": "m", "031": "n", "032": "o", "033": "p", "100": "q", "101": "r", "102": "s", "103": "t", "110": "u", "111": "v", "112": "w", "113": "x", "120": "y", "121": "z", "122": "A", "123": "B", "130": "C", "131": "D", "132": "E", "133": "F", "200": "G", "201": "H", "202": "I", "203": "J", "210": "K", "211": "L", "212": "M", "213": "N", "220": "O", "221": "P", "222": "Q", "223": "R", "230": "S", "231": "T", "232": "U", "233": "V", "300": "W", "301": "X", "302": "Y", "303": "Z", "310": "(", "311": ")", "312": "[", "313": "]", "320": "{", "321": "}", "322": "<", "323": ">", "330": ",", "331": ".", "332": "/", "333": "_"};
+var LEVELS_DECODE = {a: "000", b: "001", c: "002", d: "003", e: "010", f: "011", g: "012", h: "013", i: "020", j: "021", k: "022", l: "023", m: "030", n: "031", o: "032", p: "033", q: "100", r: "101", s: "102", t: "103", u: "110", v: "111", w: "112", x: "113", y: "120", z: "121", A: "122", B: "123", C: "130", D: "131", E: "132", F: "133", G: "200", H: "201", I: "202", J: "203", K: "210", L: "211", M: "212", N: "213", O: "220", P: "221", Q: "222", R: "223", S: "230", T: "231", U: "232", V: "233", W: "300", X: "301", Y: "302", Z: "303", "(": "310", ")": "311", "[": "312", "]": "313", "{": "320", "}": "321", "<": "322", ">": "323", ",": "330", ".": "331", "/": "332", "_": "333"};
 /**
  * TSVファイルのパース結果を持つクラス
  * @param {CHARACTER_CLASS} characterClass キャラクタクラス
@@ -46,6 +50,7 @@ function Tsv(characterClass) {
 Tsv.prototype = {
 	/**
 	 * table要素として出力する
+	 * http://venzol.blogspot.jp/2013/12/javascriptcsv-jquery.html
 	 * @returns {undefined}
 	 */
 	show: function() {
@@ -195,7 +200,6 @@ Skill.prototype = {
 	}
 };
 $(document).ready(function() {
-
 	// ツールチップ設定
 	$("span.skillname").powerTip({placement: "n", smartPlacement: true});
 
@@ -290,6 +294,7 @@ $(document).ready(function() {
 		var cr = 1;
 		for (var id in skills) {
 			if (skills[id].level > 0) {
+				// 取得スキルを探して追記する
 				text += "\n-" + skills[id].name + " Lv." + skills[id].level;
 				cr++;
 			}
@@ -305,6 +310,7 @@ $(document).ready(function() {
 							+ "&s=" + address;
 		}
 
+		// 各情報を書き込み，ダイアログを開く
 		$("div.skilllist").find($("input#storeaddress")).val(address);
 		$("div.skilllist textarea").attr("rows", cr).val(text);
 		$("div.skilllist").dialog("open");
@@ -458,7 +464,7 @@ function setSlot(i, imgalt) {
 
 /**
  *  GETパラメータを配列にして返す
- *  @url http://qiita.com/Evolutor_web/items/c9b940f752883676b35d
+ *  http://qiita.com/Evolutor_web/items/c9b940f752883676b35d
  *  @return     パラメータのObject
  *
  */
@@ -483,8 +489,13 @@ var getUrlVars = function() {
  * @returns {undefined}
  */
 function resetLevel(code) {
-	// 非数字を0にする
-	var levelcode = code.replace(/[^0-9]/g, "0");
+	// コード外文字を"000"にする
+	code = code.replace(LEVELS_UNCODE, "a");
+	// 数字列にデコードする
+	var levelcode = "";
+	for (var i = 0; i < code.length; i++) {
+		levelcode += LEVELS_DECODE[code[i]];
+	}
 	var i = 0;
 	for (var id in skills) {
 		var level = parseInt(levelcode[i]);
@@ -516,9 +527,20 @@ function getidfromskilliconsrc(src) {
 function getLevelcode() {
 	var levelcode = "";
 	for (var id in skills) {
-		levelcode += (String(skills[id].level));
+		// レベル数字列をつくる
+		levelcode += String(skills[id].level);
 	}
-	return levelcode;
+	var code = "";
+	var COMPRESS_WIDTH = 3;
+	var i = 0;
+	for (; i < levelcode.length - COMPRESS_WIDTH; i += COMPRESS_WIDTH) {
+		code += LEVELS_ENCODE[levelcode.substring(i, i + COMPRESS_WIDTH)];
+	}
+	// 終端は整形する．"00"を追加し，最初3字を取る
+	var lastcode = (levelcode.substring(i, levelcode.length) + "00").substring(0, COMPRESS_WIDTH);
+	code += LEVELS_ENCODE[lastcode];
+
+	return code;
 }
 
 /**
