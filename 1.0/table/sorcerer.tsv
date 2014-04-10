@@ -1,0 +1,18 @@
+idc	id	name	initialLevel	maxLevel	level1	level2	level3	lower	upper
+a	normal	基本攻撃	1	1	0				
+b	chant	詠唱	1	3	0	2	2		
+c	fire	ファイア	0	3	2	1	1		firelance,sparkflare,hellfire,meteorimpact,radiantshield
+d	firelance	ファイアランス	0	3	2	2	2	fire	hellfire,radiantshield
+e	sparkflare	スパークフレア	0	3	2	2	2	fire	hellfire,meteorimpact
+f	hellfire	ヘルファイア	0	3	3	2	2	fire,firelance,sparkflare	
+g	icebolt	アイスボルト	0	3	2	1	1		icejavelin,freezingwave,blizzardchares,radiantshield,gravityfield
+h	icejavelin	アイスジャベリン	0	3	2	2	2	icebolt	blizzardchares,radiantshield
+i	freezingwave	フリージングウェイブ	0	3	2	2	2	icebolt	blizzardchares,gravityfield
+j	blizzardchares	ブリザードカレス	0	3	3	2	2	icebolt,icejavelin,freezingwave	
+k	lightning	ライトニング	0	3	2	1	1		lightningspear,thunderbolt,judgementray,meteorimpact,gravityfield
+l	lightningspear	ライトニングスピア	0	3	2	2	2	lightning	judgementray,gravityfield
+m	thunderbolt	サンダーボルト	0	3	2	2	2	lightning	judgementray,meteorimpact
+n	judgementray	ジャッジメントレイ	0	3	3	2	2	lightning,lightningspear,thunderbolt	
+o	meteorimpact	メテオインパクト	0	3	3	2	2	fire,sparkflare,thunderbolt,lightning	
+p	radiantshield	レディアントシールド	0	3	3	2	2	fire,firelance,icebolt,icejavelin	
+q	gravityfield	グラビティフィールド	0	3	3	2	2	icebolt,freezingwave,lightning,lightningspear	

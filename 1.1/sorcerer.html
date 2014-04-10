@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ソーサラー - FEZスキルシミュレータ</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<link rel="stylesheet" href="fezskill.css">
+		<link rel="stylesheet" href="js/libs/jquery-powertip/css/jquery.powertip-light.min.css">
+		<link rel="stylesheet" href="js/libs/jqueryui/css/base/jquery-ui.css">
+		<script type="text/javascript" src="js/libs/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="js/libs/jquery-powertip/jquery.powertip.min.js"></script>
+		<script type="text/javascript" src="js/libs/jqueryui/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="js/jquery.parse.min.js"></script>
+		<script type="text/javascript" src="js/fezskill.js"></script>
+		<script type="text/javascript">
+			var skills, tsv, characterClass, skillslots;
+			var tspoint = new TotalSkillPoint();
+			$(document).ready(function() {
+				// キャラクタークラス設定
+				characterClass = CHARACTER_CLASS.SORCERER;
+				tsv = new Tsv(characterClass);
+
+				// スキル設定
+				skills = new Array();
+				for (var i = 0; i < tsv.data.rows.length; i++) {
+					skills[tsv.data.rows[i].id] = new Skill(tsv.data.rows[i]);
+				}
+
+				// 初期化
+				$("input#reset").click();
+
+				// GETパラメータ取得
+				params = getUrlVars();
+				if (params !== null) {
+					if (params["s"] !== void(0))
+					{
+						// スキルスロットリセット
+						resetSlot(params["s"]);
+					}
+					if (params["l"] !== void(0))
+					{
+						// スキルレベルリセット
+						resetLevel(params["l"]);
+					}
+				}
+
+			});
+		</script>
+	</head>
+	<body>
+		<ul id="topmenu">
+			<li><a href="./">トップページ</a></li>
+			<li><a href="./warrior.html">ウォリアー</a></li>
+			<li><a href="./scout.html">スカウト</a></li>
+			<li><a href="./sorcerer.html">ソーサラー</a></li>
+			<li><a href="./fencer.html">フェンサー</a></li>
+			<li><a href="./cestus.html">セスタス</a></li>
+		</ul>
+		<h1>ソーサラー - FEZスキルシミュレータ</h1>
+		<form class="skillplanner">
+			<ul id="skillslotbar">
+				<li class="skillslot"></li>
+				<li class="skillslot"></li>
+				<li class="skillslot"></li>
+				<li class="skillslot"></li>
+				<li class="skillslot"></li>
+				<li class="skillslot"></li>
+				<li class="skillslot"></li>
+				<li class="skillslot"></li>
+			</ul>
+			<input type="text" id="levelpoint" />
+			<input type="button" value="リセット" id="reset"/>
+			<input type="button" value="保存アドレスと取得スキルリスト" class="skilllist" id="openlist" />
+			<div class="skilllist">
+				<input type="text" size="40" id="storeaddress" />
+				<textarea cols="30"></textarea>
+				<input type="button" value="閉じる" id="closelist"/>
+			</div>
+			<div id="tspointmarkbox">SP: <span class="mark"></span></div>
+			<table>
+				<tbody>
+					<tr><th class="treecaption">基本スキル</th>
+						<td class="empty"></td>
+						<td class="empty"></td>
+						<td class="empty"></td>
+						<td class="empty"></td>
+					</tr>
+					<tr>
+						<td id="normal">
+							<img class="skillicon" src="skillicon/sorcerer/normal.gif" alt="基本攻撃アイコン" /><span class="skillname">基本攻撃</span> Lv. 1
+						</td>
+						<td class="empty"></td>
+						<td id="chant">
+							<img class="skillicon" src="skillicon/sorcerer/chant.gif" alt="詠唱アイコン" /><span class="skillname">詠唱</span><div class="levelbox"><label>Lv. <select><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="empty"></td>
+						<td class="empty"></td>
+					</tr>
+					<tr><th class="treecaption">詠唱不要スキル</th>
+						<td class="empty"></td>
+						<th class="treecaption" colspan="3">詠唱必要スキル</th>
+					</tr>
+					<tr>
+						<td id="lightning">
+							<img class="skillicon" src="skillicon/sorcerer/lightning.gif" alt="ライトニングアイコン"  /><span class="skillname">ライトニング</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">┳</td>
+						<td id="lightningspear">
+							<img class="skillicon" src="skillicon/sorcerer/lightningspear.gif" alt="ライトニングスピアアイコン" /><span class="skillname">ライトニングスピア</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div>	<div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">┛<br />┳</td>
+						<td id="judgementray">
+							<img class="skillicon" src="skillicon/sorcerer/judgementray.gif" alt="ジャッジメントレイアイコン" /><span class="skillname">ジャッジメントレイ</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+					</tr>
+					<tr>
+						<td class="empty"></td>
+						<td class="connector">┗</td>
+						<td id="thunderbolt">
+							<img class="skillicon" src="skillicon/sorcerer/thunderbolt.gif" alt="サンダーボルトアイコン" /><span class="skillname">サンダーボルト</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div>	<div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">┛<br />┳</td>
+						<td id="meteorimpact">
+							<img class="skillicon" src="skillicon/sorcerer/meteorimpact.gif" alt="メテオインパクトアイコン" /><span class="skillname">メテオインパクト</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+					</tr>
+					<tr>
+						<td id="fire">
+							<img class="skillicon" src="skillicon/sorcerer/fire.gif" alt="ファイアアイコン"  /><span class="skillname">ファイア</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">┳</td>
+						<td id="sparkflare">
+							<img class="skillicon" src="skillicon/sorcerer/sparkflare.gif" alt="スパークフレアアイコン" /><span class="skillname">スパークフレア</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div>	<div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">┛<br />┳</td>
+						<td id="hellfire">
+							<img class="skillicon" src="skillicon/sorcerer/hellfire.gif" alt="ヘルファイアアイコン" /><span class="skillname">ヘルファイア</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+					</tr>
+					<tr>
+						<td class="empty"></td>
+						<td class="connector">┗</td>
+						<td id="firelance">
+							<img class="skillicon" src="skillicon/sorcerer/firelance.gif" alt="ファイアランスアイコン" /><span class="skillname">ファイアランス</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div>	<div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">┛<br />┳</td>
+						<td id="radiantshield">
+							<img class="skillicon" src="skillicon/sorcerer/radiantshield.gif" alt="レディアントシールドアイコン" /><span class="skillname">レディアントシールド</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+					</tr>
+					<tr>
+						<td id="icebolt">
+							<img class="skillicon" src="skillicon/sorcerer/icebolt.gif" alt="アイスボルトアイコン"  /><span class="skillname">アイスボルト</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">┳</td>
+						<td id="icejavelin">
+							<img class="skillicon" src="skillicon/sorcerer/icejavelin.gif" alt="アイスジャベリンアイコン" /><span class="skillname">アイスジャベリン</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div>	<div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">┛<br />┳</td>
+						<td id="blizzardchares">
+							<img class="skillicon" src="skillicon/sorcerer/blizzardchares.gif" alt="ブリザードカレスアイコン" /><span class="skillname">ブリザードカレス</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+					</tr>
+					<tr>
+						<td class="empty"></td>
+						<td class="connector">┗</td>
+						<td id="freezingwave">
+							<img class="skillicon" src="skillicon/sorcerer/freezingwave.gif" alt="フリージングウェイブアイコン" /><span class="skillname">フリージングウェイブ</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div>	<div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">┛<br />┳</td>
+						<td id="gravityfield">
+							<img class="skillicon" src="skillicon/sorcerer/gravityfield.gif" alt="グラビティフィールドアイコン" /><span class="skillname">グラビティフィールド</span><div class="levelbox"><label>Lv. <select><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label><input type="button" class="downLevel" value="↓" /><input type="button" class="upLevel" value="↑" /></div><div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+		<div id="showTable"></div>
+		<div class="skilltip">
+			<div id="tipnormal">
+				Pwを消費しない遠距離攻撃
+				<table><tr><th>攻撃力</th><td>100</td></tr></table>
+			</div>
+			<div id="tipchant">
+				上位魔法の予備動作
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>消費SP</th><td>初期習得</td><td>2</td><td>2</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">20</td></tr>
+						<tr><th>効果時間（秒）</th><td>120</td><td>240</td><td>240</td></tr>
+						<tr><th>Pw回復量増加</th><td>なし</td><td>なし</td><td>+1</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tiplightning">
+				稲妻を落とす
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>消費SP</th><td>2</td><td>1</td><td>1</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">18</td></tr>
+						<tr><th>威力</th><td>100</td><td>120</td><td>140</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">貫通</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tiplightningspear">
+				スピア形の稲妻を前方に放つ
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>消費SP</th><td>2</td><td>2</td><td>2</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">32</td></tr>
+						<tr><th>威力</th><td>200</td><td>215</td><td>230</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">貫通</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipthunderbolt">
+				雷を落とし，吹き飛ばす
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>消費SP</th><td>2</td><td>2</td><td>2</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">33</td></tr>
+						<tr><th>威力</th><td colspan="3">100</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">貫通．吹き飛ばし（対人専用）</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipjudgementray">
+				稲妻を3回落とす
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>消費SP</th><td>3</td><td>2</td><td>2</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">80</td></tr>
+						<tr><th>威力</th><td>80</td><td>90</td><td>100</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">貫通</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipmeteorimpact">
+				隕石を3個落とす
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>消費SP</th><td>3</td><td>2</td><td>2</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">80</td></tr>
+						<tr><th>威力</th><td>150</td><td>200</td><td>250</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">貫通</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipfire">
+				炎の塊を放つ
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>消費SP</th><td>2</td><td>1</td><td>1</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">15</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">貫通</td></tr>
+						<tr><th>威力</th><td>100</td><td>120</td><td>140</td></tr>
+						<tr><th>炎DoT（3秒毎）</th><td>18x3</td><td>24x3</td><td>30x3</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipfirelance">
+				ランス形の炎を放つ
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>消費SP</th><td>2</td><td>2</td><td>2</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">32</td></tr>
+						<tr><th>威力</th><td>180</td><td>190</td><td>200</td></tr>
+						<tr><th>炎DoT（3秒毎）</th><td>24x3</td><td>30x3</td><td>36x3</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipsparkflare">
+				爆発する炎の弾を放つ
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>消費SP</th><td>2</td><td>2</td><td>2</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">18</td></tr>
+						<tr><th>威力</th><td>100</td><td>110</td><td>120</td></tr>
+						<tr><th>炎DoT（3秒毎）</th><td>18x4</td><td>24x4</td><td>32x4</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tiphellfire">
+				炎のブレスを吹き付ける
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>消費SP</th><td>3</td><td>2</td><td>2</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">72</td></tr>
+						<tr><th>威力</th><td>290</td><td>330</td><td>370</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">貫通</td></tr>
+						<tr><th>炎DoT（3秒毎）</th><td>24x4</td><td>36x4</td><td>48x4</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipradiantshield">
+				聖なる光を身に纏う．炎上耐性5秒
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>消費SP</th><td>3</td><td>2</td><td>2</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">32</td></tr>
+						<tr><th>威力</th><td>10</td><td>30</td><td>50</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">貫通</td></tr>
+						<tr><th>炎DoT（1.5秒毎）</th><td>24x4</td><td>36x4</td><td>48x4</td></tr>
+						<tr><th>効果時間（秒）</th><td>60</td><td>75</td><td>120</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipicebolt">
+				氷の塊を放つ
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>消費SP</th><td>2</td><td>1</td><td>1</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">18</td></tr>
+						<tr><th>威力</th><td>60</td><td>80</td><td>100</td></tr>
+						<tr><th>効果時間（秒）</th><td>4</td><td>6</td><td>8</td></tr>
+						<tr><th>速度変化割合</th><td>80%</td><td>70%</td><td>67%</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipicejavelin">
+				氷の槍を放つ
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>消費SP</th><td>2</td><td>2</td><td>2</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">30</td></tr>
+						<tr><th>威力</th><td>100</td><td>110</td><td>120</td></tr>
+						<tr><th>足止め効果時間（秒）</th><td>2</td><td>3</td><td>4</td></tr>
+						<tr><th>足止め耐性（秒）</th><td colspan="3">12</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipfreezingwave">
+				周囲に絶対零度の風を吹き荒らす
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>消費SP</th><td>2</td><td>2</td><td>2</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">44</td></tr>
+						<tr><th>威力</th><td colspan="3">100</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">貫通．吹き飛ばし（対人専用）</td></tr>
+						<tr><th>効果時間（秒）</th><td>8</td><td>9</td><td>10</td></tr>
+						<tr><th>速度変化割合</th><td>80%</td><td>70%</td><td>67%</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipblizzardchares">
+				絶対零度の息吹で，対象地点の全てを凍らせる
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>消費SP</th><td>3</td><td>2</td><td>2</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">60</td></tr>
+						<tr><th>威力</th><td>80</td><td>90</td><td>100</td></tr>
+						<tr><th>足止め効果時間（秒）</th><td>3.5</td><td>4.5</td><td>5.5</td></tr>
+						<tr><th>足止め耐性（秒）</th><td colspan="3">12</td></tr>
+						<tr><th>移動速度低下効果時間（秒）</th><td colspan="3">8</td></tr>
+						<tr><th>速度変化割合</th><td colspan="3">84%</td></tr>
+					</tbody></table>
+			</div>
+			<div id="tipgravityfield">
+				指定地点に高密度の重力を生む
+				<table>
+					<thead><tr><th>Lv.</th><th>1</th><th>2</th><th>3</th></thead>
+					<tbody>
+						<tr><th>消費SP</th><td>3</td><td>2</td><td>2</td></tr>
+						<tr><th>消費Pw</th><td colspan="3">64</td></tr>
+						<tr><th>威力</th><td>50</td><td>60</td><td>70</td></tr>
+						<tr><th>特殊効果</th><td colspan="3">貫通</td></tr>
+						<tr><th>速度変化割合</th><td colspan="3">50%</td></tr>
+					</tbody></table>
+			</div>
+		</div>
+		<address class="copyright">(c)2005-2014 SQUARE ENIX CO., Ltd. All Rights Reserved. Licensed to GMO Gamepot Inc.</address>
+	</body>
+</html>

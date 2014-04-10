@@ -1,0 +1,113 @@
+table, th, td {
+	border: solid 1px black;
+}
+/* スキルシミュレーションテーブル */
+.skillplanner{
+	display: inline;
+	margin-left: 48px;
+}
+.skillplanner #tspointmarkbox{
+	margin-left: 48px;
+}
+.skillplanner table{
+	border: none;
+	margin-left: 48px;
+}
+.skillplanner .overlimit{
+	/* スキルポイント消費可能限界突破 */
+	background-color: #ff9999;
+}
+.skillplanner .empty{
+	/* 空セル */
+	border: none;
+}
+.skillplanner .connector{
+	/* スキル接続罫線セル */
+	border: none;
+}
+.skillplanner th.treecaption {
+	/* スキルツリー表題セル */
+	border: none;
+}
+.skillplanner td.level0 {
+	/* レベル0スキル */
+	background-color: #cccccc;
+}
+.skillplanner .levelbox {
+	/* レベル選択部分 */
+	/* スキルアイコン幅だけマージンを取る*/
+	margin-left:34px;
+	/* 途中改行しない*/
+	white-space: nowrap;
+}
+.skillplanner select{
+	/* レベル選択ボックス */
+	min-width: 50px;
+}
+.skillplanner .markbox {
+	/*スキルアイコン幅だけマージンを取る*/
+	margin-left:34px;
+}
+.skillplanner .mark{
+	/* 消費スキルポイントマーク */
+	font-family: monospace;
+}
+.skillplanner img.skillicon{
+	/* スキルアイコン画像 */
+	vertical-align: middle;
+
+}
+.skillplanner .skillname{
+	margin-left: 1ex;
+}
+
+#powerTip {
+	opacity: 0.95;
+}
+#powerTip table{
+	border: none;
+	border-collapse:collapse;
+	text-align: center;
+}
+
+#powerTip td{
+	min-width: 2em;
+}
+
+.skilltip {
+	display: none;
+	clear: both;
+}
+
+ul#topmenu{
+	display: block;
+}
+ul#topmenu li {
+	list-style-type: none;
+	display: inline;
+}
+ul#topmenu a {
+	/* border: 1px black solid;*/
+	margin: 0 1em;
+}
+
+ul#skillslotbar {
+	margin: 0;
+	padding: 0;
+	background-color: #ffffcc;
+	border: #663300 ridge medium;
+	position: fixed;
+}
+
+li.skillslot{
+	list-style-type: none;
+	background-color: #999;
+	border: #663300 ridge 5px;
+	height: 28px;
+	width: 28px;
+	border-radius: 50%;
+}
+
+.skilllist input#storeaddress{
+	display: block;
+}
