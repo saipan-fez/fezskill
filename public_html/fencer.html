@@ -19,31 +19,25 @@
 				// キャラクタークラス設定
 				characterClass = CHARACTER_CLASS.FENCER;
 				tsv = new Tsv(characterClass);
-
 				// スキル設定
 				skills = new Array();
 				for (var i = 0; i < tsv.data.rows.length; i++) {
 					skills[tsv.data.rows[i].id] = new Skill(tsv.data.rows[i]);
 				}
-
 				// 初期化
 				$("input#reset").click();
-
 				// GETパラメータ取得
 				params = getUrlVars();
 				if (params !== null) {
-					if (params["s"] !== void(0))
-					{
+					if (params["s"] !== void(0)) {
 						// スキルスロットリセット
 						resetSlot(params["s"]);
 					}
-					if (params["l"] !== void(0))
-					{
+					if (params["l"] !== void(0)) {
 						// スキルレベルリセット
 						resetLevel(params["l"]);
 					}
 				}
-
 			});
 		</script>
 	</head>
