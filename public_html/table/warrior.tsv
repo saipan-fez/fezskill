@@ -7,13 +7,16 @@ e	crumblestorm	クランブルストーム	0	3	3	2	2	forceimpact
 f	blazeslash	ブレイズスラッシュ	0	3	2	1	1		slumattack,guardreinforce,earthstamp,shieldbash
 g	slumattack	スラムアタック	0	3	2	1	1	blazeslash	earthstamp
 h	earthstamp	アーススタンプ	0	3	2	2	2	slumattack,blazeslash	
-i	guardreinforce	ガードレインフォース	0	3	2	1	1	blazeslash	shieldbash
+i	guardreinforce	ガードレインフォース	0	3	2	1	1	blazeslash	shieldbash,solidwall
 j	shieldbash	シールドバッシュ	0	3	2	2	2	guardreinforce,blazeslash	
-k	smash	スマッシュ	0	3	2	1	1		strikesmash,behemostail,extendblade,attackreinforce,heavysmash,dragontail,swordrampage
+k	smash	スマッシュ	0	3	2	1	1		strikesmash,behemostail,extendblade,attackreinforce,heavysmash,dragontail,swordrampage,crackbung,assaultedge
 l	strikesmash	ストライクスマッシュ	0	3	2	1	1	smash	heavysmash
 m	heavysmash	ヘビースマッシュ	0	3	2	2	2	strikesmash,smash	
-n	behemostail	ベヒモステイル	0	3	2	1	1	smash	dragontail
+n	behemostail	ベヒモステイル	0	3	2	1	1	smash	dragontail,crackbung
 o	dragontail	ドラゴンテイル	0	3	2	2	2	behemostail,smash	
-p	extendblade	エクステンブレイド	0	3	2	1	1	smash	swordrampage
-q	swordrampage	ソードランページ	0	3	2	2	2	extendblade,smash	
-r	attackreinforce	アタックレインフォース	0	3	2	1	1	smash	
+p	crackbung	クラックバング	0	3	1	2	2	behemostail,smash	
+q	extendblade	エクステンブレイド	0	3	2	1	1	smash	swordrampage,assaultedge
+r	swordrampage	ソードランページ	0	3	2	2	2	extendblade,smash	
+s	assaultedge	アサルトエッジ	0	3	1	2	2	extendblade,smash	
+t	attackreinforce	アタックレインフォース	0	3	2	1	1	smash	
+u	solidwall	ソリッドウォール	0	3	1	2	2	guardreinforce,blazeslash	
