@@ -1,6 +1,6 @@
 var SKILLPOINT_MARK = "-";
 var SKILLPOINT_MARKED = "X";
-var SKILLPOINT_LIMIT = 40;
+var SKILLPOINT_LIMIT = 45;
 var SKILLSLOT_SIZE = 8;
 // キャラクタークラス列挙
 var CHARACTER_CLASS = {
@@ -375,7 +375,7 @@ TotalSkillPoint.prototype = {
 			for (i = 0; i < point; i++) {
 				mark += SKILLPOINT_MARKED;
 			}
-			for (; i < 40; i++) {
+			for (; i < 45; i++) {
 				mark += SKILLPOINT_MARK;
 			}
 		}
@@ -383,7 +383,7 @@ TotalSkillPoint.prototype = {
 	},
 	/**
 	 * レベルポイントガイドテキスト
-	 * Lv. -- rest 40 Max. 40
+	 * Lv. -- rest 45 Max. 45
 	 * @param {type} point 消費したスキルポイント
 	 * @returns {String}
 	 */
@@ -392,21 +392,21 @@ TotalSkillPoint.prototype = {
 			point = this.get();
 		// 残りポイント
 		var rest = SKILLPOINT_LIMIT - point;
-		var levelguide = "Lv. 0";
+		var levelguide = "Lv.0";
 		if (point > SKILLPOINT_LIMIT) {
 			// 仕様外
-			levelguide = "Lv. --";
+			levelguide = "Lv.--";
 			$("input#levelpoint").addClass("overlimit");
 		} else if (point > 10) {
-			// レベル35までは 1pt
-			levelguide = "Lv. " + (SKILLPOINT_LIMIT - rest - 5);
+			// レベル40までは 1pt
+			levelguide = "Lv." + (SKILLPOINT_LIMIT - rest - 5);
 			$("input#levelpoint").removeClass("overlimit");
-		} else if (point > 0) {
+		} else if (point >= 0) {
 			// レベル5までは 2pt
-			levelguide = "Lv. " + Math.ceil((SKILLPOINT_LIMIT - rest) / 2);
+			levelguide = "Lv." + Math.ceil((SKILLPOINT_LIMIT - rest) / 2);
 			$("input#levelpoint").removeClass("overlimit");
 		}
-		return levelguide + " rest " + rest + " Max. " + SKILLPOINT_LIMIT;
+		return levelguide + " 残SP:" + rest + " 最大SP:" + SKILLPOINT_LIMIT;
 	}
 
 };
