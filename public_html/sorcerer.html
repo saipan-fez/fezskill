@@ -177,6 +177,23 @@
 					</td>
 				</tr>
 				<tr>
+					<td class="empty"></td>
+					<td class="connector">┗</td>
+					<td id="electricdrive">
+						<img class="skillicon" src="skillicon/sorcerer/electricdrive.png" alt="エレキドライブアイコン" /><span
+							class="skillname">エレキドライブ</span>
+						<div class="levelbox"><label>Lv. <select>
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+								</select></label><input type="button" class="downLevel" value="↓" /><input type="button"
+								class="upLevel" value="↑" /></div>
+						<div class="markbox">SP: <span class="mark"></span></div>
+					</td>
+					<td class="connector">┃</td>
+				</tr>
+				<tr>
 					<td id="fire">
 						<img class="skillicon" src="skillicon/sorcerer/fire.gif" alt="ファイアアイコン" /><span
 							class="skillname">ファイア</span>
@@ -232,9 +249,9 @@
 						<div class="markbox">SP: <span class="mark"></span></div>
 					</td>
 					<td class="connector">┛<br />┳</td>
-					<td id="radiantshield">
-						<img class="skillicon" src="skillicon/sorcerer/radiantshield.gif" alt="レディアントシールドアイコン" /><span
-							class="skillname">レディアントシールド</span>
+					<td id="laserblast">
+						<img class="skillicon" src="skillicon/sorcerer/laserblast.png" alt="レーザーブラストアイコン" /><span
+							class="skillname">レーザーブラスト</span>
 						<div class="levelbox"><label>Lv. <select>
 									<option value="0">0</option>
 									<option value="1">1</option>
@@ -244,6 +261,23 @@
 								class="upLevel" value="↑" /></div>
 						<div class="markbox">SP: <span class="mark"></span></div>
 					</td>
+				</tr>
+				<tr>
+					<td class="empty"></td>
+					<td class="connector">┗</td>
+					<td id="framecircle">
+						<img class="skillicon" src="skillicon/sorcerer/framecircle.png" alt="フレイムサークルアイコン" /><span
+							class="skillname">フレイムサークル</span>
+						<div class="levelbox"><label>Lv. <select>
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+								</select></label><input type="button" class="downLevel" value="↓" /><input type="button"
+								class="upLevel" value="↑" /></div>
+						<div class="markbox">SP: <span class="mark"></span></div>
+					</td>
+					<td class="connector">┃</td>
 				</tr>
 				<tr>
 					<td id="icebolt">
@@ -301,9 +335,9 @@
 						<div class="markbox">SP: <span class="mark"></span></div>
 					</td>
 					<td class="connector">┛<br />┳</td>
-					<td id="gravityfield">
-						<img class="skillicon" src="skillicon/sorcerer/gravityfield.gif" alt="グラビティフィールドアイコン" /><span
-							class="skillname">グラビティフィールド</span>
+					<td id="gravitycaptcher">
+						<img class="skillicon" src="skillicon/sorcerer/gravitycaptcher.png" alt="グラビティキャプチャアイコン" /><span
+							class="skillname">グラビティキャプチャ</span>
 						<div class="levelbox"><label>Lv. <select>
 									<option value="0">0</option>
 									<option value="1">1</option>
@@ -313,6 +347,23 @@
 								class="upLevel" value="↑" /></div>
 						<div class="markbox">SP: <span class="mark"></span></div>
 					</td>
+					<tr>
+						<td class="empty"></td>
+						<td class="connector">┗</td>
+						<td id="icetarget">
+							<img class="skillicon" src="skillicon/sorcerer/icetarget.png" alt="アイスターゲットアイコン" /><span
+								class="skillname">アイスターゲット</span>
+							<div class="levelbox"><label>Lv. <select>
+										<option value="0">0</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+									</select></label><input type="button" class="downLevel" value="↓" /><input type="button"
+									class="upLevel" value="↑" /></div>
+							<div class="markbox">SP: <span class="mark"></span></div>
+						</td>
+						<td class="connector">┃</td>
+					</tr>
 				</tr>
 			</tbody>
 		</table>
@@ -477,7 +528,7 @@
 				<tbody>
 					<tr>
 						<th>消費SP</th>
-						<td>3</td>
+						<td>2</td>
 						<td>2</td>
 						<td>2</td>
 					</tr>
@@ -487,9 +538,9 @@
 					</tr>
 					<tr>
 						<th>威力</th>
+						<td>60</td>
+						<td>70</td>
 						<td>80</td>
-						<td>90</td>
-						<td>100</td>
 					</tr>
 					<tr>
 						<th>特殊効果</th>
@@ -498,8 +549,8 @@
 				</tbody>
 			</table>
 		</div>
-		<div id="tipmeteorimpact">
-			隕石を3個落とす
+		<div id="tipelectricdrive">
+			稲妻をまとった魔力の光弾を放つ技
 			<table>
 				<thead>
 					<tr>
@@ -511,7 +562,41 @@
 				<tbody>
 					<tr>
 						<th>消費SP</th>
-						<td>3</td>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr>
+					<tr>
+						<th>消費Pw</th>
+						<td colspan="3">36</td>
+					</tr>
+					<tr>
+						<th>威力</th>
+						<td colspan="3">180</td>
+					</tr>
+					<tr>
+						<th>足止め時間</th>
+						<td>0.5秒?</td>
+						<td>0.5秒?</td>
+						<td>1.0秒?</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div id="tipmeteorimpact">
+			隕石を落とす
+			<table>
+				<thead>
+					<tr>
+						<th>Lv.</th>
+						<th>1</th>
+						<th>2</th>
+						<th>3</th>
+				</thead>
+				<tbody>
+					<tr>
+						<th>消費SP</th>
+						<td>2</td>
 						<td>2</td>
 						<td>2</td>
 					</tr>
@@ -521,9 +606,9 @@
 					</tr>
 					<tr>
 						<th>威力</th>
-						<td>150</td>
 						<td>200</td>
-						<td>250</td>
+						<td>230</td>
+						<td>260</td>
 					</tr>
 					<tr>
 						<th>特殊効果</th>
@@ -564,10 +649,10 @@
 						<td>140</td>
 					</tr>
 					<tr>
-						<th>炎DoT（3秒毎）</th>
-						<td>18x3</td>
-						<td>24x3</td>
-						<td>30x3</td>
+						<th>炎DoT</th>
+						<td>18x3/3s</td>
+						<td>24x3/3s</td>
+						<td>30x3/3s</td>
 					</tr>
 				</tbody>
 			</table>
@@ -600,10 +685,46 @@
 						<td>200</td>
 					</tr>
 					<tr>
-						<th>炎DoT（3秒毎）</th>
-						<td>24x3</td>
-						<td>30x3</td>
-						<td>36x3</td>
+						<th>炎DoT</th>
+						<td>24x3/3s</td>
+						<td>30x3/3s</td>
+						<td>36x3/3s</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div id="tipframecircle">
+			自分の周囲に灼熱の炎を発現させる魔法
+			<table>
+				<thead>
+					<tr>
+						<th>Lv.</th>
+						<th>1</th>
+						<th>2</th>
+						<th>3</th>
+				</thead>
+				<tbody>
+					<tr>
+						<th>消費SP</th>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr>
+					<tr>
+						<th>消費Pw</th>
+						<td colspan="3">40</td>
+					</tr>
+					<tr>
+						<th>威力</th>
+						<td>100</td>
+						<td>120</td>
+						<td>140</td>
+					</tr>
+					<tr>
+						<th>炎DoT</th>
+						<td>36x3/3s</td>
+						<td>48x3/3s</td>
+						<td>60x3/3s</td>
 					</tr>
 				</tbody>
 			</table>
@@ -636,10 +757,10 @@
 						<td>120</td>
 					</tr>
 					<tr>
-						<th>炎DoT（3秒毎）</th>
-						<td>18x4</td>
-						<td>24x4</td>
-						<td>32x4</td>
+						<th>炎DoT</th>
+						<td>18x4/3s</td>
+						<td>24x4/3s</td>
+						<td>32x4/3s</td>
 					</tr>
 				</tbody>
 			</table>
@@ -657,7 +778,7 @@
 				<tbody>
 					<tr>
 						<th>消費SP</th>
-						<td>3</td>
+						<td>2</td>
 						<td>2</td>
 						<td>2</td>
 					</tr>
@@ -667,25 +788,25 @@
 					</tr>
 					<tr>
 						<th>威力</th>
-						<td>290</td>
-						<td>330</td>
-						<td>370</td>
+						<td>280</td>
+						<td>310</td>
+						<td>340</td>
 					</tr>
 					<tr>
 						<th>特殊効果</th>
 						<td colspan="3">貫通</td>
 					</tr>
 					<tr>
-						<th>炎DoT（3秒毎）</th>
-						<td>24x4</td>
-						<td>36x4</td>
-						<td>48x4</td>
+						<th>炎DoT</th>
+						<td>24x4/2s</td>
+						<td>36x4/2s</td>
+						<td>48x4/2s</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<div id="tipradiantshield">
-			聖なる光を身に纏う．炎上耐性5秒
+		<div id="tiplaserblast">
+			周囲の魔力を溜めることで強力な魔法の光線を発射する魔法
 			<table>
 				<thead>
 					<tr>
@@ -697,35 +818,23 @@
 				<tbody>
 					<tr>
 						<th>消費SP</th>
-						<td>3</td>
+						<td>2</td>
 						<td>2</td>
 						<td>2</td>
 					</tr>
 					<tr>
 						<th>消費Pw</th>
-						<td colspan="3">32</td>
+						<td colspan="3">68</td>
 					</tr>
 					<tr>
 						<th>威力</th>
-						<td>10</td>
-						<td>30</td>
-						<td>50</td>
+						<td>280</td>
+						<td>300</td>
+						<td>350</td>
 					</tr>
 					<tr>
 						<th>特殊効果</th>
 						<td colspan="3">貫通</td>
-					</tr>
-					<tr>
-						<th>炎DoT（1.5秒毎）</th>
-						<td>24x4</td>
-						<td>36x4</td>
-						<td>48x4</td>
-					</tr>
-					<tr>
-						<th>効果時間（秒）</th>
-						<td>60</td>
-						<td>75</td>
-						<td>120</td>
 					</tr>
 				</tbody>
 			</table>
@@ -801,13 +910,13 @@
 					</tr>
 					<tr>
 						<th>足止め効果時間（秒）</th>
-						<td>2</td>
-						<td>3</td>
-						<td>4</td>
+						<td>2.5</td>
+						<td>3.5</td>
+						<td>5.5</td>
 					</tr>
 					<tr>
 						<th>足止め耐性（秒）</th>
-						<td colspan="3">12</td>
+						<td colspan="3">15</td>
 					</tr>
 				</tbody>
 			</table>
@@ -843,8 +952,8 @@
 					</tr>
 					<tr>
 						<th>効果時間（秒）</th>
+						<td>6</td>
 						<td>8</td>
-						<td>9</td>
 						<td>10</td>
 					</tr>
 					<tr>
@@ -852,6 +961,46 @@
 						<td>80%</td>
 						<td>70%</td>
 						<td>67%</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div id="tipicetarget">
+			相手を凍えさせる氷の塊を放つ魔法
+			<table>
+				<thead>
+					<tr>
+						<th>Lv.</th>
+						<th>1</th>
+						<th>2</th>
+						<th>3</th>
+				</thead>
+				<tbody>
+					<tr>
+						<th>消費SP</th>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr>
+					<tr>
+						<th>消費Pw</th>
+						<td colspan="3">34</td>
+					</tr>
+					<tr>
+						<th>威力</th>
+						<td colspan="3">120</td>
+					</tr>
+					<tr>
+						<th>特殊効果</th>
+						<td colspan="3">耐性減少</td>
+					</tr>
+					<tr>
+						<th>効果時間（秒）</th>
+						<td colspan="3">10</td>
+					</tr>
+					<tr>
+						<th>耐性減少</th>
+						<td colspan="3">-30</td>
 					</tr>
 				</tbody>
 			</table>
@@ -869,13 +1018,13 @@
 				<tbody>
 					<tr>
 						<th>消費SP</th>
-						<td>3</td>
+						<td>2</td>
 						<td>2</td>
 						<td>2</td>
 					</tr>
 					<tr>
 						<th>消費Pw</th>
-						<td colspan="3">60</td>
+						<td colspan="3">68</td>
 					</tr>
 					<tr>
 						<th>威力</th>
@@ -891,11 +1040,13 @@
 					</tr>
 					<tr>
 						<th>足止め耐性（秒）</th>
-						<td colspan="3">12</td>
+						<td colspan="3">20</td>
 					</tr>
 					<tr>
 						<th>移動速度低下効果時間（秒）</th>
-						<td colspan="3">8</td>
+						<td>4</td>
+						<td>6</td>
+						<td>8</td>
 					</tr>
 					<tr>
 						<th>速度変化割合</th>
@@ -904,8 +1055,8 @@
 				</tbody>
 			</table>
 		</div>
-		<div id="tipgravityfield">
-			指定地点に高密度の重力を生む
+		<div id="tipgravitycaptcher">
+			高密度の重力を発射する魔法
 			<table>
 				<thead>
 					<tr>
@@ -917,27 +1068,31 @@
 				<tbody>
 					<tr>
 						<th>消費SP</th>
-						<td>3</td>
+						<td>2</td>
 						<td>2</td>
 						<td>2</td>
 					</tr>
 					<tr>
 						<th>消費Pw</th>
-						<td colspan="3">64</td>
+						<td colspan="3">72</td>
 					</tr>
 					<tr>
 						<th>威力</th>
-						<td>50</td>
-						<td>60</td>
-						<td>70</td>
+						<td>100</td>
+						<td>110</td>
+						<td>120</td>
 					</tr>
 					<tr>
 						<th>特殊効果</th>
 						<td colspan="3">貫通</td>
 					</tr>
 					<tr>
-						<th>速度変化割合</th>
-						<td colspan="3">50%</td>
+						<th>移動速度低下時間(秒)</th>
+						<td colspan="3">8</td>
+					</tr>
+					<tr>
+						<th>ステップ無効時間(秒)</th>
+						<td colspan="3">3</td>
 					</tr>
 				</tbody>
 			</table>
