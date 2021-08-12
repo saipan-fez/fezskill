@@ -289,6 +289,46 @@
 					</td>
 				</tr>
 				<tr>
+					<td id="legbreak">
+						<img class="skillicon" src="skillicon/scout/legbreak.gif" alt="レッグブレイクアイコン" /><span
+							class="skillname">レッグブレイク</span>
+						<div class="levelbox"><label>Lv. <select>
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+								</select></label><input type="button" class="downLevel" value="↓" /><input type="button"
+								class="upLevel" value="↑" /></div>
+						<div class="markbox">SP: <span class="mark"></span></div>
+					</td>
+					<td class="connector">━</td>
+					<td id="guardbreak">
+						<img class="skillicon" src="skillicon/scout/guardbreak.gif" alt="ガードブレイクアイコン" /><span
+							class="skillname">ガードブレイク</span>
+						<div class="levelbox"><label>Lv. <select>
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+								</select></label><input type="button" class="downLevel" value="↓" /><input type="button"
+								class="upLevel" value="↑" /></div>
+						<div class="markbox">SP: <span class="mark"></span></div>
+					</td>
+					<td class="connector">━</td>
+					<td id="armbreak">
+						<img class="skillicon" src="skillicon/scout/armbreak.gif" alt="アームブレイクアイコン" /><span
+							class="skillname">アームブレイク</span>
+						<div class="levelbox"><label>Lv. <select>
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+								</select></label><input type="button" class="downLevel" value="↓" /><input type="button"
+								class="upLevel" value="↑" /></div>
+						<div class="markbox">SP: <span class="mark"></span></div>
+					</td>
+				</tr>
+				<tr>
 					<td id="poisonblow">
 						<img class="skillicon" src="skillicon/scout/poisonblow.gif" alt="ポイズンブロウアイコン" /><span
 							class="skillname">ポイズンブロウ</span>
@@ -329,9 +369,11 @@
 					</td>
 				</tr>
 				<tr>
-					<td id="legbreak">
-						<img class="skillicon" src="skillicon/scout/legbreak.gif" alt="レッグブレイクアイコン" /><span
-							class="skillname">レッグブレイク</span>
+					<td class="empty"></td>
+					<td class="connector">┗</td>
+					<td id="dagerstrike">
+						<img class="skillicon" src="skillicon/scout/dagerstrike.png" alt="ダガーストライクアイコン" /><span
+							class="skillname">ダガーストライク</span>
 						<div class="levelbox"><label>Lv. <select>
 									<option value="0">0</option>
 									<option value="1">1</option>
@@ -341,32 +383,8 @@
 								class="upLevel" value="↑" /></div>
 						<div class="markbox">SP: <span class="mark"></span></div>
 					</td>
-					<td class="connector">━</td>
-					<td id="guardbreak">
-						<img class="skillicon" src="skillicon/scout/guardbreak.gif" alt="ガードブレイクアイコン" /><span
-							class="skillname">ガードブレイク</span>
-						<div class="levelbox"><label>Lv. <select>
-									<option value="0">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-								</select></label><input type="button" class="downLevel" value="↓" /><input type="button"
-								class="upLevel" value="↑" /></div>
-						<div class="markbox">SP: <span class="mark"></span></div>
-					</td>
-					<td class="connector">━</td>
-					<td id="armbreak">
-						<img class="skillicon" src="skillicon/scout/armbreak.gif" alt="アームブレイクアイコン" /><span
-							class="skillname">アームブレイク</span>
-						<div class="levelbox"><label>Lv. <select>
-									<option value="0">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-								</select></label><input type="button" class="downLevel" value="↓" /><input type="button"
-								class="upLevel" value="↑" /></div>
-						<div class="markbox">SP: <span class="mark"></span></div>
-					</td>
+					<td class="empty"></td>
+					<td class="empty"></td>
 				</tr>
 				<tr>
 					<th class="treecaption">銃スキル</th>
@@ -581,7 +599,7 @@
 					</tr>
 					<tr>
 						<th>消費Pw</th>
-						<td colspan="3">25</td>
+						<td colspan="3">22</td>
 					</tr>
 					<tr>
 						<th>威力</th>
@@ -593,9 +611,9 @@
 					</tr>
 					<tr>
 						<th>炎DoT（3秒毎）</th>
-						<td>24x3</td>
-						<td>30x3</td>
-						<td>36x3</td>
+						<td>15x3</td>
+						<td>18x3</td>
+						<td>22x3</td>
 					</tr>
 				</tbody>
 			</table>
@@ -619,7 +637,7 @@
 					</tr>
 					<tr>
 						<th>消費Pw</th>
-						<td colspan="3">36</td>
+						<td colspan="3">40</td>
 					</tr>
 					<tr>
 						<th>特殊効果</th>
@@ -661,9 +679,9 @@
 					</tr>
 					<tr>
 						<th>毒DoT（4秒毎）</th>
-						<td>20x4</td>
-						<td>30x4</td>
-						<td>40x4</td>
+						<td>20x6</td>
+						<td>24x6</td>
+						<td>30x6</td>
 					</tr>
 				</tbody>
 			</table>
@@ -820,8 +838,8 @@
 					<tr>
 						<th>消費SP</th>
 						<td>3</td>
-						<td>2</td>
-						<td>2</td>
+						<td>1</td>
+						<td>1</td>
 					</tr>
 					<tr>
 						<th>消費Pw</th>
@@ -829,9 +847,9 @@
 					</tr>
 					<tr>
 						<th>威力</th>
-						<td>95</td>
-						<td>115</td>
-						<td>135</td>
+						<td>80</td>
+						<td>90</td>
+						<td>100</td>
 					</tr>
 					<tr>
 						<th>特殊効果</th>
@@ -1180,6 +1198,35 @@
 						<td>12</td>
 					</tr>
 				</tbody>
+			</table>
+		</div>
+		<div id="tipdagerstrike">
+			遠距離攻撃スキル
+			<table>
+				<thead>
+					<tr>
+						<th>Lv.</th>
+						<th>1</th>
+						<th>2</th>
+						<th>3</th>
+				</thead>
+				<tbody>
+					<tr>
+						<th>消費SP</th>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr>
+					<tr>
+						<th>消費Pw</th>
+						<td colspan="3">22</td>
+					</tr>
+					<tr>
+						<th>威力</th>
+						<td>45*2</td>
+						<td>55*2</td>
+						<td>65*2</td>
+					</tr>
 			</table>
 		</div>
 		<div id="tipdodgeshoot">

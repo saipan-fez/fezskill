@@ -15,7 +15,7 @@ m	piercingshoot	ピアッシングシュート	0	3	3	1	1	powershoot,eagleshot
 n	hide	ハイド	1	3	0	1	1		viperbite,punishingstrike
 o	viperbite	ヴァイパーバイト	0	3	2	1	1	hide	punishingstrike
 p	punishingstrike	パニッシングストライク	0	3	2	2	2	viperbite,hide	
-q	poisonblow	ポイズンブロウ	0	3	2	1	1		powerbreak,voiddarkness
+q	poisonblow	ポイズンブロウ	0	3	2	1	1		powerbreak,voiddarkness,dagerstrike
 r	powerbreak	パワーブレイク	0	3	2	1	1	poisonblow	voiddarkness
 s	voiddarkness	ヴォイドダークネス	0	3	2	2	2	poisonblow,powerbreak	
 t	legbreak	レッグブレイク	0	3	2	1	1		guardbreak,armbreak
