@@ -1,0 +1,18 @@
+idc	id	name	initialLevel	maxLevel	level1	level2	level3	lower	upper
+a	normal	基本攻撃	1	1	0				
+b	endureraid	エンダーレイド	1	1	0				
+c	shutout	シャットアウト	0	2	2	2			hardreinforce,harmactivate,towerdomination,geysersmash
+d	hardreinforce	ハードレインフォース	0	1	2			shutout	geysersmash
+e	harmactivate	ハームアクティベイト	0	3	2	1	1	shutout	geysersmash
+f	towerdomination	タワードミネーション	0	1	2			shutout	geysersmash
+g	geysersmash	ゲイザースマッシュ	0	3	2	2	2	hardreinforce,towerdomination,harmactivate	
+h	intensify	インテンスファイ	0	3	2	2	2		knockimpact,earthbind,solidstrike,shockwave
+i	knockimpact	ノックインパクト	0	3	2	1	1	intensify	earthbind
+j	earthbind	アースバインド	0	3	3	2	1	intensify,knockimpact	
+k	solidstrike	ソリッドストライク	0	3	2	1	1	intensify	shockwave
+l	shockwave	ショックウェイブ	0	3	2	2	2	intensify,solidstrike	
+m	drainclaw	ドレインクロー	0	3	2	1	1		hornetsting,energysphire,backhandblow,cyclonedisaster
+n	hornetsting	ホーネットスティング	0	3	2	2	2	drainclaw	cyclonedisaster
+o	backhandblow	バックハンドブロー	0	3	2	1	1	drainclaw	cyclonedisaster
+p	cyclonedisaster	サイクロンディザスター	0	3	1	2	3	drainclaw,backhandblow,hornetsting	
+q	energysphire	エナジースフィア	0	3	1	2	2	drainclaw	
