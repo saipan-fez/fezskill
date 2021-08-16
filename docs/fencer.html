@@ -44,744 +44,820 @@
 </head>
 
 <body>
-	<ul id="topmenu">
-		<li><a href="./">トップページ</a></li>
-		<li><a href="./warrior.html">ウォリアー</a></li>
-		<li><a href="./scout.html">スカウト</a></li>
-		<li><a href="./sorcerer.html">ソーサラー</a></li>
-		<li><a href="./fencer.html">フェンサー</a></li>
-		<li><a href="./cestus.html">セスタス</a></li>
-	</ul>
-	<h1>フェンサー - FEZスキルシミュレータ</h1>
-	<form class="skillplanner">
-		<ul id="skillslotbar">
-			<li class="skillslot"></li>
-			<li class="skillslot"></li>
-			<li class="skillslot"></li>
-			<li class="skillslot"></li>
-			<li class="skillslot"></li>
-			<li class="skillslot"></li>
-			<li class="skillslot"></li>
-			<li class="skillslot"></li>
-		</ul>
-		<input type="text" id="levelpoint" />
-		<input type="button" value="リセット" id="reset" />
-		<input type="button" value="保存アドレスと取得スキルリスト" class="skilllist" id="openlist" />
-		<div class="skilllist">
-			<input type="text" size="40" id="storeaddress" />
-			<textarea cols="30"></textarea>
-			<input type="button" value="閉じる" id="closelist" />
-		</div>
-		<div id="tspointmarkbox">SP: <span class="mark"></span></div>
-		<table>
-			<tbody>
-				<tr>
-					<td id="normal">
-						<img class="skillicon" src="skillicon/fencer/normal.png" alt="基本攻撃アイコン" /><span
-							class="skillname">基本攻撃</span> Lv. 1
-					</td>
-					<td class="empty"></td>
-					<td class="empty"></td>
-					<td class="empty"></td>
-					<td class="empty"></td>
-				</tr>
-				<tr>
-					<td id="dualstrike">
-						<img class="skillicon" src="skillicon/fencer/dualstrike.png" alt="デュアルストライクアイコン" /><span
-							class="skillname">デュアルストライク</span>
-						<div class="levelbox"><label>Lv. <select>
-									<option value="0">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-								</select></label><input type="button" class="downLevel" value="↓" /><input type="button"
-								class="upLevel" value="↑" /></div>
-						<div class="markbox">SP: <span class="mark"></span></div>
-					</td>
-					<td class="connector">┳</td>
-					<td id="flashstinger">
-						<img class="skillicon" src="skillicon/fencer/flashstinger.png" alt="フラッシュスティンガーアイコン" /><span
-							class="skillname">フラッシュスティンガー</span>
-						<div class="levelbox"><label>Lv. <select>
-									<option value="0">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-								</select></label><input type="button" class="downLevel" value="↓" /><input type="button"
-								class="upLevel" value="↑" /></div>
-						<div class="markbox">SP: <span class="mark"></span></div>
-					</td>
-					<td class="connector">┳</td>
-					<td id="finishthrust">
-						<img class="skillicon" src="skillicon/fencer/finishthrust.png" alt="フィニッシュスラストアイコン" /><span
-							class="skillname">フィニッシュスラスト</span>
-						<div class="levelbox"><label>Lv. <select>
-									<option value="0">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-								</select></label><input type="button" class="downLevel" value="↓" /><input type="button"
-								class="upLevel" value="↑" /></div>
-						<div class="markbox">SP: <span class="mark"></span></div>
-					</td>
-				</tr>
-				<tr>
-					<td class="empty"></td>
-					<td class="connector">┣</td>
-					<td id="strikedown">
-						<img class="skillicon" src="skillicon/fencer/strikedown.png" alt="ストライクダウンアイコン" /><span
-							class="skillname">ストライクダウン</span>
-						<div class="levelbox"><label>Lv. <select>
-									<option value="0">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-								</select></label><input type="button" class="downLevel" value="↓" /><input type="button"
-								class="upLevel" value="↑" /></div>
-						<div class="markbox">SP: <span class="mark"></span></div>
-					</td>
-					<td class="connector">┛</td>
-					<td class="empty"></td>
-				</tr>
-				<tr>
-					<td class="empty"></td>
-					<td class="connector">┗</td>
-					<td id="shiningcross">
-						<img class="skillicon" src="skillicon/fencer/shiningcross.png" alt="シャイニングクロスアイコン" /><span
-							class="skillname">シャイニングクロス</span>
-						<div class="levelbox"><label>Lv. <select>
-									<option value="0">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-								</select></label><input type="button" class="downLevel" value="↓" /><input type="button"
-								class="upLevel" value="↑" /></div>
-						<div class="markbox">SP: <span class="mark"></span></div>
-					</td>
-					<td class="connector">┳</td>
-					<td id="obtainprotect">
-						<img class="skillicon" src="skillicon/fencer/obtainprotect.png" alt="オブテインプロテクトアイコン" /><span
-							class="skillname">オブテインプロテクト</span>
-						<div class="levelbox"><label>Lv. <select>
-									<option value="0">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-								</select></label><input type="button" class="downLevel" value="↓" /><input type="button"
-								class="upLevel" value="↑" /></div>
-						<div class="markbox">SP: <span class="mark"></span></div>
-					</td>
-				</tr>
-				<tr>
-					<td class="empty"></td>
-					<td class="empty"></td>
-					<td class="empty"></td>
-					<td class="connector">┣</td>
-					<td id="erasemagic">
-						<img class="skillicon" src="skillicon/fencer/erasemagic.png" alt="イレイスマジックアイコン" /><span
-							class="skillname">イレイスマジック</span>
-						<div class="levelbox"><label>Lv. <select>
-									<option value="0">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-								</select></label><input type="button" class="downLevel" value="↓" /><input type="button"
-								class="upLevel" value="↑" /></div>
-						<div class="markbox">SP: <span class="mark"></span></div>
-					</td>
-				</tr>
-				<tr>
-					<td class="empty"></td>
-					<td class="empty"></td>
-					<td class="empty"></td>
-					<td class="connector">┣</td>
-					<td id="acceleration">
-						<img class="skillicon" src="skillicon/fencer/acceleration.png" alt="アクセラレーションアイコン" /><span
-							class="skillname">アクセラレーション</span>
-						<div class="levelbox"><label>Lv. <select>
-									<option value="0">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-								</select></label><input type="button" class="downLevel" value="↓" /><input type="button"
-								class="upLevel" value="↑" /></div>
-						<div class="markbox">SP: <span class="mark"></span></div>
-					</td>
-				</tr>
-				<tr>
-					<td class="empty"></td>
-					<td class="empty"></td>
-					<td class="empty"></td>
-					<td class="connector">┗</td>
-					<td id="vigoraid">
-						<img class="skillicon" src="skillicon/fencer/vigoraid.png" alt="ヴィガーエイドアイコン" /><span
-							class="skillname">ヴィガーエイド</span>
-						<div class="levelbox"><label>Lv. <select>
-									<option value="0">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-								</select></label><input type="button" class="downLevel" value="↓" /><input type="button"
-								class="upLevel" value="↑" /></div>
-						<div class="markbox">SP: <span class="mark"></span></div>
-					</td>
-				</tr>
-				<tr>
-					<td class="empty"></td>
-					<td class="connector">┗</td>
-					<td id="tempestpierce">
-						<img class="skillicon" src="skillicon/fencer/tempestpierce.png" alt="テンペストピアスアイコン" /><span
-							class="skillname">テンペストピアス</span>
-						<div class="levelbox"><label>Lv. <select>
-									<option value="0">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-								</select></label><input type="button" class="downLevel" value="↓" /><input type="button"
-								class="upLevel" value="↑" /></div>
-						<div class="markbox">SP: <span class="mark"></span></div>
-					</td>
-					<td class="empty"></td>
-					<td class="empty"></td>
-				</tr>
-				<tr>
-					<td id="reversekick">
-						<img class="skillicon" src="skillicon/fencer/reversekick.png" alt="リバースキックアイコン" /><span
-							class="skillname">リバースキック</span>
-						<div class="levelbox"><label>Lv. <select>
-									<option value="0">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-								</select></label><input type="button" class="downLevel" value="↓" /><input type="button"
-								class="upLevel" value="↑" /></div>
-						<div class="markbox">SP: <span class="mark"></span></div>
-					</td>
-					<td class="connector">━</td>
-					<td id="penetratethrust">
-						<img class="skillicon" src="skillicon/fencer/penetratethrust.png" alt="ペネトレイトスラストアイコン" /><span
-							class="skillname">ペネトレイトスラスト</span>
-						<div class="levelbox"><label>Lv. <select>
-									<option value="0">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-								</select></label><input type="button" class="downLevel" value="↓" /><input type="button"
-								class="upLevel" value="↑" /></div>
-						<div class="markbox">SP: <span class="mark"></span></div>
-					</td>
-					<td class="connector">┳</td>
-					<td id="aerialfall">
-						<img class="skillicon" src="skillicon/fencer/aerialfall.png" alt="エリアルフォールアイコン" /><span
-							class="skillname">エリアルフォール</span>
-						<div class="levelbox"><label>Lv. <select>
-									<option value="0">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-								</select></label><input type="button" class="downLevel" value="↓" /><input type="button"
-								class="upLevel" value="↑" /></div>
-						<div class="markbox">SP: <span class="mark"></span></div>
-					</td>
-				</tr>
-				<tr>
-					<td class="empty"></td>
-					<td class="empty"></td>
-					<td class="empty"></td>
-					<td class="connector">┗</td>
-					<td id="rapidfendez-vous">
-						<img class="skillicon" src="skillicon/fencer/rapidfendez-vous.png" alt="アイコン" /><span
-							class="skillname">ラピッドファンデヴ</span>
-						<div class="levelbox"><label>Lv. <select>
-									<option value="0">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-								</select></label><input type="button" class="downLevel" value="↓" /><input type="button"
-								class="upLevel" value="↑" /></div>
-						<div class="markbox">SP: <span class="mark"></span></div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</form>
-	<div id="showTable"></div>
-	<div class="skilltip">
-		<div id="tipnormal">
-			Pwを消費しない近接攻撃
-			<table>
-				<tr>
-					<th>攻撃力</th>
-					<td>100</td>
-				</tr>
-			</table>
-		</div>
-		<div id="tipdualstrike">
-			二段攻撃を放つ．追加入力するとタンブルする
-			<table>
-				<thead>
+	<header>
+		<nav id="topmenu">
+			<ul>
+				<li><a href="./">トップページ</a></li>
+				<li><a href="./warrior.html">ウォリアー</a></li>
+				<li><a href="./scout.html">スカウト</a></li>
+				<li><a href="./sorcerer.html">ソーサラー</a></li>
+				<li class="active"><a href="./fencer.html">フェンサー</a></li>
+				<li><a href="./cestus.html">セスタス</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<section class="content_border">
+			<h1 class="title1">フェンサー <span>- FEZスキルシミュレータ</span></h1>
+			<div class="main_flex">
+				<ul id="skillslotbar">
+					<li class="skillslot"></li>
+					<li class="skillslot"></li>
+					<li class="skillslot"></li>
+					<li class="skillslot"></li>
+					<li class="skillslot"></li>
+					<li class="skillslot"></li>
+					<li class="skillslot"></li>
+					<li class="skillslot"></li>
+				</ul>
+				<form class="skillplanner">
+					<div class="scroll_top">
+						<input type="text" id="levelpoint" />
+						<input type="button" value="リセット" id="reset" />
+						<input type="button" value="保存アドレスと取得スキルリスト" class="skilllist" id="openlist" />
+						<div class="skilllist">
+							<input type="text" size="40" id="storeaddress" />
+							<textarea cols="30"></textarea>
+							<input type="button" value="閉じる" id="closelist" />
+						</div>
+						<div id="tspointmarkbox">SP: <span class="mark"></span></div>
+					</div>
+					<table>
+						<tbody>
+							<tr class="skill_basic">
+								<td id="normal">
+									<img class="skillicon" src="skillicon/fencer/normal.png" alt="基本攻撃アイコン" /><span
+									class="skillname">基本攻撃</span> Lv. 1
+								</td>
+								<td class="empty"></td>
+								<td class="empty"></td>
+								<td class="empty"></td>
+								<td class="empty"></td>
+							</tr>
+							<tr>
+								<td class="empty" colspan="5"></td>
+							</tr>
+							<tr>
+								<td id="dualstrike">
+									<img class="skillicon" src="skillicon/fencer/dualstrike.png" alt="デュアルストライクアイコン" /><span
+									class="skillname">デュアルストライク</span>
+									<div class="levelbox"><label>Lv. <select>
+										<option value="0">0</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+									</select></label><input type="button" class="downLevel" value="▼" /><input type="button"
+									class="upLevel" value="▲" /></div>
+									<div class="markbox">SP: <span class="mark"></span></div>
+								</td>
+								<td class="connector table_line3"></td>
+								<td id="flashstinger">
+									<img class="skillicon" src="skillicon/fencer/flashstinger.png" alt="フラッシュスティンガーアイコン" /><span
+									class="skillname">フラッシュスティンガー</span>
+									<div class="levelbox"><label>Lv. <select>
+										<option value="0">0</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+									</select></label><input type="button" class="downLevel" value="▼" /><input type="button"
+									class="upLevel" value="▲" /></div>
+									<div class="markbox">SP: <span class="mark"></span></div>
+								</td>
+								<td class="connector table_line3"></td>
+								<td id="finishthrust">
+									<img class="skillicon" src="skillicon/fencer/finishthrust.png" alt="フィニッシュスラストアイコン" /><span
+									class="skillname">フィニッシュスラスト</span>
+									<div class="levelbox"><label>Lv. <select>
+										<option value="0">0</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+									</select></label><input type="button" class="downLevel" value="▼" /><input type="button"
+									class="upLevel" value="▲" /></div>
+									<div class="markbox">SP: <span class="mark"></span></div>
+								</td>
+							</tr>
+							<tr>
+								<td class="empty"></td>
+								<td class="empty table_line2"></td>
+								<td class="empty"></td>
+								<td class="empty table_line2"></td>
+								<td class="empty"></td>
+							</tr>
+							<tr>
+								<td class="empty"></td>
+								<td class="connector table_line4"></td>
+								<td id="strikedown">
+									<img class="skillicon" src="skillicon/fencer/strikedown.png" alt="ストライクダウンアイコン" /><span
+									class="skillname">ストライクダウン</span>
+									<div class="levelbox"><label>Lv. <select>
+										<option value="0">0</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+									</select></label><input type="button" class="downLevel" value="▼" /><input type="button"
+									class="upLevel" value="▲" /></div>
+									<div class="markbox">SP: <span class="mark"></span></div>
+								</td>
+								<td class="connector table_line6"></td>
+								<td class="empty"></td>
+							</tr>
+							<tr>
+								<td class="empty"></td>
+								<td class="empty table_line2"></td>
+								<td class="empty" colspan="3"></td>
+							</tr>
+							<tr>
+								<td class="empty"></td>
+								<td class="connector table_line4"></td>
+								<td id="shiningcross">
+									<img class="skillicon" src="skillicon/fencer/shiningcross.png" alt="シャイニングクロスアイコン" /><span
+									class="skillname">シャイニングクロス</span>
+									<div class="levelbox"><label>Lv. <select>
+										<option value="0">0</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+									</select></label><input type="button" class="downLevel" value="▼" /><input type="button"
+									class="upLevel" value="▲" /></div>
+									<div class="markbox">SP: <span class="mark"></span></div>
+								</td>
+								<td class="connector table_line3"></td>
+								<td id="obtainprotect">
+									<img class="skillicon" src="skillicon/fencer/obtainprotect.png" alt="オブテインプロテクトアイコン" /><span
+									class="skillname">オブテインプロテクト</span>
+									<div class="levelbox"><label>Lv. <select>
+										<option value="0">0</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+									</select></label><input type="button" class="downLevel" value="▼" /><input type="button"
+									class="upLevel" value="▲" /></div>
+									<div class="markbox">SP: <span class="mark"></span></div>
+								</td>
+							</tr>
+							<tr>
+								<td class="empty"></td>
+								<td class="empty table_line2"></td>
+								<td class="empty"></td>
+								<td class="empty table_line2"></td>
+								<td class="empty"></td>
+							</tr>
+							<tr>
+								<td class="empty"></td>
+								<td class="empty table_line2"></td>
+								<td class="empty"></td>
+								<td class="connector table_line4"></td>
+								<td id="erasemagic">
+									<img class="skillicon" src="skillicon/fencer/erasemagic.png" alt="イレイスマジックアイコン" /><span
+									class="skillname">イレイスマジック</span>
+									<div class="levelbox"><label>Lv. <select>
+										<option value="0">0</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+									</select></label><input type="button" class="downLevel" value="▼" /><input type="button"
+									class="upLevel" value="▲" /></div>
+									<div class="markbox">SP: <span class="mark"></span></div>
+								</td>
+							</tr>
+							<tr>
+								<td class="empty"></td>
+								<td class="empty table_line2"></td>
+								<td class="empty"></td>
+								<td class="empty table_line2"></td>
+								<td class="empty"></td>
+							</tr>
+							<tr>
+								<td class="empty"></td>
+								<td class="empty table_line2"></td>
+								<td class="empty"></td>
+								<td class="connector table_line4"></td>
+								<td id="acceleration">
+									<img class="skillicon" src="skillicon/fencer/acceleration.png" alt="アクセラレーションアイコン" /><span
+									class="skillname">アクセラレーション</span>
+									<div class="levelbox"><label>Lv. <select>
+										<option value="0">0</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+									</select></label><input type="button" class="downLevel" value="▼" /><input type="button"
+									class="upLevel" value="▲" /></div>
+									<div class="markbox">SP: <span class="mark"></span></div>
+								</td>
+							</tr>
+							<tr>
+								<td class="empty"></td>
+								<td class="empty table_line2"></td>
+								<td class="empty"></td>
+								<td class="empty table_line2"></td>
+								<td class="empty"></td>
+							</tr>
+							<tr>
+								<td class="empty"></td>
+								<td class="empty table_line2"></td>
+								<td class="empty"></td>
+								<td class="connector table_line5"></td>
+								<td id="vigoraid">
+									<img class="skillicon" src="skillicon/fencer/vigoraid.png" alt="ヴィガーエイドアイコン" /><span
+									class="skillname">ヴィガーエイド</span>
+									<div class="levelbox"><label>Lv. <select>
+										<option value="0">0</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+									</select></label><input type="button" class="downLevel" value="▼" /><input type="button"
+									class="upLevel" value="▲" /></div>
+									<div class="markbox">SP: <span class="mark"></span></div>
+								</td>
+							</tr>
+							<tr>
+								<td class="empty"></td>
+								<td class="empty table_line2"></td>
+								<td class="empty" colspan="3"></td>
+							</tr>
+							<tr>
+								<td class="empty"></td>
+								<td class="connector table_line5"></td>
+								<td id="tempestpierce">
+									<img class="skillicon" src="skillicon/fencer/tempestpierce.png" alt="テンペストピアスアイコン" /><span
+									class="skillname">テンペストピアス</span>
+									<div class="levelbox"><label>Lv. <select>
+										<option value="0">0</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+									</select></label><input type="button" class="downLevel" value="▼" /><input type="button"
+									class="upLevel" value="▲" /></div>
+									<div class="markbox">SP: <span class="mark"></span></div>
+								</td>
+								<td class="empty"></td>
+								<td class="empty"></td>
+							</tr>
+							<tr>
+								<td class="empty" colspan="5"></td>
+							</tr>
+							<tr>
+								<td id="reversekick">
+									<img class="skillicon" src="skillicon/fencer/reversekick.png" alt="リバースキックアイコン" /><span
+									class="skillname">リバースキック</span>
+									<div class="levelbox"><label>Lv. <select>
+										<option value="0">0</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+									</select></label><input type="button" class="downLevel" value="▼" /><input type="button"
+									class="upLevel" value="▲" /></div>
+									<div class="markbox">SP: <span class="mark"></span></div>
+								</td>
+								<td class="connector table_line1"></td>
+								<td id="penetratethrust">
+									<img class="skillicon" src="skillicon/fencer/penetratethrust.png" alt="ペネトレイトスラストアイコン" /><span
+									class="skillname">ペネトレイトスラスト</span>
+									<div class="levelbox"><label>Lv. <select>
+										<option value="0">0</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+									</select></label><input type="button" class="downLevel" value="▼" /><input type="button"
+									class="upLevel" value="▲" /></div>
+									<div class="markbox">SP: <span class="mark"></span></div>
+								</td>
+								<td class="connector table_line3"></td>
+								<td id="aerialfall">
+									<img class="skillicon" src="skillicon/fencer/aerialfall.png" alt="エリアルフォールアイコン" /><span
+									class="skillname">エリアルフォール</span>
+									<div class="levelbox"><label>Lv. <select>
+										<option value="0">0</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+									</select></label><input type="button" class="downLevel" value="▼" /><input type="button"
+									class="upLevel" value="▲" /></div>
+									<div class="markbox">SP: <span class="mark"></span></div>
+								</td>
+							</tr>
+							<tr>
+								<td class="empty" colspan="3"></td>
+								<td class="empty table_line2"></td>
+								<td class="empty"></td>
+							</tr>
+							<tr>
+								<td class="empty"></td>
+								<td class="empty"></td>
+								<td class="empty"></td>
+								<td class="connector table_line5"></td>
+								<td id="rapidfendez-vous">
+									<img class="skillicon" src="skillicon/fencer/rapidfendez-vous.png" alt="アイコン" /><span
+									class="skillname">ラピッドファンデヴ</span>
+									<div class="levelbox"><label>Lv. <select>
+										<option value="0">0</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+									</select></label><input type="button" class="downLevel" value="▼" /><input type="button"
+									class="upLevel" value="▲" /></div>
+									<div class="markbox">SP: <span class="mark"></span></div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+			</div>
+		</section>
+
+		<div id="showTable"></div>
+		<div class="skilltip">
+			<div id="tipnormal">
+				Pwを消費しない近接攻撃
+				<table>
 					<tr>
-						<th>Lv.</th>
-						<th>1</th>
-						<th>2</th>
-						<th>3</th>
-				</thead>
-				<tbody>
-					<tr>
-						<th>消費SP</th>
-						<td>2</td>
-						<td>1</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<th>消費Pw</th>
-						<td colspan="3">20</td>
-					</tr>
-					<tr>
-						<th>威力</th>
-						<td>95*2</td>
-						<td>110*2</td>
-						<td>125*2</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div id="tipflashstinger">
-			3連突きで相手の体勢を崩す
-			<table>
-				<thead>
-					<tr>
-						<th>Lv.</th>
-						<th>1</th>
-						<th>2</th>
-						<th>3</th>
-				</thead>
-				<tbody>
-					<tr>
-						<th>消費SP</th>
-						<td>3</td>
-						<td>2</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<th>消費Pw</th>
-						<td colspan="3">90</td>
-					</tr>
-					<tr>
-						<th>威力</th>
-						<td colspan="3">90*3</td>
-					</tr>
-					<tr>
-						<th>強制仰け反り効果</th>
-						<td>なし</td>
-						<td>あり</td>
-						<td>あり</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div id="tipstrikedown">
-			敵の物理攻撃を無効化することができる
-			<table>
-				<thead>
-					<tr>
-						<th>Lv.</th>
-						<th>1</th>
-						<th>2</th>
-						<th>3</th>
-				</thead>
-				<tbody>
-					<tr>
-						<th>消費SP</th>
-						<td>2</td>
-						<td>1</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<th>消費Pw</th>
-						<td>28</td>
-						<td>24</td>
-						<td>20</td>
-					</tr>
-					<tr>
-						<th>威力</th>
-						<td colspan="3">0</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div id="tipfinishthrust">
-			急所を突く．チャージすると威力と射程が上昇する
-			<table>
-				<thead>
-					<tr>
-						<th>Lv.</th>
-						<th>1</th>
-						<th>2</th>
-						<th>3</th>
-				</thead>
-				<tbody>
-					<tr>
-						<th>消費SP</th>
-						<td>2</td>
-						<td>1</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<th>消費Pw</th>
-						<td colspan="3">50</td>
-					</tr>
-					<tr>
-						<th>威力</th>
-						<td>240</td>
-						<td>350</td>
-						<td>460</td>
-					</tr>
-					<tr>
-						<th>貫通</th>
-						<td>なし</td>
-						<td>なし</td>
-						<td>あり</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div id="tipshiningcross">
-			衝撃波を生み，敵を貫く
-			<table>
-				<thead>
-					<tr>
-						<th>Lv.</th>
-						<th>1</th>
-						<th>2</th>
-						<th>3</th>
-				</thead>
-				<tbody>
-					<tr>
-						<th>消費SP</th>
-						<td>2</td>
-						<td>1</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<th>消費Pw</th>
-						<td>28</td>
-						<td>26</td>
-						<td>24</td>
-					</tr>
-					<tr>
-						<th>威力</th>
-						<td>80</td>
-						<td>90</td>
+						<th>攻撃力</th>
 						<td>100</td>
 					</tr>
-					<tr>
-						<th>特殊効果</th>
-						<td colspan="3">貫通</td>
-					</tr>
-				</tbody>
-			</table>
+				</table>
+			</div>
+			<div id="tipdualstrike">
+				二段攻撃を放つ．追加入力するとタンブルする
+				<table>
+					<thead>
+						<tr>
+							<th>Lv.</th>
+							<th>1</th>
+							<th>2</th>
+							<th>3</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>消費SP</th>
+							<td>2</td>
+							<td>1</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<th>消費Pw</th>
+							<td colspan="3">20</td>
+						</tr>
+						<tr>
+							<th>威力</th>
+							<td>95*2</td>
+							<td>110*2</td>
+							<td>125*2</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div id="tipflashstinger">
+				3連突きで相手の体勢を崩す
+				<table>
+					<thead>
+						<tr>
+							<th>Lv.</th>
+							<th>1</th>
+							<th>2</th>
+							<th>3</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>消費SP</th>
+							<td>3</td>
+							<td>2</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<th>消費Pw</th>
+							<td colspan="3">90</td>
+						</tr>
+						<tr>
+							<th>威力</th>
+							<td colspan="3">90*3</td>
+						</tr>
+						<tr>
+							<th>強制仰け反り効果</th>
+							<td>なし</td>
+							<td>あり</td>
+							<td>あり</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div id="tipstrikedown">
+				敵の物理攻撃を無効化することができる
+				<table>
+					<thead>
+						<tr>
+							<th>Lv.</th>
+							<th>1</th>
+							<th>2</th>
+							<th>3</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>消費SP</th>
+							<td>2</td>
+							<td>1</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<th>消費Pw</th>
+							<td>28</td>
+							<td>24</td>
+							<td>20</td>
+						</tr>
+						<tr>
+							<th>威力</th>
+							<td colspan="3">0</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div id="tipfinishthrust">
+				急所を突く．チャージすると威力と射程が上昇する
+				<table>
+					<thead>
+						<tr>
+							<th>Lv.</th>
+							<th>1</th>
+							<th>2</th>
+							<th>3</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>消費SP</th>
+							<td>2</td>
+							<td>1</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<th>消費Pw</th>
+							<td colspan="3">50</td>
+						</tr>
+						<tr>
+							<th>威力</th>
+							<td>240</td>
+							<td>350</td>
+							<td>460</td>
+						</tr>
+						<tr>
+							<th>貫通</th>
+							<td>なし</td>
+							<td>なし</td>
+							<td>あり</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div id="tipshiningcross">
+				衝撃波を生み，敵を貫く
+				<table>
+					<thead>
+						<tr>
+							<th>Lv.</th>
+							<th>1</th>
+							<th>2</th>
+							<th>3</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>消費SP</th>
+							<td>2</td>
+							<td>1</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<th>消費Pw</th>
+							<td>28</td>
+							<td>26</td>
+							<td>24</td>
+						</tr>
+						<tr>
+							<th>威力</th>
+							<td>80</td>
+							<td>90</td>
+							<td>100</td>
+						</tr>
+						<tr>
+							<th>特殊効果</th>
+							<td colspan="3">貫通</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div id="tiptempestpierce">
+				強烈な突きによる巨大な衝撃波を飛ばし相手を攻撃する
+				<table>
+					<thead>
+						<tr>
+							<th>Lv.</th>
+							<th>1</th>
+							<th>2</th>
+							<th>3</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>消費SP</th>
+							<td>1</td>
+							<td>2</td>
+							<td>2</td>
+						</tr>
+						<tr>
+							<th>消費Pw</th>
+							<td colspan="3">28</td>
+						</tr>
+						<tr>
+							<th>威力</th>
+							<td>180</td>
+							<td>200</td>
+							<td>210</td>
+						</tr>
+						<tr>
+							<th>特殊効果</th>
+							<td colspan="3">貫通</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div id="tipobtainprotect">
+				相手を耐性上昇の刻印状態にする
+				<table>
+					<thead>
+						<tr>
+							<th>Lv.</th>
+							<th>1</th>
+							<th>2</th>
+							<th>3</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>消費SP</th>
+							<td>1</td>
+							<td>1</td>
+							<td>2</td>
+						</tr>
+						<tr>
+							<th>消費Pw</th>
+							<td>28</td>
+							<td>28</td>
+							<td>25</td>
+						</tr>
+						<tr>
+							<th>威力</th>
+							<td colspan="3">135</td>
+						</tr>
+						<tr>
+							<th>刻印効果（15秒）</th>
+							<td colspan="3">耐性60上昇．7.5秒</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div id="tiperasemagic">
+				相手を魔法攻撃無効の刻印状態にする
+				<table>
+					<thead>
+						<tr>
+							<th>Lv.</th>
+							<th>1</th>
+							<th>2</th>
+							<th>3</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>消費SP</th>
+							<td>1</td>
+							<td>1</td>
+							<td>2</td>
+						</tr>
+						<tr>
+							<th>消費Pw</th>
+							<td>33</td>
+							<td>33</td>
+							<td>30</td>
+						</tr>
+						<tr>
+							<th>威力</th>
+							<td colspan="3">135</td>
+						</tr>
+						<tr>
+							<th>刻印効果（15秒）</th>
+							<td colspan="3">1回魔法無効．7.5秒</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div id="tipacceleration">
+				相手を移動速度増加の刻印状態にする
+				<table>
+					<thead>
+						<tr>
+							<th>Lv.</th>
+							<th>1</th>
+							<th>2</th>
+							<th>3</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>消費SP</th>
+							<td>1</td>
+							<td>1</td>
+							<td>2</td>
+						</tr>
+						<tr>
+							<th>消費Pw</th>
+							<td>28</td>
+							<td>28</td>
+							<td>25</td>
+						</tr>
+						<tr>
+							<th>威力</th>
+							<td colspan="3">135</td>
+						</tr>
+						<tr>
+							<th>刻印効果（15秒）</th>
+							<td colspan="3">移動速度1.5倍．5秒</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div id="tipvigoraid">
+				相手をPw回復強化の刻印状態にする
+				<table>
+					<thead>
+						<tr>
+							<th>Lv.</th>
+							<th>1</th>
+							<th>2</th>
+							<th>3</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>消費SP</th>
+							<td>1</td>
+							<td>1</td>
+							<td>2</td>
+						</tr>
+						<tr>
+							<th>消費Pw</th>
+							<td>28</td>
+							<td>28</td>
+							<td>25</td>
+						</tr>
+						<tr>
+							<th>威力</th>
+							<td colspan="3">135</td>
+						</tr>
+						<tr>
+							<th>刻印効果（15秒）</th>
+							<td colspan="3">Pw回復5*7/1s毎</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div id="tipreversekick">
+				前方を蹴りつけ，飛び上がりつつ後退する
+				<table>
+					<thead>
+						<tr>
+							<th>Lv.</th>
+							<th>1</th>
+							<th>2</th>
+							<th>3</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>消費SP</th>
+							<td>2</td>
+							<td>1</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<th>消費Pw</th>
+							<td colspan="3">16</td>
+						</tr>
+						<tr>
+							<th>威力</th>
+							<td>150</td>
+							<td>180</td>
+							<td>210</td>
+						</tr>
+						<tr>
+							<th>特殊効果</th>
+							<td colspan="3">貫通．跳び上がるまで仰け反り無効</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div id="tippenetratethrust">
+				前方に切り込む．追加入力するとタンブルする
+				<table>
+					<thead>
+						<tr>
+							<th>Lv.</th>
+							<th>1</th>
+							<th>2</th>
+							<th>3</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>消費SP</th>
+							<td>1</td>
+							<td>2</td>
+							<td>3</td>
+						</tr>
+						<tr>
+							<th>消費Pw</th>
+							<td colspan="3">28</td>
+						</tr>
+						<tr>
+							<th>威力</th>
+							<td>190</td>
+							<td>210</td>
+							<td>235</td>
+						</tr>
+						<tr>
+							<th>特殊効果</th>
+							<td colspan="3">仰け反り無効</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div id="tipaerialfall">
+				飛び上がり，降下しつつ攻撃する．降下中は仰け反り無効．<br />追加入力するとタンブルする
+				<table>
+					<thead>
+						<tr>
+							<th>Lv.</th>
+							<th>1</th>
+							<th>2</th>
+							<th>3</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>消費SP</th>
+							<td>3</td>
+							<td>1</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<th>消費Pw</th>
+							<td colspan="3">25</td>
+						</tr>
+						<tr>
+							<th>威力</th>
+							<td>220</td>
+							<td>260</td>
+							<td>290</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div id="tiprapidfendez-vous">
+				追加入力で2段階まで武器を突く．追加入力するとタンブルする
+				<table>
+					<thead>
+						<tr>
+							<th>Lv.</th>
+							<th>1</th>
+							<th>2</th>
+							<th>3</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>消費SP</th>
+							<td>3</td>
+							<td>1</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<th>消費Pw<br>(1発目/2発目)</th>
+							<td colspan="3">10/14</td>
+						</tr>
+						<tr>
+							<th>威力<br>(1発目/2発目)</th>
+							<td>115/175</td>
+							<td>125/200</td>
+							<td>135/225</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
-		<div id="tiptempestpierce">
-			強烈な突きによる巨大な衝撃波を飛ばし相手を攻撃する
-			<table>
-				<thead>
-					<tr>
-						<th>Lv.</th>
-						<th>1</th>
-						<th>2</th>
-						<th>3</th>
-				</thead>
-				<tbody>
-					<tr>
-						<th>消費SP</th>
-						<td>1</td>
-						<td>2</td>
-						<td>2</td>
-					</tr>
-					<tr>
-						<th>消費Pw</th>
-						<td colspan="3">28</td>
-					</tr>
-					<tr>
-						<th>威力</th>
-						<td>180</td>
-						<td>200</td>
-						<td>210</td>
-					</tr>
-					<tr>
-						<th>特殊効果</th>
-						<td colspan="3">貫通</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div id="tipobtainprotect">
-			相手を耐性上昇の刻印状態にする
-			<table>
-				<thead>
-					<tr>
-						<th>Lv.</th>
-						<th>1</th>
-						<th>2</th>
-						<th>3</th>
-				</thead>
-				<tbody>
-					<tr>
-						<th>消費SP</th>
-						<td>1</td>
-						<td>1</td>
-						<td>2</td>
-					</tr>
-					<tr>
-						<th>消費Pw</th>
-						<td>28</td>
-						<td>28</td>
-						<td>25</td>
-					</tr>
-					<tr>
-						<th>威力</th>
-						<td colspan="3">135</td>
-					</tr>
-					<tr>
-						<th>刻印効果（15秒）</th>
-						<td colspan="3">耐性60上昇．7.5秒</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div id="tiperasemagic">
-			相手を魔法攻撃無効の刻印状態にする
-			<table>
-				<thead>
-					<tr>
-						<th>Lv.</th>
-						<th>1</th>
-						<th>2</th>
-						<th>3</th>
-				</thead>
-				<tbody>
-					<tr>
-						<th>消費SP</th>
-						<td>1</td>
-						<td>1</td>
-						<td>2</td>
-					</tr>
-					<tr>
-						<th>消費Pw</th>
-						<td>33</td>
-						<td>33</td>
-						<td>30</td>
-					</tr>
-					<tr>
-						<th>威力</th>
-						<td colspan="3">135</td>
-					</tr>
-					<tr>
-						<th>刻印効果（15秒）</th>
-						<td colspan="3">1回魔法無効．7.5秒</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div id="tipacceleration">
-			相手を移動速度増加の刻印状態にする
-			<table>
-				<thead>
-					<tr>
-						<th>Lv.</th>
-						<th>1</th>
-						<th>2</th>
-						<th>3</th>
-				</thead>
-				<tbody>
-					<tr>
-						<th>消費SP</th>
-						<td>1</td>
-						<td>1</td>
-						<td>2</td>
-					</tr>
-					<tr>
-						<th>消費Pw</th>
-						<td>28</td>
-						<td>28</td>
-						<td>25</td>
-					</tr>
-					<tr>
-						<th>威力</th>
-						<td colspan="3">135</td>
-					</tr>
-					<tr>
-						<th>刻印効果（15秒）</th>
-						<td colspan="3">移動速度1.5倍．5秒</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div id="tipvigoraid">
-			相手をPw回復強化の刻印状態にする
-			<table>
-				<thead>
-					<tr>
-						<th>Lv.</th>
-						<th>1</th>
-						<th>2</th>
-						<th>3</th>
-				</thead>
-				<tbody>
-					<tr>
-						<th>消費SP</th>
-						<td>1</td>
-						<td>1</td>
-						<td>2</td>
-					</tr>
-					<tr>
-						<th>消費Pw</th>
-						<td>28</td>
-						<td>28</td>
-						<td>25</td>
-					</tr>
-					<tr>
-						<th>威力</th>
-						<td colspan="3">135</td>
-					</tr>
-					<tr>
-						<th>刻印効果（15秒）</th>
-						<td colspan="3">Pw回復5*7/1s毎</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div id="tipreversekick">
-			前方を蹴りつけ，飛び上がりつつ後退する
-			<table>
-				<thead>
-					<tr>
-						<th>Lv.</th>
-						<th>1</th>
-						<th>2</th>
-						<th>3</th>
-				</thead>
-				<tbody>
-					<tr>
-						<th>消費SP</th>
-						<td>2</td>
-						<td>1</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<th>消費Pw</th>
-						<td colspan="3">16</td>
-					</tr>
-					<tr>
-						<th>威力</th>
-						<td>150</td>
-						<td>180</td>
-						<td>210</td>
-					</tr>
-					<tr>
-						<th>特殊効果</th>
-						<td colspan="3">貫通．跳び上がるまで仰け反り無効</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div id="tippenetratethrust">
-			前方に切り込む．追加入力するとタンブルする
-			<table>
-				<thead>
-					<tr>
-						<th>Lv.</th>
-						<th>1</th>
-						<th>2</th>
-						<th>3</th>
-				</thead>
-				<tbody>
-					<tr>
-						<th>消費SP</th>
-						<td>1</td>
-						<td>2</td>
-						<td>3</td>
-					</tr>
-					<tr>
-						<th>消費Pw</th>
-						<td colspan="3">28</td>
-					</tr>
-					<tr>
-						<th>威力</th>
-						<td>190</td>
-						<td>210</td>
-						<td>235</td>
-					</tr>
-					<tr>
-						<th>特殊効果</th>
-						<td colspan="3">仰け反り無効</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div id="tipaerialfall">
-			飛び上がり，降下しつつ攻撃する．降下中は仰け反り無効．<br />追加入力するとタンブルする
-			<table>
-				<thead>
-					<tr>
-						<th>Lv.</th>
-						<th>1</th>
-						<th>2</th>
-						<th>3</th>
-				</thead>
-				<tbody>
-					<tr>
-						<th>消費SP</th>
-						<td>3</td>
-						<td>1</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<th>消費Pw</th>
-						<td colspan="3">25</td>
-					</tr>
-					<tr>
-						<th>威力</th>
-						<td>220</td>
-						<td>260</td>
-						<td>290</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div id="tiprapidfendez-vous">
-			追加入力で2段階まで武器を突く．追加入力するとタンブルする
-			<table>
-				<thead>
-					<tr>
-						<th>Lv.</th>
-						<th>1</th>
-						<th>2</th>
-						<th>3</th>
-				</thead>
-				<tbody>
-					<tr>
-						<th>消費SP</th>
-						<td>3</td>
-						<td>1</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<th>消費Pw<br>(1発目/2発目)</th>
-						<td colspan="3">10/14</td>
-					</tr>
-					<tr>
-						<th>威力<br>(1発目/2発目)</th>
-						<td>115/175</td>
-						<td>125/200</td>
-						<td>135/225</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<address class="copyright">© 2021 SQUARE ENIX CO., LTD. All Rights Reserved.</address>
+	</main>
+	<footer><address class="copyright">© 2021 SQUARE ENIX CO., LTD. All Rights Reserved.</address></footer>
 </body>
 
 </html>
