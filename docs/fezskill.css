@@ -1,17 +1,328 @@
-table, th, td {
-	border: solid 1px black;
+/*RESET*/
+
+@charset "utf-8";
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video {font-size: 100%;margin: 0;padding: 0;outline: 0;border: 0;vertical-align: baseline;}
+* {
+	-webkit-box-sizing: border-box;
+	-mos-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
 }
-/* スキルシミュレーションテーブル */
+html {overflow-x: hidden;}
+body {
+	line-height: 1.6;
+	-webkit-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	overflow: hidden;
+	width: 100%;
+	font-weight: 400;
+	-ms-font-feature-settings: "palt";
+	-moz-font-feature-settings: "palt";
+	-webkit-font-feature-settings: "palt";
+	font-feature-settings: "palt";
+	text-align: left;
+	/* letter-spacing: 0.12em; */
+	color: #333;
+	font-size: 14px;
+}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section,main {display: block;}
+h1,h2,h3,h4,h5,h6,strong,th {font-weight: normal;}
+ol,ul,li {list-style: none;}
+blockquote,q {quotes: none;}
+blockquote::before,blockquote::after,q::before,q::after {content: "";content: none;}
+a {
+	padding: 0;
+	margin: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+	color: #333;
+	text-decoration: none;
+}
+p {max-height: 999999px;}
+
+ins {background-color: #ff9;color: #f2f2f2;text-decoration: none;}
+
+mark {
+	background-color: #ff9;
+	color: #f2f2f2;
+	font-style: italic;
+	font-weight: bold;
+}
+del {text-decoration: line-through;}
+abbr[title],dfn[title] {border-bottom: 1px dotted;cursor: help;}
+table {border-collapse: collapse;border-spacing: 0;}
+img {vertical-align: middle;}
+input,select {vertical-align: middle;}
+
+/*floatRESET{
+	display: block;
+	clear: both;
+	height: 0;
+	content: "";
+}*/
+/*-- ease-in-out 0.3 --*/
+a,.hover_act1,#openlist{
+	-webkit-transition: 0.3s ease-in-out; -moz-transition: 0.3s ease-in-out; -o-transition: 0.3s ease-in-out; -ms-transition: 0.3s ease-in-out; transition: 0.3s ease-in-out;
+}
+
+body{
+	max-width: 800px;
+	margin: 30px auto;
+	overflow: visible;
+}
+.fs_s{font-size: 0.8em;}
+.fs_l{font-size: 1.2em;}
+.fc_red{color:#de386e;}
+.fw_bold{font-weight: bold;}
+
+.txt_deco1{border-bottom: 1px dotted #8995a5;}
+
+.mb_5{margin-bottom: 5px;}
+.mb_10{margin-bottom: 10px;}
+.mb_20{margin-bottom: 20px;}
+
+.hover_act1:hover{
+	color: #d096a9;
+}
+/* coomon */
+.title1{
+	font-size: 2em;
+	font-weight: bold;
+	margin-bottom: 30px;
+}
+.title1 span{
+	font-size: 0.7em;
+	color: #7e838a;
+}
+.title2{
+	font-size: 1.6em;
+	font-weight: bold;
+	line-height: 1em;
+	margin-bottom: 10px;
+	color: #293748;
+	border-left: 4px solid #8e99a7;
+	padding-left: 10px;
+}
+.top_icon1,.top_icon2{
+	position: relative;
+	padding-left: 16px;
+}
+.top_icon1::before,.top_icon2::before{
+	content: "";
+	position: absolute;
+
+	left: 0;
+	width: 0;
+	height: 0;
+	border-style: solid;
+}
+.top_icon1::before{
+	top: calc(50% - 8px);
+	border-width: 8px 0 8px 10px;
+	border-color: transparent transparent transparent #b2b9c1;
+}
+.top_icon2::before{
+	top: calc(50% - 5px);
+	border-width:7px 6px 0 6px;
+	border-color: #383d44 transparent transparent transparent;
+
+}
+
+.btn1 {
+	position: relative;
+	display: block;
+	width: 12rem;
+}
+.btn1 .circle {
+	transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+	position: relative;
+	display: block;
+	margin: 0;
+	width: 24px;
+	height: 24px;
+	background:#c8cbce;
+	border-radius: 1.625rem;
+}
+.btn1 .circle .icon {
+	transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+	position: absolute;
+	top: 0px;
+	bottom: 0;
+	margin: auto;
+}
+.btn1 .circle .icon.arrow {
+	transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+	left: 0px;
+	top: 0px;
+	width: 14px;
+	height: 2px;
+}
+.btn1 .circle .icon.arrow::before {
+	position: absolute;
+	content: "";
+	top: -3px;
+	right: 0px;
+	width: 6px;
+	height: 6px;
+	border-top: 2px solid #fff;
+	border-right: 2px solid #fff;
+	transform: rotate(45deg);
+}
+.btn1 .btn1_txt {
+	transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+	position: absolute;
+	top: 2px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: 0 0 0 3em;
+	color:#344254;
+	line-height: 1.6;
+}
+.btn1:hover .circle {
+	width: 100%;
+}
+.btn1:hover .circle .icon.arrow {
+	background: #fff;
+	transform: translate(1rem, 0);
+}
+.btn1:hover .btn1_txt {
+	color: #b94a4f;
+}
+
+header{
+	margin: 0 auto;
+}
+#topmenu ul{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#topmenu ul li{
+	border: 1px solid #383d44;
+	border-left: none;
+	width: calc(100% /6);
+	text-align: center;
+	background: #383d44;
+}
+#topmenu ul li a{
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	padding: 10px 0;
+}
+#topmenu ul li:not(.active) a:hover{
+	background: #818790;
+	color: #fff;
+}
+#topmenu ul li:not(.active) a{
+	color: #babec3;
+}
+#topmenu ul li:first-of-type{
+	border-left:  1px solid #ddd;
+}
+#topmenu ul li.active{
+	border: 1px solid #ddd;
+	border-bottom: 1px solid rgb(221 221 221 / 0%);
+	background: #fff;
+}
+.copyright{
+	font-size: 12px;
+	color: #adadad;
+	text-align: right;
+	margin-top: 5px;
+}
+.content_border{
+	border: 1px solid #ddd;
+	border-top: none;
+	padding: 30px;
+}
+/* index */
+#index > div:not(.box_link){
+	margin-bottom: 40px;
+}
+#index .indexmenu ul{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+#index .indexmenu ul li{
+	width: 19%;
+}
+#index .indexmenu ul li a{
+	background: #523f37;
+	border: 2px solid #E4D1A6;
+	color: #f3f3f3;
+	border-radius: 2px;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	padding: 10px;
+	text-align: center;
+}
+#index .indexmenu ul li a:hover{
+	border: 2px solid #523f37;
+	background: #fff;
+	color: #523f37;
+}
+#index .in_list{
+	background: #f3f3f3;
+	padding: 15px;
+	width: auto;
+	margin: 5px auto 20px;
+}
+.btn_span{
+	display: inline-block;
+	padding: 0 5px;
+	margin: 0 5px 4px;
+	border: 1px solid #ddd;
+	border-radius: 2px;
+}
+.btn_span.twitter{
+	color: #368ae0;
+	border-color: #bcd2e8;
+}
+.btn_span:hover{
+	color: #fff;
+	background:#3e444c;
+	border-color:#3e444c;
+}
+.btn_span.twitter:hover{
+	background: #44a6e2;
+	border-color: #44a6e2;
+}
+#index .box_link .btn1{
+	width: 450px;
+}
+
+/* スキルシミュレーション */
+.main_flex{
+	display: flex;
+}
 .skillplanner{
 	display: inline;
-	margin-left: 48px;
+	margin-left: 35px;
 }
+.skillplanner .scroll_top{
+	position: sticky;
+	top: 0;
+	background: #fff;
+	padding: 10px 5px;
+	z-index: 20;
+}
+/* .skillplanner #tspointmarkbox{
+	margin-left: 54px;
+} */
 .skillplanner #tspointmarkbox{
-	margin-left: 48px;
+	margin-top: 5px;
 }
 .skillplanner table{
 	border: none;
-	margin-left: 48px;
+	margin-left: 5px;
+	position: relative;
+	z-index: 1;
 }
 .skillplanner .overlimit{
 	/* スキルポイント消費可能限界突破 */
@@ -22,23 +333,65 @@ table, th, td {
 	border: none;
 }
 .skillplanner .connector{
-	/* スキル接続罫線セル */
 	border: none;
+	/* width: 30px; */
+	width: 22px;
+	padding: 0;
+}
+#levelpoint{
+	padding: 5px;
+	width: 190px;
+}
+/* スキルtable */
+table, th, td {
+	border: solid 1px #a7a7a7;
+}
+.skillplanner .skill_basic td{
+	height: 46px;
 }
 .skillplanner th.treecaption {
 	/* スキルツリー表題セル */
 	border: none;
+	padding-top: 10px;
+	font-weight: bold;
 }
+.skillplanner td{
+	position: relative;
+	padding: 3px 10px;
+	vertical-align: middle;
+	z-index: -1;
+}
+.skillplanner td.pad_15{
+	padding: 15px 10px;
+}
+/* .skillplanner tr.lv3_move{
+	position: relative;
+} */
+.skillplanner tr.lv3_move td:last-of-type{
+	/* position: absolute; */
+	position: relative;
+	top: 50%;
+	border: none;
+	outline: 1px solid #a7a7a7;
+	z-index: 10;
+	/* right: -180px;
+	width: 200px; */
+}
+
+/* レベル0スキル */
 .skillplanner td.level0 {
-	/* レベル0スキル */
-	background-color: #cccccc;
+	background-color: #dadada;
 }
+/* レベル選択部分 */
 .skillplanner .levelbox {
-	/* レベル選択部分 */
-	/* スキルアイコン幅だけマージンを取る*/
 	margin-left:34px;
-	/* 途中改行しない*/
 	white-space: nowrap;
+}
+.skillplanner .levelbox label{
+	margin-right: 4px;
+}
+.skillplanner .levelbox input{
+	font-size: 0.8em;
 }
 .skillplanner select{
 	/* レベル選択ボックス */
@@ -47,6 +400,7 @@ table, th, td {
 .skillplanner .markbox {
 	/*スキルアイコン幅だけマージンを取る*/
 	margin-left:34px;
+	font-size: 0.9em;
 }
 .skillplanner .mark{
 	/* 消費スキルポイントマーク */
@@ -54,13 +408,14 @@ table, th, td {
 }
 .skillplanner img.skillicon{
 	/* スキルアイコン画像 */
-	vertical-align: middle;
-
+	/* vertical-align: middle; */
+	position: absolute;
+	top: 6px;
+	left: 5px;
 }
 .skillplanner .skillname{
-	margin-left: 1ex;
+	margin-left: 34px;
 }
-
 #powerTip {
 	opacity: 0.95;
 }
@@ -69,45 +424,141 @@ table, th, td {
 	border-collapse:collapse;
 	text-align: center;
 }
-
 #powerTip td{
 	min-width: 2em;
 }
-
 .skilltip {
 	display: none;
 	clear: both;
 }
-
-ul#topmenu{
-	display: block;
-}
-ul#topmenu li {
-	list-style-type: none;
-	display: inline;
-}
-ul#topmenu a {
-	/* border: 1px black solid;*/
-	margin: 0 1em;
-}
-
 ul#skillslotbar {
 	margin: 0;
 	padding: 0;
 	background-color: #ffffcc;
 	border: #663300 ridge medium;
-	position: fixed;
+	/* position: fixed; */
+	height: fit-content;
+	height: -moz-fit-content;
+	max-height: 296px;
+	position: sticky;
+	top: 70px;
 }
-
 li.skillslot{
 	list-style-type: none;
 	background-color: #999;
 	border: #663300 ridge 5px;
-	height: 28px;
-	width: 28px;
+	/* height: 32px;
+	width: 32px; */
+	height: 36px;
+	width: 36px;
 	border-radius: 50%;
 }
-
 .skilllist input#storeaddress{
 	display: block;
+}
+#openlist{
+	background: #3e342c;
+	color: #ececd7;
+	border: 2px solid #3e342c;
+	border-radius: 2px;
+}
+#openlist:hover{
+	opacity: 0.8;
+}
+
+/* table_line1=横ライン・table_line2＝縦ライン*/
+/*tabe_line3=Ｔライン・table_line4=┣ライン*/
+/*table_line5=┗ライン・table_line6=┛ライン*/
+/*table_line7=Ｔライン・table_line8=┫ライン*/
+.skillplanner .table_flex{
+	display: flex;
+	flex-direction: column;
+}
+.skillplanner .table_flex{
+	height: 72px;
+}
+.skillplanner td[class*="table_line"],
+.skillplanner td div[class*="table_line"]{
+	position: relative;
+}
+.skillplanner td div[class*="table_line"]{
+	height: 50%;
+}
+.skillplanner td[class*="table_line"]::before,
+.skillplanner td[class*="table_line"]::after,
+.skillplanner td div[class*="table_line"]::before,
+.skillplanner td div[class*="table_line"]::after{
+	position: absolute;
+	content: "";
+	background: #8e9092;
+}
+.skillplanner .table_line1::before,
+.skillplanner .table_line3::before{
+	top: 49%;
+	left: 0;
+	width: 100%;
+	height: 2px;
+}
+.skillplanner .table_line2::before,
+.skillplanner .table_line4::before,
+.skillplanner .table_line8::before,
+.skillplanner .table_line6::before{
+	top: 0;
+	left: 49%;
+	width: 2px;
+	height: 100%;
+}
+.skillplanner .table_line3::after{
+	top: 50%;
+	left: 49%;
+	width: 2px;
+	height: 50%;
+}
+.skillplanner .table_line4::after{
+	top: 49%;
+	left:49%;
+	width: calc(50% + 1px);
+	height: 2px;
+}
+.skillplanner .table_line5::before{
+	top: 0;
+	left: 49%;
+	width: 2px;
+	height: 50%;
+}
+.skillplanner .table_line5::after,
+.skillplanner .table_line8::after{
+	top: 49%;
+	left: 0;
+	width: calc(50% + 1px);
+	height: 2px;
+}
+.skillplanner .table_line5::after{left:49%;}
+
+.skillplanner .table_line6::after{
+	bottom: 0;
+	left: 0;
+	width: calc(50% + 1px);
+	height: 2px;
+}
+.skillplanner .table_line7::before{
+	bottom: 20%;
+	left: 0;
+	width: 100%;
+	height: 2px;
+}
+.skillplanner .table_line7::after{
+	top: 80%;
+	left: 49%;
+	width: 2px;
+	height: 25%;
+}
+/* 上書き */
+.ui-draggable .ui-dialog-titlebar{
+	margin-bottom: 10px;
+	background: #630;
+	color: #ffc;
+}
+.skilllist input#storeaddress{
+	margin-bottom: 10px;
 }
