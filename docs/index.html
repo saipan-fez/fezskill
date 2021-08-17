@@ -9,53 +9,109 @@
 </head>
 
 <body>
-	<ul id="topmenu">
-		<li><a href="./">トップページ</a></li>
-		<li><a href="./warrior.html">ウォリアー</a></li>
-		<li><a href="./scout.html">スカウト</a></li>
-		<li><a href="./sorcerer.html">ソーサラー</a></li>
-		<li><a href="./fencer.html">フェンサー</a></li>
-		<li><a href="./cestus.html">セスタス</a></li>
-	</ul>
-	<h1>FEZスキルシミュレータ</h1>
-	<h2>免責事項</h2>
-	<font color="red">誤りが多数ある可能性があるためシミュレート結果・スキル内容には特にご注意ください。</font>
-	<p>
-		当シミュレータの内容は如何なる結果も保証いたしません。<br>
-		また、利用によって生じた損害に関して、一切責任を負わないことを予めご了承ください。
-	</p>
-	<h2>使い方</h2>
-	<ul>
-		<li>マウスカーソルをスキル名に乗せると，スキルの簡易説明が表示されます</li>
-		<li>[保存アドレスとスキルリスト]ボタンをクリックするとダイアログが表示されます
+	<header>
+		<nav id="topmenu">
 			<ul>
-				<li>取得スキル一覧とスキルスロットの状態を復元するURLが表示されます</li>
-				<li>取得スキル一覧をテキストで表示されます</li>
+				<li class="active"><a href="./">トップページ</a></li>
+				<li><a href="./warrior.html">ウォリアー</a></li>
+				<li><a href="./scout.html">スカウト</a></li>
+				<li><a href="./sorcerer.html">ソーサラー</a></li>
+				<li><a href="./fencer.html">フェンサー</a></li>
+				<li><a href="./cestus.html">セスタス</a></li>
 			</ul>
-		</li>
-		<li>D&Dまたはアイコンをダブルクリックして、スキルスロットにスキルを配置できます
-			<ul>
-				<li>スキルスロットのスキルアイコンをダブルクリックすると解除できます</li>
-				<li>スキルスロット内の位置変更はできないため、解除→再配置をしてください</li>
-			</ul>
-		</li>
-	</ul>
-	<h2>Contributers</h2>
-	<p>
-		<a href="https://github.com/ustreamer-01647/fezskill">ustreamer-01647様が作成されたもの</a>を一部改良、最新化して公開しています。<br>
-		修正の依頼等は<a href="https://github.com/saipan-fez/fezskill/issues">Issues</a>または<a href="https://twitter.com/saipan_fez">Twitter</a>へお願いします。<br>
-		<a href="https://github.com/saipan-fez/fezskill">PullRequest</a>も歓迎しています。
-	</p>
-	<ul>
-		<li><a href="https://github.com/ustreamer-01647">ustreamer-01647</a></li>
-		<li><a href="https://github.com/saipan-fez">saipan_fez</a></li>
-	</ul>
-	<h2>リンク</h2>
-	<ul>
-		<li><a href="http://www.fantasy-earth.com/">ファンタジーアース　ゼロ公式サイト</a></li>
-		<li><a href="http://fewiki.jp/">Fantasy Earth Zero -ファンタジーアース　ゼロ- Wiki</a></li>
-	</ul>
-	<address class="copyright">© 2021 SQUARE ENIX CO., LTD. All Rights Reserved.</address>
+		</nav>
+	</header>
+	<main>
+		<section id="index" class="content_border">
+			<h1 class="title1">FEZスキルシミュレータ</h1>
+			<div>
+				<nav class="indexmenu">
+					<ul>
+						<li><a href="./warrior.html">ウォリアー</a></li>
+						<li><a href="./scout.html">スカウト</a></li>
+						<li><a href="./sorcerer.html">ソーサラー</a></li>
+						<li><a href="./fencer.html">フェンサー</a></li>
+						<li><a href="./cestus.html">セスタス</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div>
+				<h2 class="title2">免責事項</h2>
+				<p class="fc_red">誤りが多数ある可能性があるためシミュレート結果・スキル内容には特にご注意ください。</p>
+				<p>
+					当シミュレータの内容は如何なる結果も保証いたしません。<br>
+					また、利用によって生じた損害に関して、一切責任を負わないことを予めご了承ください。
+				</p>
+			</div>
+			<div>
+				<h2 class="title2">使い方</h2>
+
+				<p class="mb_10 top_icon1">マウスカーソルをスキル名に乗せると，スキルの簡易説明が表示されます。</p>
+				<p class="top_icon1">[保存アドレスとスキルリスト]ボタンをクリックするとダイアログが表示されます。</p>
+				<ul class="in_list">
+					<li class="mb_5">・ 取得スキル一覧とスキルスロットの状態を復元するURLが表示されます</li>
+					<li>・ 取得スキル一覧をテキストで表示されます</li>
+				</ul>
+
+				<p class="top_icon1">D&Dまたはアイコンをダブルクリックして、スキルスロットにスキルを配置できます。</p>
+				<ul class="in_list">
+					<li class="mb_5">・ スキルスロットのスキルアイコンをダブルクリックすると解除できます</li>
+					<li>・ スキルスロット内の位置変更はできないため、解除→再配置をしてください</li>
+				</ul>
+
+			</div>
+			<div>
+				<h2 class="title2">Contributers</h2>
+				<p class="mb_10">
+					<a href="https://github.com/ustreamer-01647/fezskill" target="_blank" class="txt_deco1 hover_act1">ustreamer-01647様が作成されたもの</a>を一部改良、最新化して公開しています。
+				</p>
+				<p class="mb_10">
+					修正の依頼等は<a href="https://github.com/saipan-fez/fezskill/issues" target="_blank" class="btn_span">Issues</a>または<a href="https://twitter.com/saipan_fez" target="_blank" class="btn_span twitter">Twitter</a>へお願いします。<br>
+					<a href="https://github.com/saipan-fez/fezskill" target="_blank" class="btn_span">PullRequest</a>も歓迎しています。
+				</p>
+				<ul>
+					<li class="btn1 mb_5">
+						<a href="https://github.com/ustreamer-01647" target="_blank">
+							<span class="circle" aria-hidden="true">
+								<span class="icon arrow"></span>
+							</span>
+							<span class="btn1_txt">ustreamer-01647</span>
+						</a>
+					</li>
+					<li class="btn1">
+						<a href="https://github.com/saipan-fez" target="_blank">
+							<span class="circle" aria-hidden="true">
+								<span class="icon arrow"></span>
+							</span>
+							<span class="btn1_txt">saipan_fez</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="box_link">
+				<h2 class="title2">リンク</h2>
+				<ul>
+					<li class="btn1 mb_5">
+						<a href="http://www.fantasy-earth.com/" target="_blank">
+							<span class="circle" aria-hidden="true">
+								<span class="icon arrow"></span>
+							</span>
+							<span class="btn1_txt">ファンタジーアース　ゼロ公式サイト</span>
+						</a>
+					</li>
+					<li class="btn1">
+						<a href="http://fewiki.jp/" target="_blank">
+							<span class="circle" aria-hidden="true">
+								<span class="icon arrow"></span>
+							</span><span class="btn1_txt">Fantasy Earth Zero -ファンタジーアース　ゼロ- Wiki</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+	</main>
+	<footer><address class="copyright">© 2021 SQUARE ENIX CO., LTD. All Rights Reserved.</address></footer>
 </body>
 
 </html>
