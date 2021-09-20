@@ -502,7 +502,7 @@ li.skillslot{
 .skillplanner .table_line2::before,
 .skillplanner .table_line4::before,
 .skillplanner .table_line8::before,
-.skillplanner .table_line6::before{
+.skillplanner .table_line6_2::before{
 	top: 0;
 	left: 49%;
 	width: 2px;
@@ -520,22 +520,24 @@ li.skillslot{
 	width: calc(50% + 1px);
 	height: 2px;
 }
-.skillplanner .table_line5::before{
+.skillplanner .table_line5::before,
+.skillplanner .table_line6::before{
 	top: 0;
 	left: 49%;
 	width: 2px;
 	height: 50%;
 }
 .skillplanner .table_line5::after,
-.skillplanner .table_line8::after{
+.skillplanner .table_line8::after,
+.skillplanner .table_line6::after{
 	top: 49%;
 	left: 0;
-	width: calc(50% + 1px);
+	width: calc(50% + 2px);
 	height: 2px;
 }
 .skillplanner .table_line5::after{left:49%;}
 
-.skillplanner .table_line6::after{
+.skillplanner .table_line6_2::after{
 	bottom: 0;
 	left: 0;
 	width: calc(50% + 1px);
