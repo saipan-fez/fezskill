@@ -27,7 +27,7 @@ y	rushbullet	ラッシュバレット	0	3	2	1	1	frickshot	burstcannon
 z	commetcannon	コメットキャノン	0	3	2	1	1		clushshot,oilshot,burstcannon
 A	clushshot	クラッシュショット	0	3	2	1	1	commetcannon	burstcannon
 B	burstcannon	バーストキャノン	0	3	2	2	2	rushbullet,clushshot	
-C	oilshot	オイルショット	0	3	1	2	2	commetcannon
+C	oilshot	オイルショット	0	3	1	2	2	commetcannon	
 D	flushbullet	フラッシュバレット	0	3	2	1	1		whitebullet,scratchtrap
 E	whitebullet	ホワイトバレット	0	3	2	1	1	flushbullet	scratchtrap
 F	scratchtrap	スクラッチトラップ	0	3	3	1	1	whitebullet	
