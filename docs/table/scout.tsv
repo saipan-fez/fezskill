@@ -22,12 +22,12 @@ t	legbreak	レッグブレイク	0	3	2	1	1		guardbreak,armbreak
 u	guardbreak	ガードブレイク	0	3	2	1	1	legbreak	armbreak
 v	armbreak	アームブレイク	0	3	2	2	2	guardbreak,legbreak	
 w	dagerstrike	ダガーストライク	0	3	1	2	2	poisonblow	
-x 	frickshot	フリックショット	0	3	2	1	1		rushbullet,clushshot
-y	rushbullet	ラッシュバレット	0	3	2	1	1	frickshot	clushshot
-z	quickbeat	クイックビート	0	3	2	1	1		commetcannon,oilshot,clushshot
-A	commetcannon	コメットキャノン	0	3	2	1	1	quickbeat	clushshot
-B	clushshot	クラッシュショット	0	3	2	2	2	rushbullet,commetcannon	
-C	oilshot	オイルショット	0	3	1	2	2	quickbeat	
+x	frickshot	フリックショット	0	3	2	1	1		rushbullet,burstcannon
+y	rushbullet	ラッシュバレット	0	3	2	1	1	frickshot	burstcannon
+z	commetcannon	コメットキャノン	0	3	2	1	1		clushshot,oilshot,burstcannon
+A	clushshot	クラッシュショット	0	3	2	1	1	commetcannon	burstcannon
+B	burstcannon	バーストキャノン	0	3	2	2	2	rushbullet,clushshot	
+C	oilshot	オイルショット	0	3	1	2	2	commetcannon	
 D	flushbullet	フラッシュバレット	0	3	2	1	1		whitebullet,scratchtrap
 E	whitebullet	ホワイトバレット	0	3	2	1	1	flushbullet	scratchtrap
 F	scratchtrap	スクラッチトラップ	0	3	3	1	1	whitebullet	
